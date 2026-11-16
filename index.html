@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f7f4">
+<title>Свои ручки — кастомные ручки</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#f8f7f4;
+  --paper:#fffefa;
+  --text:#252421;
+  --muted:#89857e;
+  --red:#e34c42;
+  --line:#eae7e1;
+  --dark:#282724;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Manrope',sans-serif;
+  overflow-x:hidden;
+}
+button,input,textarea,select {font:inherit}
+button {cursor:pointer}
+a {color:inherit;text-decoration:none}
+.container {width:min(1160px,calc(100% - 44px));margin:auto}
+
+.hand {
+  font-family:'Caveat',cursive;
+  color:var(--red);
+  font-size:1.2em;
+  font-weight:700;
+  display:inline-block;
+  transform:rotate(-3deg);
+}
+
+/* РИСОВАННОЕ НАЗВАНИЕ */
+
+.logo {
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.logo-name {
+  font-family:'Caveat',cursive;
+  font-size:39px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-1.5px;
+  color:var(--text);
+  transform:rotate(-2deg);
+  display:inline-block;
+  position:relative;
+}
+
+.logo-name:after {
+  content:"";
+  position:absolute;
+  left:2px;
+  right:5px;
+  bottom:-5px;
+  height:3px;
+  background:var(--red);
+  border-radius:50%;
+  transform:rotate(-1.5deg);
+}
+
+.logo-dot {color:var(--red)}
+
+/* HEADER */
+
+header {
+  height:82px;
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid rgba(0,0,0,.045);
+}
+.nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:34px;
+  color:#77736d;
+  font-size:13px;
+  font-weight:600;
+}
+.nav-links a {transition:color .2s}
+.nav-links a:hover {color:var(--red)}
+.nav-button {
+  background:var(--dark);
+  color:white;
+  padding:12px 19px;
+  border-radius:100px;
+  font-size:12px;
+  font-weight:800;
+  transition:.25s;
+}
+.nav-button:hover {
+  background:var(--red);
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+  padding:105px 0 90px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:65px;
+  align-items:center;
+}
+.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:25px;
+}
+.eyebrow:before {
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--red);
+}
+h1 {
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(38px,5.3vw,67px);
+  line-height:1.17;
+  font-weight:500;
+  letter-spacing:-3.5px;
+}
+.hero-description {
+  margin-top:25px;
+  max-width:440px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+}
+.hero-actions {
+  display:flex;
+  gap:13px;
+  flex-wrap:wrap;
+  margin-top:34px;
+}
+.primary-button {
+  border:0;
+  background:var(--red);
+  color:white;
+  padding:17px 25px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 8px 22px rgba(227,76,66,.16);
+  transition:.25s;
+}
+.primary-button:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px rgba(227,76,66,.25);
+}
+.secondary-button {
+  border:1px solid var(--line);
+  background:transparent;
+  padding:16px 23px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+  transition:.2s;
+}
+.secondary-button:hover {
+  background:white;
+  border-color:#d4d0c9;
+}
+
+/* HERO PHOTO */
+
+.hero-visual {position:relative;min-width:0}
+.photo-frame {
+  height:450px;
+  background:#eeeae3;
+  border-radius:35px;
+  overflow:hidden;
+  position:relative;
+  transform:rotate(2deg);
+  box-shadow:0 25px 70px rgba(45,38,28,.11);
+  animation:float 5s ease-in-out infinite;
+}
+.photo-frame img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.photo-label {
+  position:absolute;
+  bottom:22px;
+  left:22px;
+  background:rgba(255,254,250,.95);
+  padding:12px 17px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:800;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
+.photo-label span {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:500;
+  margin-top:3px;
+}
+.floating-note {
+  position:absolute;
+  top:27px;
+  right:-24px;
+  background:var(--red);
+  color:white;
+  border-radius:18px;
+  padding:15px 20px;
+  font-size:12px;
+  font-weight:800;
+  transform:rotate(6deg);
+  box-shadow:0 12px 25px rgba(227,76,66,.2);
+}
+
+/* БЕГУЩАЯ СТРОКА */
+
+.marquee {
+  overflow:hidden;
+  background:var(--red);
+  color:white;
+  padding:17px 0;
+  transform:rotate(-1deg) scale(1.02);
+}
+.marquee-track {
+  display:flex;
+  width:max-content;
+  animation:marquee 24s linear infinite;
+}
+.marquee-item {
+  font-family:'Unbounded',sans-serif;
+  font-size:12px;
+  letter-spacing:1px;
+  padding:0 27px;
+  white-space:nowrap;
+}
+.marquee-item span {opacity:.6;margin-left:28px}
+
+/* СЕКЦИИ */
+
+.content-section {padding:115px 0}
+.section-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:25px;
+  margin-bottom:43px;
+}
+.section-kicker {
+  color:var(--red);
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  margin-bottom:14px;
+}
+.section-title {
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(27px,3.5vw,41px);
+  line-height:1.3;
+  letter-spacing:-1.8px;
+  font-weight:500;
+}
+.section-subtitle {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  max-width:310px;
+}
+
+/* КАРТОЧКИ */
+
+.features {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+.feature-card {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:29px;
+  min-height:220px;
+  transition:transform .3s,box-shadow .3s;
+}
+.feature-card:hover {
+  transform:translateY(-7px);
+  box-shadow:0 18px 40px rgba(40,35,25,.06);
+}
+.feature-icon {
+  width:47px;
+  height:47px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:#f9e9e5;
+  color:var(--red);
+  margin-bottom:25px;
+}
+.feature-icon svg {
+  width:23px;
+  height:23px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+.feature-card h3 {
+  font-size:16px;
+  margin-bottom:10px;
+  font-weight:800;
+}
+.feature-card p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* ГАЛЕРЕЯ */
+
+.gallery-section {
+  background:#f0eee9;
+  overflow:hidden;
+}
+.gallery-layout {
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:55px;
+  align-items:center;
+}
+.gallery-info p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  margin-top:20px;
+  max-width:330px;
+}
+.gallery-controls {
+  display:flex;
+  gap:10px;
+  margin-top:30px;
+}
+.circle-button {
+  width:45px;
+  height:45px;
+  border:1px solid #dedbd4;
+  border-radius:50%;
+  background:transparent;
+  font-size:18px;
+  transition:.2s;
+}
+.circle-button:hover {
+  background:var(--text);
+  color:white;
+  border-color:var(--text);
+}
+.gallery-view {
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  background:#e7e3dc;
+}
+.gallery-track {
+  display:flex;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.gallery-slide {
+  flex:0 0 100%;
+  height:430px;
+  overflow:hidden;
+}
+.gallery-slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.gallery-dots {
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  margin-top:17px;
+}
+.gallery-dot {
+  border:0;
+  width:7px;
+  height:7px;
+  border-radius:10px;
+  background:#c9c4ba;
+  transition:.3s;
+}
+.gallery-dot.active {
+  width:23px;
+  background:var(--red);
+}
+
+/* ЗАКАЗ */
+
+.order-section {padding:110px 0}
+.order-box {
+  background:var(--dark);
+  color:white;
+  border-radius:34px;
+  padding:65px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:65px;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.order-box:after {
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  right:-100px;
+  top:-140px;
+  pointer-events:none;
+}
+.order-copy {position:relative;z-index:1}
+.order-copy .section-kicker {color:#ff938a}
+.order-copy h2 {
+  font-family:'Unbounded',sans-serif;
+  font-weight:500;
+  font-size:clamp(27px,3.4vw,40px);
+  line-height:1.35;
+  letter-spacing:-1.5px;
+}
+.order-copy p {
+  color:#aaa7a0;
+  font-size:13px;
+  line-height:1.9;
+  margin-top:20px;
+  max-width:350px;
+}
+.price-note {
+  display:inline-flex;
+  margin-top:28px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:100px;
+  padding:11px 17px;
+  font-size:12px;
+  color:#f2eee8;
+}
+.order-form {
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+.order-form input,
+.order-form textarea {
+  width:100%;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.07);
+  color:white;
+  border-radius:14px;
+  padding:16px;
+  outline:none;
+  font-size:13px;
+  transition:border .2s,background .2s;
+}
+.order-form input::placeholder,
+.order-form textarea::placeholder {color:#aaa7a0}
+.order-form input:focus,
+.order-form textarea:focus {
+  border-color:#ff938a;
+  background:rgba(255,255,255,.1);
+}
+.order-form textarea {
+  min-height:105px;
+  resize:vertical;
+}
+.order-form button {width:100%;margin-top:4px}
+.form-hint {
+  color:#96928b;
+  font-size:10px;
+  line-height:1.6;
+  text-align:center;
+}
+
+/* НИЗ САЙТА */
+
+.bottom-area {padding:0 0 35px}
+.bottom-card {
+  background:var(--paper);
+  border:1px dashed #ded8cf;
+  border-radius:24px;
+  padding:25px 28px;
+  display:flex;
+  align-items:center;
+  gap:17px;
+  transform:rotate(-.3deg);
+}
+.bottom-doodle {
+  flex-shrink:0;
+  width:48px;
+  height:48px;
+  background:#f9e9e5;
+  color:var(--red);
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+}
+.bottom-doodle svg {
+  width:25px;
+  height:25px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.bottom-copy {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+.bottom-copy strong {
+  display:block;
+  color:var(--text);
+  font-size:13px;
+  margin-bottom:4px;
+}
+.bottom-copy span {color:var(--red);font-weight:800}
+
+/* FOOTER */
+
+footer {
+  padding:25px 0 35px;
+  border-top:1px solid var(--line);
+}
+.footer-inner {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-center {
+  color:var(--muted);
+  font-size:11px;
+}
+.footer-mark {
+  font-family:'Caveat',cursive;
+  color:var(--red);
+  font-size:25px;
+  transform:rotate(-4deg);
+}
+
+/* АНИМАЦИИ */
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+@keyframes float {
+  0%,100% {transform:rotate(2deg) translateY(0)}
+  50% {transform:rotate(2deg) translateY(-12px)}
+}
+@keyframes marquee {
+  from {transform:translateX(0)}
+  to {transform:translateX(-50%)}
+}
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+
+@media(max-width:800px) {
+  .container {width:min(100% - 32px,600px)}
+  header {height:70px}
+  .nav-links {display:none}
+  .logo-name {font-size:35px}
+
+  .hero {
+    padding:65px 0 75px;
+    grid-template-columns:1fr;
+    gap:45px;
+  }
+  h1 {letter-spacing:-2px}
+  .photo-frame {height:380px}
+  .floating-note {right:-5px}
+
+  .content-section {padding:80px 0}
+  .section-top {
+    align-items:start;
+    flex-direction:column;
+  }
+  .features {grid-template-columns:1fr}
+  .feature-card {min-height:auto}
+
+  .gallery-layout {
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+  .gallery-slide {height:350px}
+
+  .order-box {
+    padding:35px 24px;
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+  .bottom-card {padding:20px}
+  .footer-inner {align-items:flex-start}
+}
+
+@media(max-width:420px) {
+  .hero-actions {flex-direction:column;align-items:stretch}
+  .hero-actions button {width:100%}
+  .photo-frame {height:320px}
+  .floating-note {font-size:10px;padding:12px}
+  .gallery-slide {height:280px}
+  .bottom-card {align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="#" class="logo">
+      <span class="logo-name">Свои ручки<span class="logo-dot">.</span></span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#about">О нас</a>
+      <a href="#gallery">Наши работы</a>
+      <a href="#order">Заказать</a>
+    </nav>
+
+    <a href="#order" class="nav-button">Заказать ручку ↗</a>
+  </div>
+</header>
+
+<main>
+
+<section class="container hero">
+
+  <div class="hero-copy">
+    <div class="eyebrow">НЕ КАК У ВСЕХ</div>
+
+    <h1>
+      Ручка,<br>
+      которая <span class="hand">про тебя.</span>
+    </h1>
+
+    <p class="hero-description">
+      Хочешь ручку, которой больше ни у кого нет?
+      Мы создаём кастомные ручки с собственным дизайном.
+      Ты приносишь идею — мы воплощаем её в жизнь.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#order">
+        <button class="primary-button">Придумать свою ручку ↗</button>
+      </a>
+      <a href="#gallery">
+        <button class="secondary-button">Посмотреть работы</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="photo-frame">
+      <img src="image-photo.png" alt="Кастомная ручка">
+      <div class="photo-label">
+        Сделано вручную
+        <span>Идея становится реальностью</span>
+      </div>
+    </div>
+    <div class="floating-note">от 100 ₽ ✳</div>
+  </div>
+
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">ТВОЯ ИДЕЯ — НАШ ДИЗАЙН <span>✳</span></div>
+    <div class="marquee-item">КАСТОМНЫЕ РУЧКИ <span>✳</span></div>
+    <div class="marquee-item">БУДЬ СОБОЙ <span>✳</span></div>
+    <div class="marquee-item">ТВОЯ ИДЕЯ — НАШ ДИЗАЙН <span>✳</span></div>
+    <div class="marquee-item">КАСТОМНЫЕ РУЧКИ <span>✳</span></div>
+    <div class="marquee-item">БУДЬ СОБОЙ <span>✳</span></div>
+  </div>
+</div>
+
+<section class="container content-section" id="about">
+
+  <div class="section-top reveal">
+    <div>
+      <div class="section-kicker">ПОЧЕМУ МЫ?</div>
+      <h2 class="section-title">Не просто ручка.<br>Твоя <span class="hand">вещь.</span></h2>
+    </div>
+    <p class="section-subtitle">
+      Каждая ручка — маленький способ выразить себя.
+      Никаких скучных стандартов.
+    </p>
+  </div>
+
+  <div class="features">
+
+    <article class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3v18M3 12h18"/>
+          <path d="m7 7 10 10M17 7 7 17"/>
+        </svg>
+      </div>
+      <h3>Свой дизайн</h3>
+      <p>Придумываем оригинальный внешний вид и воплощаем интересные идеи.</p>
+    </article>
+
+    <article class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="m4 20 4.5-1 10.8-10.8a2.1 2.1 0 0 0-3-3L5.5 16 4 20Z"/>
+          <path d="m14.5 6.5 3 3"/>
+        </svg>
+      </div>
+      <h3>Сделано с душой</h3>
+      <p>Работаем над каждой деталью, чтобы результат выглядел интересно.</p>
+    </article>
+
+    <article class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
+      </div>
+      <h3>Доступная цена</h3>
+      <p>Стоимость начинается всего от 100 рублей. Креатив не обязан быть дорогим.</p>
+    </article>
+
+  </div>
+</section>
+
+<section class="content-section gallery-section" id="gallery">
+  <div class="container gallery-layout">
+
+    <div class="gallery-info reveal">
+      <div class="section-kicker">НАШИ РАБОТЫ</div>
+      <h2 class="section-title">
+        Сделано<br>
+        <span class="hand">необычно.</span>
+      </h2>
+      <p>
+        Вот так выглядят наши кастомные ручки.
+        И это только начало — дальше будет больше интересных дизайнов.
+      </p>
+
+      <div class="gallery-controls">
+        <button class="circle-button" id="prev" aria-label="Предыдущая фотография">←</button>
+        <button class="circle-button" id="next" aria-label="Следующая фотография">→</button>
+      </div>
+    </div>
+
+    <div class="gallery-wrap reveal">
+      <div class="gallery-view" id="galleryView">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-slide">
+            <img src="image-photo.png" alt="Кастомная ручка — работа 1">
+          </div>
+          <div class="gallery-slide">
+            <img src="image-photo.png" alt="Кастомная ручка — работа 2">
+          </div>
+          <div class="gallery-slide">
+            <img src="image-photo.png" alt="Кастомная ручка — работа 3">
+          </div>
+        </div>
+      </div>
+      <div class="gallery-dots" id="galleryDots">
+        <button class="gallery-dot active" aria-label="Слайд 1"></button>
+        <button class="gallery-dot" aria-label="Слайд 2"></button>
+        <button class="gallery-dot" aria-label="Слайд 3"></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="container order-section" id="order">
+  <div class="order-box">
+
+    <div class="order-copy">
+      <div class="section-kicker">ТВОЯ ОЧЕРЕДЬ</div>
+      <h2>Есть идея?<br>Давай <span class="hand">создадим.</span></h2>
+      <p>
+        Расскажи, какую ручку ты хочешь.
+        Мы обсудим дизайн и договоримся о деталях заказа.
+      </p>
+      <div class="price-note">✳ Стоимость от 100 ₽</div>
+    </div>
+
+    <form class="order-form" id="orderForm">
+
+      <input
+        type="text"
+        id="customerName"
+        placeholder="Как тебя зовут?"
+        required
+        maxlength="60"
+      >
+
+      <input
+        type="number"
+        id="quantity"
+        placeholder="Количество ручек"
+        min="1"
+        max="100"
+        value="1"
+        required
+      >
+
+      <textarea
+        id="idea"
+        placeholder="Расскажи о своей идее..."
+        required
+        maxlength="1000"
+      ></textarea>
+
+      <button class="primary-button" type="submit">
+        Отправить заявку в MAX ↗
+      </button>
+
+      <p class="form-hint">
+        Заявка будет подготовлена автоматически.
+        Перед отправкой проверь текст и выбери получателя в MAX.
+      </p>
+
+    </form>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ЮМОР ВНИЗУ -->
+
+<section class="container bottom-area">
+  <div class="bottom-card reveal">
+
+    <div class="bottom-doodle">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 10.5 12 4l9 6.5"/>
+        <path d="M5 9.5V20h14V9.5"/>
+        <path d="M9 20v-6h6v6"/>
+        <path d="M3 20h18"/>
+      </svg>
+    </div>
+
+    <div class="bottom-copy">
+      <strong>Будь собой. Даже если твоя ручка немного странная.</strong>
+      В РКН нас пока нет, зато все деньги уже ушли на шторки.
+      Сервер стоит на табуретке, директор — на перемене,
+      а бухгалтерия ведётся в тетрадке по математике.
+      <span>Зато ручки настоящие.</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+
+    <a href="#" class="logo">
+      <span class="logo-name">Свои ручки<span class="logo-dot">.</span></span>
+    </a>
+
+    <div class="footer-center">
+      Сделано с идеей и капелькой творчества ✳
+    </div>
+
+    <div class="footer-mark">будь собой!</div>
+
+  </div>
+</footer>
+
+<script>
+/* КАРУСЕЛЬ */
+
+const track = document.getElementById('galleryTrack');
+const dots = [...document.querySelectorAll('.gallery-dot')];
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+const galleryView = document.getElementById('galleryView');
+
+let currentSlide = 0;
+const totalSlides = 3;
+
+function showSlide(index) {
+  currentSlide = (index + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+}
+
+prev.addEventListener('click', () => showSlide(currentSlide - 1));
+next.addEventListener('click', () => showSlide(currentSlide + 1));
+
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => showSlide(index));
+});
+
+/* СВАЙП */
+
+let touchStartX = 0;
+
+galleryView.addEventListener('touchstart', event => {
+  touchStartX = event.changedTouches[0].screenX;
+}, {passive:true});
+
+galleryView.addEventListener('touchend', event => {
+  const touchEndX = event.changedTouches[0].screenX;
+  const difference = touchStartX - touchEndX;
+
+  if (Math.abs(difference) > 45) {
+    showSlide(currentSlide + (difference > 0 ? 1 : -1));
+  }
+}, {passive:true});
+
+/* ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ */
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+
+document.querySelectorAll('.reveal').forEach(element => {
+  observer.observe(element);
+});
+
+/* ОТПРАВКА ЗАЯВКИ */
+
+const MAX_PHONE = '79171937393'; // Замени на номер владельца MAX
+const MAX_PROFILE_URL = ''; // Можно вставить личную ссылку на профиль MAX
+
+const form = document.getElementById('orderForm');
+
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const name = document.getElementById('customerName').value.trim();
+  const quantity = document.getElementById('quantity').value;
+  const idea = document.getElementById('idea').value.trim();
+
+  if (!name || !quantity || !idea) {
+    alert('Заполни все поля формы.');
+    return;
+  }
+
+  if (Number(quantity) < 1 || Number(quantity) > 100) {
+    alert('Укажи количество от 1 до 100.');
+    return;
+  }
+
+  const message =
+`Привет! Хочу заказать кастомные ручки.
+
+Имя: ${name}
+Количество: ${quantity}
+
+Моя идея:
+${idea}`;
+
+  try {
+    await navigator.clipboard.writeText(message);
+  } catch (error) {
+    const temporary = document.createElement('textarea');
+    temporary.value = message;
+    temporary.style.position = 'fixed';
+    temporary.style.opacity = '0';
+    document.body.appendChild(temporary);
+    temporary.select();
+    document.execCommand('copy');
+    temporary.remove();
+  }
+
+  if (MAX_PROFILE_URL.trim()) {
+    window.open(MAX_PROFILE_URL.trim(), '_blank', 'noopener,noreferrer');
+    alert('Текст заявки скопирован! Вставь его в чат MAX.');
+  } else {
+    const phone = MAX_PHONE.replace(/\D/g, '');
+    alert(
+      'Текст заявки скопирован!\n\n' +
+      'Открой MAX и найди получателя по номеру:\n' +
+      '+' + phone + '\n\n' +
+      'Затем вставь текст в чат.'
+    );
+
+    window.open('https://max.ru/', '_blank', 'noopener,noreferrer');
+  }
+});
+</script>
+
+</body>
+</html>
