@@ -4,681 +4,860 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f5f0">
-<title>Свои ручки — не такие, как у всех</title>
+<meta name="theme-color" content="#f5f1e9">
+<title>Свои ручки — вещи с характером</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#f7f5f0;
-  --paper:#fffefa;
-  --ink:#25231f;
-  --muted:#89857e;
-  --red:#d94b3f;
-  --red-dark:#bd382e;
-  --line:#e9e5dd;
-  --radius:26px;
+:root {
+  --bg: #f5f1e9;
+  --paper: #fffdf8;
+  --ink: #25231f;
+  --muted: #827d74;
+  --red: #d64a3e;
+  --red2: #b9362d;
+  --line: #e5ded3;
+  --soft: #eee7dc;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Manrope,Arial,sans-serif;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-.container{width:min(1180px,calc(100% - 48px));margin:auto}
 
-/* NAVIGATION */
-header{
-  height:88px;
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid rgba(37,35,31,.07);
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Manrope, Arial, sans-serif;
+  overflow-x: hidden;
 }
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.wrap {
+  width: min(1180px, calc(100% - 52px));
+  margin: auto;
 }
-.logo{
-  font-family:Caveat,cursive;
-  font-size:37px;
-  font-weight:700;
-  transform:rotate(-3deg);
-  display:inline-block;
-  position:relative;
+
+/* HEADER */
+
+.topbar {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #25231f12;
 }
-.logo:after{
-  content:"";
-  position:absolute;
-  left:3px;
-  right:13px;
-  height:4px;
-  bottom:-5px;
-  background:var(--red);
-  border-radius:100%;
-  transform:rotate(-2deg);
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.logo-dot{color:var(--red)}
-.nav-links{display:flex;gap:34px}
-.nav-links a{
-  color:#77736d;
-  font-size:12px;
-  font-weight:600;
-  transition:.2s;
+
+.brand {
+  font: 700 36px/.8 Caveat, cursive;
+  letter-spacing: -1px;
+  transform: rotate(-3deg);
+  display: inline-block;
+  position: relative;
 }
-.nav-links a:hover{color:var(--red)}
-.nav-cta{
-  padding:13px 21px;
-  border-radius:50px;
-  background:var(--ink);
-  color:white;
-  font-size:12px;
-  font-weight:700;
-  transition:.25s;
+
+.brand:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--red);
+  left: 3px;
+  right: 8px;
+  bottom: -8px;
+  transform: rotate(-2deg);
 }
-.nav-cta:hover{background:var(--red);transform:translateY(-2px)}
+
+.brand i {
+  font-style: normal;
+  color: var(--red);
+}
+
+.navlinks {
+  display: flex;
+  gap: 34px;
+  color: #777168;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.navlinks a { transition: color .2s; }
+.navlinks a:hover { color: var(--red); }
+
+.navbtn {
+  background: var(--ink);
+  color: white;
+  padding: 13px 20px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.navbtn:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
 
 /* HERO */
-.hero{
-  min-height:690px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:50px;
-  padding:65px 0 80px;
-}
-.kicker{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--red);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-.kicker:before{
-  content:"";
-  height:2px;
-  width:27px;
-  background:var(--red);
-}
-.hero h1{
-  font-size:clamp(48px,6.4vw,82px);
-  line-height:.99;
-  letter-spacing:-5px;
-  margin:27px 0 24px;
-  font-weight:800;
-}
-.script{
-  font-family:Caveat,cursive;
-  color:var(--red);
-  font-weight:600;
-  letter-spacing:-1px;
-}
-.hero-text{
-  max-width:440px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.95;
-}
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  margin-top:32px;
-  flex-wrap:wrap;
-}
-.button-primary{
-  border:0;
-  border-radius:50px;
-  background:var(--red);
-  color:white;
-  padding:17px 25px;
-  font-size:12px;
-  font-weight:800;
-  transition:.25s;
-}
-.button-primary:hover{
-  background:var(--red-dark);
-  transform:translateY(-3px);
-  box-shadow:0 10px 25px #d94b3f30;
-}
-.button-secondary{
-  border:1px solid var(--line);
-  background:transparent;
-  border-radius:50px;
-  padding:16px 23px;
-  font-size:12px;
-  font-weight:700;
-  transition:.2s;
-}
-.button-secondary:hover{background:white;border-color:#d6d0c6}
-.hero-meta{
-  margin-top:28px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#aaa49a;
-  font-size:10px;
-  font-weight:600;
-}
-.meta-dot{
-  width:5px;height:5px;border-radius:50%;background:var(--red);
+
+.hero {
+  min-height: 690px;
+  padding: 72px 0 85px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
 }
 
-/* HERO PHOTO */
-.hero-art{
-  min-width:0;
-  position:relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:12px 22px 20px;
-}
-.photo-frame{
-  width:min(100%,470px);
-  height:570px;
-  overflow:hidden;
-  position:relative;
-  border-radius:220px 220px 28px 28px;
-  background:#b99c79;
-  box-shadow:0 28px 65px #49351e20;
-  isolation:isolate;
-}
-.photo-frame:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,transparent 60%,#24180d30);
-  pointer-events:none;
-}
-.main-photo{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center center;
-  transform:scale(1.42);
-  transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
-}
-.photo-frame:hover .main-photo{transform:scale(1.5)}
-.photo-sticker{
-  position:absolute;
-  z-index:2;
-  right:-5px;
-  bottom:58px;
-  background:var(--paper);
-  padding:15px 19px;
-  border-radius:16px;
-  box-shadow:0 12px 35px #30231420;
-  transform:rotate(4deg);
-  font-family:Caveat,cursive;
-  font-size:23px;
-  color:var(--red);
-}
-.photo-index{
-  position:absolute;
-  z-index:2;
-  top:28px;
-  left:25px;
-  color:white;
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:800;
-  text-shadow:0 2px 10px #0008;
-}
-.photo-side-note{
-  position:absolute;
-  left:-5px;
-  top:44%;
-  writing-mode:vertical-rl;
-  transform:rotate(180deg);
-  color:#aaa39a;
-  font-size:9px;
-  letter-spacing:2px;
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
 }
 
-/* MARQUEE */
-.marquee{
-  background:var(--red);
-  color:white;
-  overflow:hidden;
-  padding:17px 0;
-  transform:rotate(-1deg) scale(1.02);
+.eyebrow:before {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background: var(--red);
 }
-.marquee-track{
-  display:flex;
-  width:max-content;
-  animation:marquee 30s linear infinite;
-}
-.marquee span{
-  padding:0 25px;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-}
-@keyframes marquee{to{transform:translateX(-50%)}}
 
-/* SECTION TITLES */
-section{padding:110px 0}
-.section-heading{margin-bottom:50px}
-.section-heading.center{text-align:center}
-.section-eyebrow{
-  color:var(--red);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
+h1 {
+  font-size: clamp(54px, 6.7vw, 86px);
+  line-height: .96;
+  letter-spacing: -6px;
+  margin: 28px 0 25px;
+  font-weight: 800;
 }
-.section-heading h2{
-  font-size:clamp(35px,4.5vw,55px);
-  letter-spacing:-3px;
-  line-height:1.08;
-  margin:14px 0;
+
+.hand {
+  font: 600 1.15em/.8 Caveat, cursive;
+  color: var(--red);
+  letter-spacing: -1px;
 }
-.section-heading p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.9;
-  max-width:500px;
+
+.intro {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: 430px;
 }
-.section-heading.center p{margin:0 auto}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 31px;
+  flex-wrap: wrap;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 17px;
+  background: var(--red);
+  color: #fff;
+  border: 0;
+  padding: 16px 22px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.primary:hover {
+  background: var(--red2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px #d64a3e2b;
+}
+
+.secondary {
+  padding: 15px 19px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.secondary:hover { background: var(--paper); }
+
+.micro {
+  margin-top: 26px;
+  color: #aaa297;
+  font-size: 10px;
+  letter-spacing: .5px;
+}
+
+.micro b {
+  color: var(--red);
+  font-weight: 800;
+}
+
+/* PHOTO */
+
+.visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.photo-shell {
+  position: relative;
+  width: min(100%, 450px);
+  height: 590px;
+  border-radius: 220px 220px 18px 18px;
+  overflow: hidden;
+  background: #bca080;
+  box-shadow: 0 28px 65px #47331e20;
+  isolation: isolate;
+}
+
+.photo-shell:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #20170d05 50%, #20170d42);
+  pointer-events: none;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 51%;
+  transition: transform 1.1s cubic-bezier(.2,.8,.2,1);
+}
+
+.photo-shell:hover .hero-photo {
+  transform: scale(1.035);
+}
+
+.photo-tag {
+  position: absolute;
+  z-index: 2;
+  left: 22px;
+  top: 22px;
+  color: white;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  text-shadow: 0 1px 9px #0008;
+}
+
+.photo-note {
+  position: absolute;
+  z-index: 3;
+  right: -17px;
+  bottom: 57px;
+  background: var(--paper);
+  padding: 13px 18px;
+  border-radius: 13px;
+  box-shadow: 0 12px 30px #3927191c;
+  font: 600 23px Caveat, cursive;
+  color: var(--red);
+  transform: rotate(4deg);
+}
+
+.side-label {
+  position: absolute;
+  left: -28px;
+  top: 42%;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #a69e92;
+}
+
+.round-mark {
+  position: absolute;
+  right: -5px;
+  top: 32px;
+  width: 83px;
+  height: 83px;
+  border: 1px solid #d64a3e75;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--red);
+  font: 600 15px Caveat, cursive;
+  transform: rotate(12deg);
+  background: #f5f1e9d9;
+}
+
+/* RUNNING LINE */
+
+.ticker {
+  background: var(--red);
+  color: #fff;
+  padding: 15px 0;
+  overflow: hidden;
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.ticker span {
+  padding: 0 25px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
 
 /* ABOUT */
-.about-grid{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:75px;
-  align-items:center;
-}
-.about-big{
-  font-size:clamp(32px,4vw,49px);
-  line-height:1.14;
-  letter-spacing:-2.5px;
-  font-weight:800;
-}
-.about-big .script{font-size:1.2em}
-.about-description{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.95;
-  max-width:440px;
-  margin-top:22px;
-}
-.about-list{border-top:1px solid var(--line)}
-.about-item{
-  display:grid;
-  grid-template-columns:45px 1fr;
-  gap:16px;
-  padding:23px 0;
-  border-bottom:1px solid var(--line);
-}
-.about-number{
-  font-family:Caveat,cursive;
-  color:var(--red);
-  font-size:25px;
-}
-.about-item h3{font-size:14px;margin:0 0 7px}
-.about-item p{
-  margin:0;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.8;
+
+.manifesto { padding: 125px 0 115px; }
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px;
+  align-items: center;
 }
 
-/* GALLERY */
-.gallery-section{
-  background:#eeebe4;
-  overflow:hidden;
+.manifesto h2 {
+  font-size: clamp(37px, 4.6vw, 57px);
+  line-height: 1.05;
+  letter-spacing: -3.5px;
+  margin: 18px 0;
 }
-.gallery-layout{
-  display:grid;
-  grid-template-columns:1fr 1.05fr;
-  gap:60px;
-  align-items:center;
-}
-.gallery-copy h2{
-  font-size:clamp(36px,4.5vw,57px);
-  line-height:1.05;
-  letter-spacing:-3px;
-  margin:16px 0;
-}
-.gallery-copy p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.9;
-  max-width:400px;
-}
-.gallery-count{
-  color:var(--red);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin-top:30px;
-}
-.gallery-stage{
-  position:relative;
-  min-width:0;
-}
-.gallery-window{
-  overflow:hidden;
-  border-radius:25px;
-  background:#d6c4aa;
-  height:480px;
-  box-shadow:0 25px 55px #47351e18;
-}
-.gallery-track{
-  display:flex;
-  height:100%;
-  transition:transform .65s cubic-bezier(.2,.8,.2,1);
-}
-.gallery-slide{
-  flex:0 0 100%;
-  height:100%;
-  overflow:hidden;
-  position:relative;
-}
-.gallery-slide img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  transition:transform 1s;
-}
-.gallery-slide.view-full img{
-  object-position:center;
-  transform:scale(1.25);
-}
-.gallery-slide.view-grip img{
-  object-position:center 65%;
-  transform:scale(2.05);
-}
-.gallery-slide.view-top img{
-  object-position:center 25%;
-  transform:scale(2.05);
-}
-.slide-caption{
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  background:#fffefaed;
-  border-radius:12px;
-  padding:11px 15px;
-  font-size:11px;
-  font-weight:800;
-}
-.gallery-controls{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:18px;
-}
-.gallery-arrows{display:flex;gap:8px}
-.gallery-arrow{
-  width:43px;height:43px;
-  border-radius:50%;
-  border:1px solid #dcd6cc;
-  background:transparent;
-  font-size:18px;
-  transition:.2s;
-}
-.gallery-arrow:hover{background:var(--ink);color:white;border-color:var(--ink)}
-.gallery-dots{display:flex;gap:7px}
-.gallery-dot{
-  width:7px;height:7px;border:0;padding:0;
-  border-radius:20px;background:#c9c2b7;
-  transition:.25s;
-}
-.gallery-dot.active{width:23px;background:var(--red)}
 
-/* PRICE STRIP */
-.price-strip{
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:20px;
-  padding:35px 40px;
-  border-radius:24px;
-  background:var(--ink);
-  color:white;
-  margin-top:65px;
+.manifesto h2 em {
+  font: 600 1.13em Caveat, cursive;
+  color: var(--red);
+  font-style: normal;
 }
-.price-strip h3{
-  font-size:23px;
-  letter-spacing:-1px;
-  margin:0 0 7px;
+
+.manifesto-copy {
+  max-width: 440px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2;
 }
-.price-strip p{margin:0;color:#aaa49b;font-size:11px}
-.price-value{
-  font-family:Caveat,cursive;
-  font-size:48px;
-  color:#f08073;
-  white-space:nowrap;
+
+.principles { border-top: 1px solid var(--line); }
+
+.principle {
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  gap: 13px;
+  padding: 21px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.principle-num {
+  font: 600 25px Caveat, cursive;
+  color: var(--red);
+}
+
+.principle h3 {
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+
+.principle p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* OUR WORK */
+
+.work {
+  background: #ece6dc;
+  padding: 105px 0 100px;
+}
+
+.work-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.work-head h2 {
+  font-size: clamp(38px, 5vw, 60px);
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 13px 0 0;
+}
+
+.work-head p {
+  max-width: 310px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0 0 5px;
+}
+
+.work-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--paper);
+  border-radius: 25px;
+  overflow: hidden;
+  min-height: 440px;
+  box-shadow: 0 18px 55px #40301c0b;
+}
+
+.work-photo {
+  min-height: 440px;
+  overflow: hidden;
+  background: #bda17f;
+}
+
+.work-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 51%;
+  transition: transform .8s;
+}
+
+.work-card:hover .work-photo img {
+  transform: scale(1.035);
+}
+
+.work-details {
+  padding: clamp(28px, 5vw, 62px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.work-number {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--red);
+  font-weight: 800;
+}
+
+.work-details h3 {
+  font-size: 34px;
+  letter-spacing: -2px;
+  margin: 16px 0 13px;
+}
+
+.work-details p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  max-width: 380px;
+}
+
+.detail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.detail-list span {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  border-radius: 99px;
+  font-size: 10px;
+  color: #6f695f;
+}
+
+.work-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 26px;
+  padding-top: 21px;
+  border-top: 1px solid var(--line);
+}
+
+.work-bottom strong {
+  font-size: 22px;
+  letter-spacing: -1px;
+}
+
+.work-bottom small {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
 }
 
 /* ORDER */
-.order-wrap{
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:65px;
-  align-items:start;
+
+.order { padding: 115px 0; }
+
+.order-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 75px;
+  align-items: start;
 }
-.order-intro h2{
-  font-size:clamp(40px,5vw,62px);
-  line-height:1;
-  letter-spacing:-4px;
-  margin:18px 0;
+
+.order-copy h2 {
+  font-size: clamp(43px, 5.4vw, 68px);
+  line-height: .98;
+  letter-spacing: -5px;
+  margin: 20px 0;
 }
-.order-intro p{
-  font-size:13px;
-  line-height:1.9;
-  color:var(--muted);
+
+.order-copy h2 em {
+  font: 600 1.12em Caveat, cursive;
+  color: var(--red);
+  font-style: normal;
 }
-.order-small-note{
-  margin-top:30px;
-  font-family:Caveat,cursive;
-  font-size:25px;
-  color:var(--red);
-  transform:rotate(-3deg);
+
+.order-copy p {
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: 370px;
 }
-.order-form{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:32px;
+
+.scribble {
+  font: 600 25px Caveat, cursive;
+  color: var(--red);
+  margin-top: 28px;
+  transform: rotate(-4deg);
+  display: inline-block;
 }
-.field{margin-bottom:17px}
-.field label{
-  display:block;
-  margin-bottom:8px;
-  font-size:11px;
-  font-weight:800;
+
+.form {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 23px;
+  padding: 30px;
 }
-.field input,.field textarea{
-  width:100%;
-  border:1px solid var(--line);
-  background:#faf8f4;
-  border-radius:12px;
-  padding:14px;
-  outline:none;
-  color:var(--ink);
-  font-size:12px;
-  transition:.2s;
+
+.field { margin-bottom: 17px; }
+
+.field label {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 8px;
 }
-.field input:focus,.field textarea:focus{
-  border-color:var(--red);
-  background:white;
-  box-shadow:0 0 0 3px #d94b3f12;
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #faf8f3;
+  border-radius: 11px;
+  padding: 14px 15px;
+  font-size: 12px;
+  outline: none;
+  color: var(--ink);
+  transition: .2s;
 }
-.field textarea{min-height:110px;resize:vertical}
-.submit{
-  width:100%;
-  padding:16px;
-  border:0;
-  border-radius:12px;
-  background:var(--red);
-  color:white;
-  font-size:12px;
-  font-weight:800;
-  transition:.2s;
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--red);
+  background: white;
+  box-shadow: 0 0 0 3px #d64a3e12;
 }
-.submit:hover{background:var(--red-dark);transform:translateY(-2px)}
-.form-note{
-  margin-top:13px;
-  color:#aaa49a;
-  font-size:10px;
-  line-height:1.7;
+
+.field textarea {
+  min-height: 105px;
+  resize: vertical;
+}
+
+.submit {
+  width: 100%;
+  border: 0;
+  background: var(--ink);
+  color: white;
+  border-radius: 11px;
+  padding: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.submit:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+}
+
+.form-hint {
+  font-size: 9px;
+  line-height: 1.7;
+  color: #a39c91;
+  margin-top: 12px;
 }
 
 /* FOOTER */
-footer{
-  background:#24221f;
-  color:white;
-  padding:48px 0 24px;
+
+footer {
+  background: #25231f;
+  color: white;
+  padding: 42px 0 22px;
 }
-.footer-top{
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
-  align-items:flex-start;
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
 }
-.footer-logo{color:white}
-.footer-slogan{
-  font-family:Caveat,cursive;
-  font-size:27px;
-  color:#f08073;
-  margin-top:12px;
+
+.footer-brand {
+  font: 700 36px Caveat, cursive;
+  transform: rotate(-3deg);
+  display: inline-block;
 }
-.footer-right{text-align:right}
-.footer-note{
-  color:#aaa49b;
-  font-size:11px;
-  margin-top:12px;
+
+.footer-brand i {
+  font-style: normal;
+  color: #e66a5d;
 }
-.footer-bottom{
-  border-top:1px solid #ffffff20;
-  margin-top:38px;
-  padding-top:18px;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  color:#918a81;
-  font-size:10px;
-  line-height:1.8;
+
+.footer-slogan {
+  font: 600 24px Caveat, cursive;
+  color: #e66a5d;
+  margin-top: 10px;
 }
-.footer-joke{text-align:right}
+
+.footer-note {
+  text-align: right;
+  color: #aaa49a;
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #ffffff20;
+  margin-top: 38px;
+  padding-top: 17px;
+  color: #938b80;
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.footer-joke { text-align: right; }
 
 /* COOKIES */
-.cookie{
-  display:none;
-  position:fixed;
-  z-index:20;
-  bottom:20px;
-  left:20px;
-  width:min(440px,calc(100% - 40px));
-  padding:22px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:21px;
-  box-shadow:0 20px 70px #21190e30;
-}
-.cookie.show{display:block;animation:cookieIn .45s ease both}
-@keyframes cookieIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.cookie-title{font-size:15px;font-weight:800;margin-bottom:8px}
-.cookie-text{font-size:11px;line-height:1.8;color:var(--muted)}
-.cookie-actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
-.cookie-accept,.cookie-more{
-  border-radius:50px;
-  padding:11px 16px;
-  font-size:10px;
-  font-weight:800;
-}
-.cookie-accept{border:0;background:var(--red);color:white}
-.cookie-more{border:1px solid var(--line);background:transparent}
-.cookie-details{
-  display:none;
-  margin-top:13px;
-  padding-top:13px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.8;
-}
-.cookie-details.open{display:block}
 
-/* REVEAL ANIMATIONS */
-.reveal{opacity:1;transform:none}
-.js-ready .reveal{
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1);
+.cookie {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  left: 20px;
+  bottom: 20px;
+  width: min(430px, calc(100% - 40px));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  padding: 21px;
+  box-shadow: 0 18px 65px #1e160d30;
 }
-.js-ready .reveal.visible{opacity:1;transform:translateY(0)}
-.js-ready .reveal.d1{transition-delay:.12s}
-.js-ready .reveal.d2{transition-delay:.24s}
-.js-ready .reveal.d3{transition-delay:.36s}
 
-.draw{
-  display:inline-block;
-  clip-path:inset(0 100% 0 0);
-  animation:write .95s ease forwards;
+.cookie.show {
+  display: block;
+  animation: cookieIn .4s ease both;
 }
-@keyframes write{to{clip-path:inset(0 0 0 0)}}
 
-@media(max-width:850px){
-  .hero{grid-template-columns:1fr;gap:35px;text-align:center}
-  .hero .kicker{justify-content:center}
-  .hero-text{margin:auto}
-  .hero-actions,.hero-meta{justify-content:center}
-  .hero-art{max-width:540px;width:100%;margin:auto}
-  .photo-frame{height:520px}
-  .about-grid{grid-template-columns:1fr;gap:35px}
-  .gallery-layout{grid-template-columns:1fr;gap:30px}
-  .gallery-copy{text-align:center}
-  .gallery-copy p{margin:auto}
-  .gallery-count{text-align:center}
-  .order-wrap{grid-template-columns:1fr;gap:30px}
+@keyframes cookieIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@media(max-width:600px){
-  .container{width:calc(100% - 34px)}
-  header{height:72px}
-  .logo{font-size:32px}
-  .nav-links{display:none}
-  .nav-cta{padding:11px 15px;font-size:10px}
-  .hero{padding:55px 0 65px;min-height:auto}
-  .hero h1{font-size:53px;letter-spacing:-3px}
-  .photo-frame{height:440px;border-radius:180px 180px 22px 22px}
-  .photo-sticker{right:0;bottom:35px}
-  section{padding:78px 0}
-  .section-heading h2{letter-spacing:-2px}
-  .gallery-window{height:410px}
-  .price-strip{padding:25px;grid-template-columns:1fr}
-  .price-value{font-size:40px}
-  .order-form{padding:22px}
-  .footer-top{flex-direction:column}
-  .footer-right{text-align:left}
-  .footer-bottom{flex-direction:column}
-  .footer-joke{text-align:left}
+
+.cookie-title {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 7px;
 }
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
+
+.cookie-text {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.cookie-accept,
+.cookie-more {
+  border-radius: 99px;
+  padding: 11px 15px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.cookie-accept {
+  border: 0;
+  background: var(--red);
+  color: white;
+}
+
+.cookie-more {
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.cookie-extra {
+  display: none;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.cookie-extra.open { display: block; }
+
+/* SCROLL ANIMATIONS */
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.js-ready .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-ready .d1 { transition-delay: .12s; }
+.js-ready .d2 { transition-delay: .24s; }
+.js-ready .d3 { transition-delay: .36s; }
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    text-align: center;
+  }
+
+  .hero .eyebrow { justify-content: center; }
+  .intro { margin: auto; }
+  .actions, .micro { justify-content: center; }
+
+  .visual {
+    max-width: 520px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .photo-shell { height: 570px; }
+
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .work-card { grid-template-columns: 1fr; }
+  .work-photo { height: 480px; }
+
+  .order-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .order-copy p { max-width: 500px; }
+}
+
+@media(max-width:600px) {
+  .wrap { width: calc(100% - 34px); }
+  .topbar { height: 70px; }
+  .brand { font-size: 31px; }
+  .navlinks { display: none; }
+  .navbtn { font-size: 10px; padding: 11px 15px; }
+
+  .hero {
+    padding: 54px 0 65px;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 57px;
+    letter-spacing: -4px;
+  }
+
+  .photo-shell {
+    height: 470px;
+    border-radius: 180px 180px 15px 15px;
+  }
+
+  .photo-note { right: -5px; bottom: 38px; }
+  .round-mark { right: 0; width: 68px; }
+  .side-label { left: -10px; }
+
+  .manifesto, .order { padding: 80px 0; }
+  .work { padding: 78px 0; }
+
+  .work-head { display: block; }
+  .work-head p { margin-top: 16px; }
+
+  .work-photo {
+    height: 410px;
+    min-height: 0;
+  }
+
+  .work-details { padding: 27px; }
+
+  .footer-main { flex-direction: column; }
+  .footer-note { text-align: left; }
+  .footer-bottom { flex-direction: column; }
+  .footer-joke { text-align: left; }
+
+  .form { padding: 22px; }
+  .order-copy h2 { letter-spacing: -3px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 </style>
@@ -686,226 +865,201 @@ footer{
 
 <body>
 
-<header>
-  <div class="container nav">
-    <a class="logo" href="#">Свои ручки<span class="logo-dot">.</span></a>
-
-    <nav class="nav-links">
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#top">Свои ручки<i>.</i></a>
+    <nav class="navlinks">
       <a href="#about">О нас</a>
-      <a href="#gallery">Работы</a>
+      <a href="#work">Наша работа</a>
       <a href="#order">Заказать</a>
     </nav>
-
-    <a class="nav-cta" href="#order">Связаться ↗</a>
+    <a class="navbtn" href="#order">Обсудить идею ↗</a>
   </div>
 </header>
 
-<main>
+<main id="top">
 
-<!-- HERO -->
-<section class="container hero">
-  <div>
-    <div class="kicker reveal">Маленькая мастерская идей</div>
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <div class="eyebrow reveal">Кастомные вещи с характером</div>
 
-    <h1 class="reveal d1">
-      Не такая,<br>
-      как у <span class="script draw">всех.</span>
-    </h1>
+      <h1 class="reveal d1">
+        Обычная ручка.<br>
+        <span class="hand">Необычная</span><br>
+        история.
+      </h1>
 
-    <p class="hero-text reveal d2">
-      Мы создаём кастомные ручки с собственным дизайном.
-      Придумываем оформление, подбираем детали и превращаем
-      обычную вещь в нечто особенное.
-    </p>
-
-    <div class="hero-actions reveal d3">
-      <a href="#order"><button class="button-primary">Придумать свою ручку ↗</button></a>
-      <a href="#gallery"><button class="button-secondary">Посмотреть работу</button></a>
-    </div>
-
-    <div class="hero-meta reveal d3">
-      <span class="meta-dot"></span>
-      От 100 ₽
-      <span>·</span>
-      Свой дизайн
-      <span>·</span>
-      Делаем сами
-    </div>
-  </div>
-
-  <div class="hero-art reveal">
-    <div class="photo-frame">
-      <div class="photo-index">НАША РАБОТА — № 001</div>
-      <img class="main-photo" src="image-photo.jpg" alt="Красная кастомная ручка с серой рельефной накладкой">
-    </div>
-    <div class="photo-side-note">СДЕЛАНО С ФАНТАЗИЕЙ</div>
-    <div class="photo-sticker">У каждой — свой характер ✳</div>
-  </div>
-</section>
-
-<!-- MOVING LINE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="container" id="about">
-  <div class="about-grid">
-    <div class="reveal">
-      <div class="section-eyebrow">Немного о нас</div>
-      <div class="about-big">
-        Обычные вещи.<br>
-        <span class="script">Необычный</span><br>
-        подход.
-      </div>
-      <p class="about-description">
-        Нам нравится создавать вещи, которых не встретишь
-        на каждой парте. Мы сами придумываем оформление
-        и делаем кастомные ручки — от первой идеи до готового результата.
+      <p class="intro reveal d2">
+        Мы придумываем и создаём кастомные ручки с собственным дизайном.
+        Ты приносишь идею — мы превращаем её в вещь, которой хочется пользоваться.
       </p>
+
+      <div class="actions reveal d3">
+        <a class="primary" href="#order">Придумать свою <span>↗</span></a>
+        <a class="secondary" href="#work">Посмотреть работу</a>
+      </div>
+
+      <div class="micro reveal d3">
+        <b>ОТ 100 ₽</b>　·　СОБСТВЕННЫЙ ДИЗАЙН　·　ДЕЛАЕМ САМИ
+      </div>
     </div>
 
-    <div class="about-list">
-      <article class="about-item reveal">
-        <div class="about-number">01</div>
-        <div>
-          <h3>Твоя идея — главное</h3>
-          <p>Можешь предложить свой вариант дизайна, цвета и деталей.</p>
-        </div>
-      </article>
-      <article class="about-item reveal d1">
-        <div class="about-number">02</div>
-        <div>
-          <h3>Создаём самостоятельно</h3>
-          <p>Сами продумываем внешний вид и занимаемся оформлением.</p>
-        </div>
-      </article>
-      <article class="about-item reveal d2">
-        <div class="about-number">03</div>
-        <div>
-          <h3>Доступная стоимость</h3>
-          <p>Цена начинается от 100 рублей и зависит от идеи и деталей.</p>
-        </div>
-      </article>
+    <div class="visual reveal">
+      <div class="photo-shell">
+        <div class="photo-tag">ОБЪЕКТ № 001　/　РУЧНАЯ РАБОТА</div>
+        <img
+          class="hero-photo"
+          src="image-photo.jpg"
+          alt="Настоящая кастомная ручка с красными деталями и серой рельефной накладкой"
+        >
+      </div>
+
+      <div class="side-label">СДЕЛАНО НЕ КАК У ВСЕХ</div>
+      <div class="photo-note">своя ручка — свой стиль ✳</div>
+      <div class="round-mark">made<br>with<br>ideas</div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
     </div>
   </div>
-</section>
 
-<!-- GALLERY -->
-<section class="gallery-section" id="gallery">
-  <div class="container">
-    <div class="gallery-layout">
-      <div class="gallery-copy reveal">
-        <div class="section-eyebrow">Один из наших дизайнов</div>
-        <h2>Рассмотри<br><span class="script">детали.</span></h2>
-        <p>
-          Красные элементы, рельефная серая накладка
-          и металлическое кольцо. Даже небольшие детали
-          меняют внешний вид привычной вещи.
+  <section class="wrap manifesto" id="about">
+    <div class="manifesto-grid">
+      <div class="reveal">
+        <div class="eyebrow">Небольшая мастерская</div>
+        <h2>Не конвейер.<br><em>Творчество</em><br>в деталях.</h2>
+        <p class="manifesto-copy">
+          Мы не просто наклеиваем картинку на готовую вещь.
+          Мы сами продумываем внешний вид, экспериментируем с деталями
+          и собираем дизайн. Поэтому каждая идея начинается с разговора.
         </p>
-        <div class="gallery-count" id="galleryCount">01 — ОБЩИЙ ВИД</div>
       </div>
 
-      <div class="gallery-stage reveal">
-        <div class="gallery-window" id="galleryWindow">
-          <div class="gallery-track" id="galleryTrack">
-            <div class="gallery-slide view-full">
-              <img src="image-photo.jpg" alt="Общий вид кастомной ручки">
-              <div class="slide-caption">Общий вид</div>
-            </div>
-            <div class="gallery-slide view-grip">
-              <img src="image-photo.jpg" alt="Рельефная серая часть ручки">
-              <div class="slide-caption">Рельефная деталь</div>
-            </div>
-            <div class="gallery-slide view-top">
-              <img src="image-photo.jpg" alt="Верхняя часть ручки с металлическим кольцом">
-              <div class="slide-caption">Красные детали и кольцо</div>
-            </div>
+      <div class="principles">
+        <article class="principle reveal">
+          <div class="principle-num">01</div>
+          <div>
+            <h3>Сначала идея</h3>
+            <p>Обсудим цвета, оформление и то, какой ты хочешь видеть свою ручку.</p>
           </div>
+        </article>
+
+        <article class="principle reveal d1">
+          <div class="principle-num">02</div>
+          <div>
+            <h3>Потом дизайн</h3>
+            <p>Сами придумываем и оформляем — не ограничиваемся одним готовым шаблоном.</p>
+          </div>
+        </article>
+
+        <article class="principle reveal d2">
+          <div class="principle-num">03</div>
+          <div>
+            <h3>И готовая вещь</h3>
+            <p>Стоимость начинается от 100 рублей и зависит от сложности задумки.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="work-head reveal">
+        <div>
+          <div class="eyebrow">Один из наших дизайнов</div>
+          <h2>Всё решают<br><span class="hand">детали.</span></h2>
+        </div>
+        <p>
+          Не стоковая картинка и не 3D-макет.
+          Это настоящая ручка, которую мы сделали сами.
+        </p>
+      </div>
+
+      <article class="work-card reveal">
+        <div class="work-photo">
+          <img src="image-photo.jpg" alt="Фотография изготовленной кастомной ручки">
         </div>
 
-        <div class="gallery-controls">
-          <div class="gallery-dots">
-            <button class="gallery-dot active" aria-label="Общий вид"></button>
-            <button class="gallery-dot" aria-label="Рельефная деталь"></button>
-            <button class="gallery-dot" aria-label="Верхняя часть"></button>
+        <div class="work-details">
+          <div class="work-number">НАША РАБОТА　/　001</div>
+          <h3>Красный акцент</h3>
+          <p>
+            Красные элементы корпуса, серая рельефная накладка
+            и металлическое кольцо сверху. В дизайне есть контраст,
+            фактура и детали, которые хочется рассмотреть.
+          </p>
+
+          <div class="detail-list">
+            <span>Красные детали</span>
+            <span>Рельефная накладка</span>
+            <span>Металлическое кольцо</span>
           </div>
-          <div class="gallery-arrows">
-            <button class="gallery-arrow" id="prev" aria-label="Назад">←</button>
-            <button class="gallery-arrow" id="next" aria-label="Вперёд">→</button>
+
+          <div class="work-bottom">
+            <strong>от 100 ₽</strong>
+            <small>Цена зависит от дизайна</small>
           </div>
         </div>
-      </div>
+      </article>
     </div>
+  </section>
 
-    <div class="price-strip reveal">
-      <div>
-        <h3>Твоя идея может стать реальностью.</h3>
-        <p>Расскажи нам, какую ручку ты хочешь.</p>
+  <section class="wrap order" id="order">
+    <div class="order-grid">
+      <div class="order-copy reveal">
+        <div class="eyebrow">Твой ход</div>
+        <h2>Есть идея?<br><em>Давай сделаем.</em></h2>
+        <p>
+          Расскажи, какую ручку хочешь. Заявка подготовится автоматически —
+          останется открыть MAX, найти нас и отправить сообщение.
+        </p>
+        <div class="scribble">будет красиво ✳</div>
       </div>
-      <div class="price-value">от 100 ₽</div>
+
+      <form class="form reveal d1" id="orderForm">
+        <div class="field">
+          <label for="name">КАК ТЕБЯ ЗОВУТ?</label>
+          <input id="name" name="name" placeholder="Твоё имя" maxlength="50" required>
+        </div>
+
+        <div class="field">
+          <label for="quantity">СКОЛЬКО РУЧЕК?</label>
+          <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
+        </div>
+
+        <div class="field">
+          <label for="idea">РАССКАЖИ О СВОЕЙ ИДЕЕ</label>
+          <textarea id="idea" name="idea" placeholder="Цвета, детали, пожелания..." maxlength="1000" required></textarea>
+        </div>
+
+        <button class="submit" type="submit">Подготовить заявку　↗</button>
+
+        <div class="form-hint">
+          Сайт не отправляет форму на сервер. Текст заявки копируется
+          в буфер обмена, а MAX открывается отдельно — ты сам проверяешь
+          и отправляешь сообщение.
+        </div>
+      </form>
     </div>
-  </div>
-</section>
-
-<!-- ORDER -->
-<section class="container" id="order">
-  <div class="order-wrap">
-    <div class="order-intro reveal">
-      <div class="section-eyebrow">Твой ход</div>
-      <h2>Есть идея?<br><span class="script">Пиши!</span></h2>
-      <p>
-        Заполни небольшую форму. Заявка скопируется,
-        а затем откроется MAX — останется найти нас
-        и отправить сообщение.
-      </p>
-      <div class="order-small-note">Давай сделаем красиво ✳</div>
-    </div>
-
-    <form class="order-form reveal d1" id="orderForm">
-      <div class="field">
-        <label for="name">Твоё имя</label>
-        <input id="name" name="name" placeholder="Как к тебе обращаться?" maxlength="50" required>
-      </div>
-
-      <div class="field">
-        <label for="quantity">Количество ручек</label>
-        <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
-      </div>
-
-      <div class="field">
-        <label for="idea">Что хочешь придумать?</label>
-        <textarea id="idea" name="idea" placeholder="Опиши свою идею, цвета и пожелания..." maxlength="1000" required></textarea>
-      </div>
-
-      <button class="submit" type="submit">Отправить заявку ↗</button>
-      <div class="form-note">
-        Заявка не отправляется автоматически на сервер.
-        Ты сам проверишь текст и отправишь его через MAX.
-      </div>
-    </form>
-  </div>
-</section>
+  </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-top">
+  <div class="wrap">
+    <div class="footer-main">
       <div>
-        <a class="logo footer-logo" href="#">Свои ручки<span class="logo-dot">.</span></a>
+        <a class="footer-brand" href="#top">Свои ручки<i>.</i></a>
         <div class="footer-slogan">будь собой!</div>
       </div>
-
-      <div class="footer-right">
-        <div class="footer-note">Сделано с идеей и капелькой творчества ✳</div>
-      </div>
+      <div class="footer-note">Сделано с идеей и капелькой творчества ✳</div>
     </div>
 
     <div class="footer-bottom">
@@ -918,33 +1072,34 @@ footer{
   </div>
 </footer>
 
-<!-- COOKIE BANNER -->
-<div class="cookie" id="cookie" role="dialog" aria-label="Информация о cookies">
-  <div class="cookie-title">🍪 Печеньки? То есть cookies.</div>
+<!-- COOKIE NOTICE -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Уведомление о cookies">
+  <div class="cookie-title">🍪 У нас тут печеньки. Почти.</div>
   <div class="cookie-text">
     Ваши данные в безопасности. Ну… мы очень на это надеемся.
-    На самом деле сайт просто запомнит, что вы уже закрыли это окошко.
+    На деле сайт запоминает только то, что ты закрыл это уведомление.
   </div>
+
   <div class="cookie-actions">
     <button class="cookie-accept" id="cookieAccept">Ладно, верю</button>
     <button class="cookie-more" id="cookieMore">Подробнее</button>
   </div>
-  <div class="cookie-details" id="cookieDetails">
-    Мы не используем рекламные cookies и не подключаем системы
-    аналитики. В браузере сохраняется только отметка о том,
-    что уведомление было закрыто. Данные из формы заказа
-    в cookies не записываются.
+
+  <div class="cookie-extra" id="cookieExtra">
+    Мы не подключаем рекламное отслеживание или аналитику.
+    В localStorage сохраняется только отметка о закрытии баннера,
+    чтобы не показывать его снова. Данные из формы заказа туда не записываются.
   </div>
 </div>
 
 <script>
-/* Появление блоков при прокрутке */
+/* Анимации появления при прокрутке */
 document.documentElement.classList.add('js-ready');
 
 const revealItems = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  const io = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -956,120 +1111,105 @@ if ('IntersectionObserver' in window) {
     rootMargin: '0px 0px -25px 0px'
   });
 
-  revealItems.forEach(item => revealObserver.observe(item));
+  revealItems.forEach(el => io.observe(el));
 
-  /* Страховка: ничего не должно остаться невидимым */
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      revealItems.forEach(item => {
-        if (item.getBoundingClientRect().top < window.innerHeight + 50) {
-          item.classList.add('visible');
-        }
-      });
-    }, 1200);
-  });
+  // Страховка от зависания скрытых элементов.
+  setTimeout(() => {
+    revealItems.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight + 80) {
+        el.classList.add('visible');
+      }
+    });
+  }, 1600);
+
 } else {
-  revealItems.forEach(item => item.classList.add('visible'));
+  revealItems.forEach(el => el.classList.add('visible'));
 }
 
-/* Галерея */
-const track = document.getElementById('galleryTrack');
-const slides = [...track.children];
-const dots = [...document.querySelectorAll('.gallery-dot')];
-const count = document.getElementById('galleryCount');
-
-const captions = [
-  '01 — ОБЩИЙ ВИД',
-  '02 — РЕЛЬЕФНАЯ ДЕТАЛЬ',
-  '03 — ВЕРХНЯЯ ЧАСТЬ'
-];
-
-let current = 0;
-
-function showSlide(index) {
-  current = (index + slides.length) % slides.length;
-  track.style.transform = `translateX(-${current * 100}%)`;
-  dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-  count.textContent = captions[current];
-}
-
-document.getElementById('prev').addEventListener('click', () => showSlide(current - 1));
-document.getElementById('next').addEventListener('click', () => showSlide(current + 1));
-dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
-
-/* Свайп галереи */
-let touchStart = 0;
-
-document.getElementById('galleryWindow').addEventListener('touchstart', event => {
-  touchStart = event.changedTouches[0].screenX;
-}, {passive:true});
-
-document.getElementById('galleryWindow').addEventListener('touchend', event => {
-  const difference = touchStart - event.changedTouches[0].screenX;
-  if (Math.abs(difference) > 45) {
-    showSlide(current + (difference > 0 ? 1 : -1));
-  }
-}, {passive:true});
-
-/* Cookies: только запоминание закрытия уведомления */
+/* Cookies: запоминаем только закрытие уведомления */
 const cookie = document.getElementById('cookie');
-const cookieChoice = localStorage.getItem('svoyi-cookie-choice');
 
-if (!cookieChoice) {
-  setTimeout(() => cookie.classList.add('show'), 1000);
+try {
+  if (!localStorage.getItem('svoyi-cookie-notice')) {
+    setTimeout(() => cookie.classList.add('show'), 900);
+  }
+} catch (error) {
+  setTimeout(() => cookie.classList.add('show'), 900);
 }
 
 document.getElementById('cookieAccept').addEventListener('click', () => {
-  localStorage.setItem('svoyi-cookie-choice', 'accepted');
+  try {
+    localStorage.setItem('svoyi-cookie-notice', 'closed');
+  } catch (error) {}
+
   cookie.classList.remove('show');
 });
 
 document.getElementById('cookieMore').addEventListener('click', () => {
-  document.getElementById('cookieDetails').classList.toggle('open');
+  document.getElementById('cookieExtra').classList.toggle('open');
 });
 
-/* Настройки MAX */
-const MAX_PHONE = '79991234567'; // ЗАМЕНИ НА СВОЙ НОМЕР
-const MAX_PROFILE_URL = ''; // ССЫЛКА НА ПРОФИЛЬ, ЕСЛИ ЕСТЬ
+/* MAX — замени данные на свои */
+const MAX_PHONE = '79991234567'; // ВПИШИ СВОЙ НОМЕР
+const MAX_PROFILE_URL = ''; // ССЫЛКА НА ПРОФИЛЬ MAX, ЕСЛИ ЕСТЬ
 
-/* Форма заявки */
-document.getElementById('orderForm').addEventListener('submit', async event => {
+/* Форма заказа */
+const form = document.getElementById('orderForm');
+
+form.addEventListener('submit', async event => {
   event.preventDefault();
 
   const name = document.getElementById('name').value.trim();
   const quantity = Number(document.getElementById('quantity').value);
   const idea = document.getElementById('idea').value.trim();
 
-  if (!name || !idea || !Number.isInteger(quantity) || quantity < 1 || quantity > 50) {
-    alert('Проверь, пожалуйста, заполнение формы.');
+  if (
+    !name ||
+    !idea ||
+    !Number.isInteger(quantity) ||
+    quantity < 1 ||
+    quantity > 50
+  ) {
+    alert('Проверь заполнение формы.');
     return;
   }
 
   const message =
-`Привет! Хочу заказать кастомную ручку.
+`Здравствуйте! Хочу заказать кастомную ручку.
 
 Имя: ${name}
 Количество: ${quantity}
 Идея: ${idea}`;
 
-  /* Открываем MAX сразу, чтобы браузер не заблокировал окно */
-  const target = MAX_PROFILE_URL.trim() || 'https://max.ru/';
-  window.open(target, '_blank', 'noopener,noreferrer');
+  let copied = false;
 
   try {
     await navigator.clipboard.writeText(message);
-    alert(
-      'Текст заявки скопирован!\n\n' +
-      'Открой MAX, найди нас и вставь сообщение.\n' +
-      'Номер: +' + MAX_PHONE
-    );
+    copied = true;
   } catch (error) {
-    alert(
-      'Не удалось автоматически скопировать заявку.\n\n' +
-      message + '\n\n' +
-      'Найди нас в MAX по номеру: +' + MAX_PHONE
-    );
+    try {
+      const area = document.createElement('textarea');
+      area.value = message;
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      copied = document.execCommand('copy');
+      area.remove();
+    } catch (err) {}
   }
+
+  const url = MAX_PROFILE_URL.trim() || 'https://max.ru/';
+  window.open(url, '_blank', 'noopener,noreferrer');
+
+  alert(
+    (copied
+      ? 'Заявка скопирована!'
+      : 'Не удалось скопировать автоматически.') +
+    '\n\nОткрой MAX, найди нас по номеру +' +
+    MAX_PHONE +
+    ' и отправь текст заявки.'
+  );
 });
 </script>
 
