@@ -3,45 +3,45 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f8f6f2">
-<title>Свои ручки — кастомные ручки с твоим дизайном</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f5f0">
+<title>Свои ручки — не такие, как у всех</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#f8f6f2;
+  --bg:#f7f5f0;
   --paper:#fffefa;
-  --text:#26231f;
-  --muted:#89847c;
-  --red:#d94c40;
-  --red-dark:#bd392f;
-  --line:#eae5dd;
-  --radius:25px;
+  --ink:#25231f;
+  --muted:#89857e;
+  --red:#d94b3f;
+  --red-dark:#bd382e;
+  --line:#e9e5dd;
+  --radius:26px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--bg);
-  color:var(--text);
+  color:var(--ink);
   font-family:Manrope,Arial,sans-serif;
   overflow-x:hidden;
 }
+a{color:inherit;text-decoration:none}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-.container{width:min(1160px,calc(100% - 48px));margin:auto}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
 
-/* HEADER */
+/* NAVIGATION */
 header{
-  height:86px;
+  height:88px;
   display:flex;
   align-items:center;
-  position:relative;
-  z-index:5;
+  border-bottom:1px solid rgba(37,35,31,.07);
 }
 .nav{
   display:flex;
@@ -49,327 +49,636 @@ header{
   align-items:center;
 }
 .logo{
-  display:inline-flex;
-  flex-direction:column;
-  position:relative;
-  transform:rotate(-3deg);
   font-family:Caveat,cursive;
   font-size:37px;
   font-weight:700;
-  line-height:.9;
+  transform:rotate(-3deg);
+  display:inline-block;
+  position:relative;
 }
-.logo-name{position:relative}
-.logo-name:after{
+.logo:after{
   content:"";
   position:absolute;
-  left:2px;
-  bottom:-7px;
-  width:75%;
+  left:3px;
+  right:13px;
   height:4px;
+  bottom:-5px;
   background:var(--red);
-  border-radius:50%;
+  border-radius:100%;
   transform:rotate(-2deg);
 }
 .logo-dot{color:var(--red)}
-.nav-links{display:flex;gap:34px;color:#716c64;font-size:13px}
+.nav-links{display:flex;gap:34px}
+.nav-links a{
+  color:#77736d;
+  font-size:12px;
+  font-weight:600;
+  transition:.2s;
+}
 .nav-links a:hover{color:var(--red)}
-.nav-button{
-  border:0;background:var(--red);color:white;
-  border-radius:50px;padding:13px 22px;
-  font-size:13px;font-weight:700;
+.nav-cta{
+  padding:13px 21px;
+  border-radius:50px;
+  background:var(--ink);
+  color:white;
+  font-size:12px;
+  font-weight:700;
   transition:.25s;
 }
-.nav-button:hover{background:var(--red-dark);transform:translateY(-2px)}
+.nav-cta:hover{background:var(--red);transform:translateY(-2px)}
 
 /* HERO */
 .hero{
-  min-height:590px;
+  min-height:690px;
   display:grid;
   grid-template-columns:1fr 1fr;
   align-items:center;
-  gap:30px;
-  padding:55px 0 85px;
+  gap:50px;
+  padding:65px 0 80px;
 }
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  color:var(--red);font-size:12px;font-weight:800;
-  letter-spacing:1.5px;text-transform:uppercase;
-}
-.eyebrow:before{
-  content:"";width:23px;height:2px;background:var(--red);
-}
-h1{
-  font-size:clamp(43px,6vw,76px);
-  letter-spacing:-4px;line-height:1.04;
-  margin:25px 0 20px;font-weight:800;
-}
-.handwritten{
+.kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
   color:var(--red);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.kicker:before{
+  content:"";
+  height:2px;
+  width:27px;
+  background:var(--red);
+}
+.hero h1{
+  font-size:clamp(48px,6.4vw,82px);
+  line-height:.99;
+  letter-spacing:-5px;
+  margin:27px 0 24px;
+  font-weight:800;
+}
+.script{
   font-family:Caveat,cursive;
-  font-size:1.12em;
+  color:var(--red);
   font-weight:600;
   letter-spacing:-1px;
 }
-.hero-description{
-  max-width:440px;color:var(--muted);
-  font-size:15px;line-height:1.9;
+.hero-text{
+  max-width:440px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.95;
 }
-.hero-actions{display:flex;gap:13px;align-items:center;margin-top:32px;flex-wrap:wrap}
-.primary-button{
-  background:var(--red);color:white;border:0;
-  border-radius:50px;padding:17px 27px;
-  font-weight:700;font-size:13px;
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-top:32px;
+  flex-wrap:wrap;
+}
+.button-primary{
+  border:0;
+  border-radius:50px;
+  background:var(--red);
+  color:white;
+  padding:17px 25px;
+  font-size:12px;
+  font-weight:800;
   transition:.25s;
 }
-.primary-button:hover{background:var(--red-dark);transform:translateY(-3px)}
-.secondary-button{
-  border:1px solid var(--line);background:transparent;
-  border-radius:50px;padding:16px 24px;
-  font-size:13px;font-weight:700;
+.button-primary:hover{
+  background:var(--red-dark);
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px #d94b3f30;
 }
-.hero-note{margin-top:22px;color:#aaa39a;font-size:11px}
-.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
-.photo-backdrop{
-  width:min(440px,100%);aspect-ratio:1/1;
-  background:#eee8df;border-radius:48% 52% 46% 54%;
-  position:absolute;transform:rotate(-7deg);
+.button-secondary{
+  border:1px solid var(--line);
+  background:transparent;
+  border-radius:50px;
+  padding:16px 23px;
+  font-size:12px;
+  font-weight:700;
+  transition:.2s;
 }
-.product-photo{
-  width:min(410px,90%);height:440px;object-fit:contain;
-  position:relative;z-index:1;
-  filter:drop-shadow(0 25px 24px rgba(45,32,20,.13));
-  animation:float 5s ease-in-out infinite;
+.button-secondary:hover{background:white;border-color:#d6d0c6}
+.hero-meta{
+  margin-top:28px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#aaa49a;
+  font-size:10px;
+  font-weight:600;
 }
-.photo-caption{
-  position:absolute;z-index:2;bottom:25px;right:0;
-  background:white;padding:13px 19px;border-radius:15px;
-  box-shadow:0 10px 30px #39281912;
-  font-family:Caveat,cursive;font-size:22px;
+.meta-dot{
+  width:5px;height:5px;border-radius:50%;background:var(--red);
+}
+
+/* HERO PHOTO */
+.hero-art{
+  min-width:0;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:12px 22px 20px;
+}
+.photo-frame{
+  width:min(100%,470px);
+  height:570px;
+  overflow:hidden;
+  position:relative;
+  border-radius:220px 220px 28px 28px;
+  background:#b99c79;
+  box-shadow:0 28px 65px #49351e20;
+  isolation:isolate;
+}
+.photo-frame:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 60%,#24180d30);
+  pointer-events:none;
+}
+.main-photo{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  transform:scale(1.42);
+  transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.photo-frame:hover .main-photo{transform:scale(1.5)}
+.photo-sticker{
+  position:absolute;
+  z-index:2;
+  right:-5px;
+  bottom:58px;
+  background:var(--paper);
+  padding:15px 19px;
+  border-radius:16px;
+  box-shadow:0 12px 35px #30231420;
   transform:rotate(4deg);
+  font-family:Caveat,cursive;
+  font-size:23px;
+  color:var(--red);
 }
-@keyframes float{
-  0%,100%{transform:translateY(0) rotate(-2deg)}
-  50%{transform:translateY(-13px) rotate(1deg)}
+.photo-index{
+  position:absolute;
+  z-index:2;
+  top:28px;
+  left:25px;
+  color:white;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:800;
+  text-shadow:0 2px 10px #0008;
+}
+.photo-side-note{
+  position:absolute;
+  left:-5px;
+  top:44%;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  color:#aaa39a;
+  font-size:9px;
+  letter-spacing:2px;
 }
 
 /* MARQUEE */
 .marquee{
-  background:var(--red);color:white;
-  padding:16px 0;overflow:hidden;white-space:nowrap;
+  background:var(--red);
+  color:white;
+  overflow:hidden;
+  padding:17px 0;
   transform:rotate(-1deg) scale(1.02);
 }
 .marquee-track{
-  display:flex;width:max-content;
-  animation:marquee 28s linear infinite;
+  display:flex;
+  width:max-content;
+  animation:marquee 30s linear infinite;
 }
-.marquee span{font-size:13px;font-weight:700;letter-spacing:2px;padding:0 25px}
+.marquee span{
+  padding:0 25px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
-/* GENERAL SECTIONS */
-section{padding:105px 0}
-.section-top{text-align:center;margin-bottom:52px}
-.section-label{
-  color:var(--red);font-size:11px;font-weight:800;
-  letter-spacing:2px;text-transform:uppercase;
+/* SECTION TITLES */
+section{padding:110px 0}
+.section-heading{margin-bottom:50px}
+.section-heading.center{text-align:center}
+.section-eyebrow{
+  color:var(--red);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
-.section-title{
-  font-size:clamp(32px,4vw,48px);
-  letter-spacing:-2px;margin:14px 0 12px;
+.section-heading h2{
+  font-size:clamp(35px,4.5vw,55px);
+  letter-spacing:-3px;
+  line-height:1.08;
+  margin:14px 0;
 }
-.section-description{
-  max-width:480px;margin:auto;
-  color:var(--muted);font-size:14px;line-height:1.8;
+.section-heading p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+  max-width:500px;
 }
+.section-heading.center p{margin:0 auto}
 
-/* FEATURES */
-.features{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:17px;
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:75px;
+  align-items:center;
 }
-.feature{
-  background:var(--paper);border:1px solid var(--line);
-  padding:30px;border-radius:var(--radius);
-  transition:transform .3s,box-shadow .3s;
+.about-big{
+  font-size:clamp(32px,4vw,49px);
+  line-height:1.14;
+  letter-spacing:-2.5px;
+  font-weight:800;
 }
-.feature:hover{transform:translateY(-7px);box-shadow:0 15px 35px #3225150b}
-.feature-icon{
-  width:49px;height:49px;border-radius:16px;
-  background:#f9e9e5;color:var(--red);
-  display:grid;place-items:center;margin-bottom:25px;
+.about-big .script{font-size:1.2em}
+.about-description{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.95;
+  max-width:440px;
+  margin-top:22px;
 }
-.feature-icon svg{width:23px;height:23px}
-.feature h3{font-size:17px;margin:0 0 10px}
-.feature p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}
+.about-list{border-top:1px solid var(--line)}
+.about-item{
+  display:grid;
+  grid-template-columns:45px 1fr;
+  gap:16px;
+  padding:23px 0;
+  border-bottom:1px solid var(--line);
+}
+.about-number{
+  font-family:Caveat,cursive;
+  color:var(--red);
+  font-size:25px;
+}
+.about-item h3{font-size:14px;margin:0 0 7px}
+.about-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+}
 
 /* GALLERY */
-.gallery-section{background:#f0ece5}
-.gallery-wrap{max-width:850px;margin:auto;position:relative}
-.gallery{
-  background:var(--paper);border:1px solid var(--line);
-  border-radius:30px;padding:20px;overflow:hidden;
+.gallery-section{
+  background:#eeebe4;
+  overflow:hidden;
+}
+.gallery-layout{
+  display:grid;
+  grid-template-columns:1fr 1.05fr;
+  gap:60px;
+  align-items:center;
+}
+.gallery-copy h2{
+  font-size:clamp(36px,4.5vw,57px);
+  line-height:1.05;
+  letter-spacing:-3px;
+  margin:16px 0;
+}
+.gallery-copy p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+  max-width:400px;
+}
+.gallery-count{
+  color:var(--red);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-top:30px;
+}
+.gallery-stage{
+  position:relative;
+  min-width:0;
+}
+.gallery-window{
+  overflow:hidden;
+  border-radius:25px;
+  background:#d6c4aa;
+  height:480px;
+  box-shadow:0 25px 55px #47351e18;
 }
 .gallery-track{
-  display:flex;transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  display:flex;
+  height:100%;
+  transition:transform .65s cubic-bezier(.2,.8,.2,1);
 }
-.slide{
-  min-width:100%;display:grid;
-  grid-template-columns:1fr 1fr;align-items:center;
-  gap:25px;padding:15px;
+.gallery-slide{
+  flex:0 0 100%;
+  height:100%;
+  overflow:hidden;
+  position:relative;
 }
-.slide-image{
-  height:310px;background:#f2eee8;
-  border-radius:23px;display:grid;place-items:center;
+.gallery-slide img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform 1s;
 }
-.slide-image img{width:90%;height:90%;object-fit:contain}
-.slide-info h3{font-size:25px;letter-spacing:-1px}
-.slide-info p{font-size:13px;color:var(--muted);line-height:1.9}
-.slide-number{color:var(--red);font-size:12px;font-weight:800}
+.gallery-slide.view-full img{
+  object-position:center;
+  transform:scale(1.25);
+}
+.gallery-slide.view-grip img{
+  object-position:center 65%;
+  transform:scale(2.05);
+}
+.gallery-slide.view-top img{
+  object-position:center 25%;
+  transform:scale(2.05);
+}
+.slide-caption{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  background:#fffefaed;
+  border-radius:12px;
+  padding:11px 15px;
+  font-size:11px;
+  font-weight:800;
+}
 .gallery-controls{
-  display:flex;align-items:center;justify-content:center;
-  gap:17px;margin-top:24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:18px;
 }
-.arrow{
-  width:42px;height:42px;border-radius:50%;
-  background:white;border:1px solid var(--line);
-  font-size:20px;transition:.2s;
+.gallery-arrows{display:flex;gap:8px}
+.gallery-arrow{
+  width:43px;height:43px;
+  border-radius:50%;
+  border:1px solid #dcd6cc;
+  background:transparent;
+  font-size:18px;
+  transition:.2s;
 }
-.arrow:hover{background:var(--red);color:white;border-color:var(--red)}
-.dots{display:flex;gap:8px}
-.dot{
-  width:7px;height:7px;border:0;border-radius:10px;
-  background:#d2ccc3;padding:0;transition:.25s;
+.gallery-arrow:hover{background:var(--ink);color:white;border-color:var(--ink)}
+.gallery-dots{display:flex;gap:7px}
+.gallery-dot{
+  width:7px;height:7px;border:0;padding:0;
+  border-radius:20px;background:#c9c2b7;
+  transition:.25s;
 }
-.dot.active{width:23px;background:var(--red)}
+.gallery-dot.active{width:23px;background:var(--red)}
+
+/* PRICE STRIP */
+.price-strip{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:20px;
+  padding:35px 40px;
+  border-radius:24px;
+  background:var(--ink);
+  color:white;
+  margin-top:65px;
+}
+.price-strip h3{
+  font-size:23px;
+  letter-spacing:-1px;
+  margin:0 0 7px;
+}
+.price-strip p{margin:0;color:#aaa49b;font-size:11px}
+.price-value{
+  font-family:Caveat,cursive;
+  font-size:48px;
+  color:#f08073;
+  white-space:nowrap;
+}
 
 /* ORDER */
-.order-section{padding-bottom:120px}
-.order-card{
-  max-width:790px;margin:auto;
-  background:#fffefa;border:1px solid var(--line);
-  border-radius:32px;padding:45px;
-  display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;
+.order-wrap{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:65px;
+  align-items:start;
 }
-.order-copy h2{font-size:36px;letter-spacing:-2px;line-height:1.1;margin:0 0 15px}
-.order-copy p{font-size:13px;color:var(--muted);line-height:1.8}
-.price{font-size:28px;font-weight:800;margin-top:28px}
-.price small{font-size:12px;color:var(--muted);font-weight:500}
-.order-form{display:flex;flex-direction:column;gap:13px}
-.field label{display:block;font-size:11px;font-weight:800;margin-bottom:8px}
+.order-intro h2{
+  font-size:clamp(40px,5vw,62px);
+  line-height:1;
+  letter-spacing:-4px;
+  margin:18px 0;
+}
+.order-intro p{
+  font-size:13px;
+  line-height:1.9;
+  color:var(--muted);
+}
+.order-small-note{
+  margin-top:30px;
+  font-family:Caveat,cursive;
+  font-size:25px;
+  color:var(--red);
+  transform:rotate(-3deg);
+}
+.order-form{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:32px;
+}
+.field{margin-bottom:17px}
+.field label{
+  display:block;
+  margin-bottom:8px;
+  font-size:11px;
+  font-weight:800;
+}
 .field input,.field textarea{
-  width:100%;background:#f8f6f2;border:1px solid #eee9e1;
-  border-radius:13px;padding:14px 15px;outline:none;
-  font-size:13px;color:var(--text);transition:.2s;
+  width:100%;
+  border:1px solid var(--line);
+  background:#faf8f4;
+  border-radius:12px;
+  padding:14px;
+  outline:none;
+  color:var(--ink);
+  font-size:12px;
+  transition:.2s;
 }
-.field input:focus,.field textarea:focus{border-color:var(--red);background:white}
-.field textarea{resize:vertical;min-height:95px}
-.submit-button{
-  border:0;background:var(--red);color:white;
-  border-radius:14px;padding:16px;font-weight:800;
-  font-size:13px;transition:.2s;
+.field input:focus,.field textarea:focus{
+  border-color:var(--red);
+  background:white;
+  box-shadow:0 0 0 3px #d94b3f12;
 }
-.submit-button:hover{background:var(--red-dark);transform:translateY(-2px)}
-.form-hint{font-size:10px;color:#aaa39a;line-height:1.6}
+.field textarea{min-height:110px;resize:vertical}
+.submit{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  background:var(--red);
+  color:white;
+  font-size:12px;
+  font-weight:800;
+  transition:.2s;
+}
+.submit:hover{background:var(--red-dark);transform:translateY(-2px)}
+.form-note{
+  margin-top:13px;
+  color:#aaa49a;
+  font-size:10px;
+  line-height:1.7;
+}
 
 /* FOOTER */
-footer{background:#26231f;color:white;padding:43px 0 22px}
-.footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:flex-start}
-.footer-brand .logo{color:white}
-.footer-slogan{font-family:Caveat,cursive;font-size:24px;color:#e58a7e;margin-top:17px}
-.footer-right{text-align:right;max-width:440px}
-.footer-center{font-size:12px;color:#c0b9af;margin-top:9px}
-.footer-joke{
-  margin-top:38px;padding-top:17px;
-  border-top:1px solid #ffffff20;
-  color:#938b82;font-size:10px;line-height:1.8;
+footer{
+  background:#24221f;
+  color:white;
+  padding:48px 0 24px;
 }
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:flex-start;
+}
+.footer-logo{color:white}
+.footer-slogan{
+  font-family:Caveat,cursive;
+  font-size:27px;
+  color:#f08073;
+  margin-top:12px;
+}
+.footer-right{text-align:right}
+.footer-note{
+  color:#aaa49b;
+  font-size:11px;
+  margin-top:12px;
+}
+.footer-bottom{
+  border-top:1px solid #ffffff20;
+  margin-top:38px;
+  padding-top:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#918a81;
+  font-size:10px;
+  line-height:1.8;
+}
+.footer-joke{text-align:right}
 
 /* COOKIES */
-.cookie-banner{
-  position:fixed;z-index:20;left:22px;right:22px;bottom:20px;
-  max-width:620px;margin-left:auto;
-  background:#fffefa;border:1px solid var(--line);
-  border-radius:23px;padding:22px;
-  box-shadow:0 18px 60px #24190e25;
+.cookie{
   display:none;
-  animation:cookieIn .45s ease both;
+  position:fixed;
+  z-index:20;
+  bottom:20px;
+  left:20px;
+  width:min(440px,calc(100% - 40px));
+  padding:22px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:21px;
+  box-shadow:0 20px 70px #21190e30;
 }
-.cookie-banner.show{display:block}
+.cookie.show{display:block;animation:cookieIn .45s ease both}
 @keyframes cookieIn{
-  from{opacity:0;transform:translateY(25px)}
+  from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
-.cookie-heading{font-size:16px;font-weight:800;margin-bottom:8px}
-.cookie-text{font-size:12px;color:var(--muted);line-height:1.8}
-.cookie-actions{display:flex;gap:10px;margin-top:17px;flex-wrap:wrap}
-.cookie-accept{
-  border:0;background:var(--red);color:white;
-  padding:12px 18px;border-radius:50px;
-  font-size:11px;font-weight:800;
+.cookie-title{font-size:15px;font-weight:800;margin-bottom:8px}
+.cookie-text{font-size:11px;line-height:1.8;color:var(--muted)}
+.cookie-actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.cookie-accept,.cookie-more{
+  border-radius:50px;
+  padding:11px 16px;
+  font-size:10px;
+  font-weight:800;
 }
+.cookie-accept{border:0;background:var(--red);color:white}
+.cookie-more{border:1px solid var(--line);background:transparent}
 .cookie-details{
-  border:1px solid var(--line);background:transparent;
-  padding:11px 17px;border-radius:50px;
-  font-size:11px;font-weight:700;
-}
-.cookie-extra{
-  display:none;margin-top:13px;padding-top:13px;
+  display:none;
+  margin-top:13px;
+  padding-top:13px;
   border-top:1px solid var(--line);
-  color:var(--muted);font-size:11px;line-height:1.8;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.8;
 }
-.cookie-extra.open{display:block}
+.cookie-details.open{display:block}
 
-/* REVEAL: content stays visible until JS is ready */
+/* REVEAL ANIMATIONS */
 .reveal{opacity:1;transform:none}
 .js-ready .reveal{
-  opacity:0;transform:translateY(25px);
+  opacity:0;
+  transform:translateY(24px);
   transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1);
 }
 .js-ready .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal.delay-1{transition-delay:.12s}
-.reveal.delay-2{transition-delay:.24s}
-.reveal.delay-3{transition-delay:.36s}
-.draw-text{
+.js-ready .reveal.d1{transition-delay:.12s}
+.js-ready .reveal.d2{transition-delay:.24s}
+.js-ready .reveal.d3{transition-delay:.36s}
+
+.draw{
   display:inline-block;
   clip-path:inset(0 100% 0 0);
-  animation:writeText 1.4s cubic-bezier(.65,0,.35,1) forwards;
+  animation:write .95s ease forwards;
 }
-@keyframes writeText{to{clip-path:inset(0 0 0 0)}}
+@keyframes write{to{clip-path:inset(0 0 0 0)}}
 
-@media(max-width:800px){
-  .nav-links{display:none}
-  .hero{grid-template-columns:1fr;padding-top:45px;text-align:center}
-  .hero-description{margin:auto}
-  .hero-actions{justify-content:center}
-  .hero-visual{margin-top:20px}
-  .product-photo{height:350px}
-  .features{grid-template-columns:1fr}
-  .feature{padding:25px}
-  .slide{grid-template-columns:1fr;gap:10px}
-  .slide-image{height:260px}
-  .slide-info{text-align:center}
-  .order-card{grid-template-columns:1fr;padding:28px}
+@media(max-width:850px){
+  .hero{grid-template-columns:1fr;gap:35px;text-align:center}
+  .hero .kicker{justify-content:center}
+  .hero-text{margin:auto}
+  .hero-actions,.hero-meta{justify-content:center}
+  .hero-art{max-width:540px;width:100%;margin:auto}
+  .photo-frame{height:520px}
+  .about-grid{grid-template-columns:1fr;gap:35px}
+  .gallery-layout{grid-template-columns:1fr;gap:30px}
+  .gallery-copy{text-align:center}
+  .gallery-copy p{margin:auto}
+  .gallery-count{text-align:center}
+  .order-wrap{grid-template-columns:1fr;gap:30px}
 }
-@media(max-width:520px){
+@media(max-width:600px){
   .container{width:calc(100% - 34px)}
   header{height:72px}
   .logo{font-size:32px}
-  .nav-button{padding:11px 16px;font-size:11px}
-  .hero{min-height:auto;padding:55px 0 65px}
-  h1{letter-spacing:-2.5px}
-  section{padding:75px 0}
-  .section-top{margin-bottom:32px}
-  .footer-inner{flex-direction:column}
+  .nav-links{display:none}
+  .nav-cta{padding:11px 15px;font-size:10px}
+  .hero{padding:55px 0 65px;min-height:auto}
+  .hero h1{font-size:53px;letter-spacing:-3px}
+  .photo-frame{height:440px;border-radius:180px 180px 22px 22px}
+  .photo-sticker{right:0;bottom:35px}
+  section{padding:78px 0}
+  .section-heading h2{letter-spacing:-2px}
+  .gallery-window{height:410px}
+  .price-strip{padding:25px;grid-template-columns:1fr}
+  .price-value{font-size:40px}
+  .order-form{padding:22px}
+  .footer-top{flex-direction:column}
   .footer-right{text-align:left}
-  .footer-joke{margin-top:25px}
-  .cookie-banner{left:12px;right:12px;bottom:12px;padding:18px}
+  .footer-bottom{flex-direction:column}
+  .footer-joke{text-align:left}
 }
-
-/* Respect reduced-motion settings */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:.01ms!important;
     animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
     transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
   }
 }
 </style>
@@ -379,188 +688,228 @@ footer{background:#26231f;color:white;padding:43px 0 22px}
 
 <header>
   <div class="container nav">
-    <a href="#" class="logo">
-      <span class="logo-name draw-text">Свои ручки<span class="logo-dot">.</span></span>
-    </a>
+    <a class="logo" href="#">Свои ручки<span class="logo-dot">.</span></a>
+
     <nav class="nav-links">
       <a href="#about">О нас</a>
-      <a href="#gallery">Примеры</a>
+      <a href="#gallery">Работы</a>
       <a href="#order">Заказать</a>
     </nav>
-    <a href="#order"><button class="nav-button">Связаться с нами ↗</button></a>
+
+    <a class="nav-cta" href="#order">Связаться ↗</a>
   </div>
 </header>
 
 <main>
+
+<!-- HERO -->
 <section class="container hero">
-  <div class="hero-copy">
-    <div class="eyebrow reveal">Немного творчества</div>
-    <h1 class="reveal delay-1">Ручка,<br>которая <span class="handwritten draw-text">про тебя.</span></h1>
-    <p class="hero-description reveal delay-2">
-      Обычные вещи могут быть необычными. Мы создаём кастомные ручки
-      с собственным дизайном — придумываем, оформляем и делаем всё сами.
+  <div>
+    <div class="kicker reveal">Маленькая мастерская идей</div>
+
+    <h1 class="reveal d1">
+      Не такая,<br>
+      как у <span class="script draw">всех.</span>
+    </h1>
+
+    <p class="hero-text reveal d2">
+      Мы создаём кастомные ручки с собственным дизайном.
+      Придумываем оформление, подбираем детали и превращаем
+      обычную вещь в нечто особенное.
     </p>
-    <div class="hero-actions reveal delay-3">
-      <a href="#order"><button class="primary-button">Хочу свою ручку ↗</button></a>
-      <a href="#gallery"><button class="secondary-button">Посмотреть примеры</button></a>
+
+    <div class="hero-actions reveal d3">
+      <a href="#order"><button class="button-primary">Придумать свою ручку ↗</button></a>
+      <a href="#gallery"><button class="button-secondary">Посмотреть работу</button></a>
     </div>
-    <div class="hero-note reveal delay-3">От 100 ₽ · Свой дизайн · Сделано вручную</div>
+
+    <div class="hero-meta reveal d3">
+      <span class="meta-dot"></span>
+      От 100 ₽
+      <span>·</span>
+      Свой дизайн
+      <span>·</span>
+      Делаем сами
+    </div>
   </div>
 
-  <div class="hero-visual reveal">
-    <div class="photo-backdrop"></div>
-    <img class="product-photo" src="image-photo.png" alt="Кастомная ручка"
-         onerror="this.style.display='none';document.querySelector('.photo-caption').textContent='Добавь image-photo.png рядом с index.html'">
-    <div class="photo-caption">Твоя идея — наша работа ✳</div>
+  <div class="hero-art reveal">
+    <div class="photo-frame">
+      <div class="photo-index">НАША РАБОТА — № 001</div>
+      <img class="main-photo" src="image-photo.jpg" alt="Красная кастомная ручка с серой рельефной накладкой">
+    </div>
+    <div class="photo-side-note">СДЕЛАНО С ФАНТАЗИЕЙ</div>
+    <div class="photo-sticker">У каждой — свой характер ✳</div>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
+<!-- MOVING LINE -->
+<div class="marquee">
   <div class="marquee-track">
-    <span>СВОЙ ДИЗАЙН ✳ СВОЙ СТИЛЬ ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЙ ДИЗАЙН ✳ СВОЙ СТИЛЬ ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЙ ДИЗАЙН ✳ СВОЙ СТИЛЬ ✳ СВОЯ РУЧКА ✳</span>
-    <span>СВОЙ ДИЗАЙН ✳ СВОЙ СТИЛЬ ✳ СВОЯ РУЧКА ✳</span>
+    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
+    <span>СВОЯ ИДЕЯ ✳ СВОЙ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
   </div>
 </div>
 
-<section id="about" class="container">
-  <div class="section-top reveal">
-    <div class="section-label">Почему мы?</div>
-    <h2 class="section-title">Не просто ручка.</h2>
-    <p class="section-description">Это маленькая вещь, которая может рассказать о тебе больше, чем кажется.</p>
-  </div>
-
-  <div class="features">
-    <article class="feature reveal">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M12 3l2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4L12 3z"/>
-          <path d="M19 16l1.1 2.1L22 19l-1.9.9L19 22l-.9-2.1L16 19l2.1-.9L19 16z"/>
-        </svg>
+<!-- ABOUT -->
+<section class="container" id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-eyebrow">Немного о нас</div>
+      <div class="about-big">
+        Обычные вещи.<br>
+        <span class="script">Необычный</span><br>
+        подход.
       </div>
-      <h3>Свой дизайн</h3>
-      <p>Придумаем оформление, которого не будет у остальных. Всё начинается с твоей идеи.</p>
-    </article>
+      <p class="about-description">
+        Нам нравится создавать вещи, которых не встретишь
+        на каждой парте. Мы сами придумываем оформление
+        и делаем кастомные ручки — от первой идеи до готового результата.
+      </p>
+    </div>
 
-    <article class="feature reveal delay-1">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/>
-          <path d="M8.5 12l2.3 2.3 4.7-5"/>
-        </svg>
-      </div>
-      <h3>Делаем сами</h3>
-      <p>Не просто выбираем готовую картинку — сами продумываем дизайн и создаём ручки.</p>
-    </article>
-
-    <article class="feature reveal delay-2">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 7v5l3 2"/>
-        </svg>
-      </div>
-      <h3>От 100 рублей</h3>
-      <p>Кастомная вещь не обязательно должна стоить дорого. Цена начинается от 100 ₽.</p>
-    </article>
+    <div class="about-list">
+      <article class="about-item reveal">
+        <div class="about-number">01</div>
+        <div>
+          <h3>Твоя идея — главное</h3>
+          <p>Можешь предложить свой вариант дизайна, цвета и деталей.</p>
+        </div>
+      </article>
+      <article class="about-item reveal d1">
+        <div class="about-number">02</div>
+        <div>
+          <h3>Создаём самостоятельно</h3>
+          <p>Сами продумываем внешний вид и занимаемся оформлением.</p>
+        </div>
+      </article>
+      <article class="about-item reveal d2">
+        <div class="about-number">03</div>
+        <div>
+          <h3>Доступная стоимость</h3>
+          <p>Цена начинается от 100 рублей и зависит от идеи и деталей.</p>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
-<section id="gallery" class="gallery-section">
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
   <div class="container">
-    <div class="section-top reveal">
-      <div class="section-label">Наши работы</div>
-      <h2 class="section-title">Посмотри поближе.</h2>
-      <p class="section-description">Каждая ручка начинается с идеи. А дальше — немного фантазии и работы.</p>
+    <div class="gallery-layout">
+      <div class="gallery-copy reveal">
+        <div class="section-eyebrow">Один из наших дизайнов</div>
+        <h2>Рассмотри<br><span class="script">детали.</span></h2>
+        <p>
+          Красные элементы, рельефная серая накладка
+          и металлическое кольцо. Даже небольшие детали
+          меняют внешний вид привычной вещи.
+        </p>
+        <div class="gallery-count" id="galleryCount">01 — ОБЩИЙ ВИД</div>
+      </div>
+
+      <div class="gallery-stage reveal">
+        <div class="gallery-window" id="galleryWindow">
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-slide view-full">
+              <img src="image-photo.jpg" alt="Общий вид кастомной ручки">
+              <div class="slide-caption">Общий вид</div>
+            </div>
+            <div class="gallery-slide view-grip">
+              <img src="image-photo.jpg" alt="Рельефная серая часть ручки">
+              <div class="slide-caption">Рельефная деталь</div>
+            </div>
+            <div class="gallery-slide view-top">
+              <img src="image-photo.jpg" alt="Верхняя часть ручки с металлическим кольцом">
+              <div class="slide-caption">Красные детали и кольцо</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-controls">
+          <div class="gallery-dots">
+            <button class="gallery-dot active" aria-label="Общий вид"></button>
+            <button class="gallery-dot" aria-label="Рельефная деталь"></button>
+            <button class="gallery-dot" aria-label="Верхняя часть"></button>
+          </div>
+          <div class="gallery-arrows">
+            <button class="gallery-arrow" id="prev" aria-label="Назад">←</button>
+            <button class="gallery-arrow" id="next" aria-label="Вперёд">→</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="gallery-wrap reveal">
-      <div class="gallery">
-        <div class="gallery-track" id="galleryTrack">
-          <article class="slide">
-            <div class="slide-image"><img src="image-photo.png" alt="Пример кастомной ручки"></div>
-            <div class="slide-info">
-              <div class="slide-number">01 / НАША РАБОТА</div>
-              <h3>Первая идея</h3>
-              <p>Оригинальная ручка с необычными деталями. Такой дизайн уже выделяется среди обычных вещей.</p>
-            </div>
-          </article>
-          <article class="slide">
-            <div class="slide-image"><img src="image-photo.png" alt="Детали кастомной ручки"></div>
-            <div class="slide-info">
-              <div class="slide-number">02 / ДЕТАЛИ</div>
-              <h3>Всё в мелочах</h3>
-              <p>Цвета, форма и оформление — именно детали делают каждую вещь особенной.</p>
-            </div>
-          </article>
-          <article class="slide">
-            <div class="slide-image"><img src="image-photo.png" alt="Кастомная ручка"></div>
-            <div class="slide-info">
-              <div class="slide-number">03 / ТВОЯ ИДЕЯ</div>
-              <h3>А теперь твоя</h3>
-              <p>Расскажи, что хочешь увидеть. Вместе придумаем интересный вариант.</p>
-            </div>
-          </article>
-        </div>
+    <div class="price-strip reveal">
+      <div>
+        <h3>Твоя идея может стать реальностью.</h3>
+        <p>Расскажи нам, какую ручку ты хочешь.</p>
       </div>
-      <div class="gallery-controls">
-        <button class="arrow" id="prevSlide" aria-label="Предыдущий слайд">←</button>
-        <div class="dots" id="galleryDots">
-          <button class="dot active" aria-label="Слайд 1"></button>
-          <button class="dot" aria-label="Слайд 2"></button>
-          <button class="dot" aria-label="Слайд 3"></button>
-        </div>
-        <button class="arrow" id="nextSlide" aria-label="Следующий слайд">→</button>
-      </div>
+      <div class="price-value">от 100 ₽</div>
     </div>
   </div>
 </section>
 
-<section id="order" class="container order-section">
-  <div class="section-top reveal">
-    <div class="section-label">Начнём создавать</div>
-    <h2 class="section-title">Есть идея?</h2>
-    <p class="section-description">Расскажи нам о ней — обсудим дизайн и стоимость.</p>
-  </div>
-
-  <div class="order-card reveal">
-    <div class="order-copy">
-      <h2>Давай сделаем что-то <span class="handwritten">классное.</span></h2>
-      <p>Напиши, какую ручку ты хочешь. Мы свяжемся с тобой и обсудим детали.</p>
-      <div class="price">от 100 ₽ <small>за ручку</small></div>
+<!-- ORDER -->
+<section class="container" id="order">
+  <div class="order-wrap">
+    <div class="order-intro reveal">
+      <div class="section-eyebrow">Твой ход</div>
+      <h2>Есть идея?<br><span class="script">Пиши!</span></h2>
+      <p>
+        Заполни небольшую форму. Заявка скопируется,
+        а затем откроется MAX — останется найти нас
+        и отправить сообщение.
+      </p>
+      <div class="order-small-note">Давай сделаем красиво ✳</div>
     </div>
 
-    <form class="order-form" id="orderForm">
+    <form class="order-form reveal d1" id="orderForm">
       <div class="field">
-        <label for="customerName">Как тебя зовут?</label>
-        <input id="customerName" name="name" placeholder="Твоё имя" required maxlength="50">
+        <label for="name">Твоё имя</label>
+        <input id="name" name="name" placeholder="Как к тебе обращаться?" maxlength="50" required>
       </div>
+
       <div class="field">
-        <label for="quantity">Сколько ручек?</label>
+        <label for="quantity">Количество ручек</label>
         <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
       </div>
+
       <div class="field">
-        <label for="idea">Расскажи о своей идее</label>
-        <textarea id="idea" name="idea" placeholder="Цвета, детали, пожелания..." required maxlength="1000"></textarea>
+        <label for="idea">Что хочешь придумать?</label>
+        <textarea id="idea" name="idea" placeholder="Опиши свою идею, цвета и пожелания..." maxlength="1000" required></textarea>
       </div>
-      <button class="submit-button" type="submit">Отправить заявку ↗</button>
-      <div class="form-hint">Откроется MAX. Текст заявки скопируется — останется выбрать получателя и отправить сообщение.</div>
+
+      <button class="submit" type="submit">Отправить заявку ↗</button>
+      <div class="form-note">
+        Заявка не отправляется автоматически на сервер.
+        Ты сам проверишь текст и отправишь его через MAX.
+      </div>
     </form>
   </div>
 </section>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <span class="logo-name draw-text">Свои ручки<span class="logo-dot">.</span></span>
-      </a>
-      <div class="footer-slogan">будь собой!</div>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="logo footer-logo" href="#">Свои ручки<span class="logo-dot">.</span></a>
+        <div class="footer-slogan">будь собой!</div>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-note">Сделано с идеей и капелькой творчества ✳</div>
+      </div>
     </div>
-    <div class="footer-right">
-      <div class="footer-center">Сделано с идеей и капелькой творчества ✳</div>
+
+    <div class="footer-bottom">
+      <div>© Свои ручки · 2026</div>
       <div class="footer-joke">
         В РКН нас пока нет, зато все деньги ушли на шторки. 🪟<br>
         Сервер на табуретке, директор на перемене.
@@ -569,144 +918,157 @@ footer{background:#26231f;color:white;padding:43px 0 22px}
   </div>
 </footer>
 
-<!-- COOKIE NOTICE -->
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление о cookies">
-  <div class="cookie-heading">🍪 Мы используем cookies</div>
+<!-- COOKIE BANNER -->
+<div class="cookie" id="cookie" role="dialog" aria-label="Информация о cookies">
+  <div class="cookie-title">🍪 Печеньки? То есть cookies.</div>
   <div class="cookie-text">
     Ваши данные в безопасности. Ну… мы очень на это надеемся.
-    На самом деле сайт просто запомнит, что вы закрыли это окошко.
+    На самом деле сайт просто запомнит, что вы уже закрыли это окошко.
   </div>
   <div class="cookie-actions">
-    <button class="cookie-accept" id="acceptCookies">Ладно, верю</button>
-    <button class="cookie-details" id="cookieDetails">Подробнее</button>
+    <button class="cookie-accept" id="cookieAccept">Ладно, верю</button>
+    <button class="cookie-more" id="cookieMore">Подробнее</button>
   </div>
-  <div class="cookie-extra" id="cookieExtra">
-    Этот сайт не использует рекламные cookies и не подключает системы аналитики.
-    В браузере сохраняется только ваш выбор по этому уведомлению, чтобы баннер
-    не появлялся снова при каждом посещении. Данные формы заказа автоматически
+  <div class="cookie-details" id="cookieDetails">
+    Мы не используем рекламные cookies и не подключаем системы
+    аналитики. В браузере сохраняется только отметка о том,
+    что уведомление было закрыто. Данные из формы заказа
     в cookies не записываются.
   </div>
 </div>
 
 <script>
-/* Анимации: сначала включаем только после готовности JS */
+/* Появление блоков при прокрутке */
 document.documentElement.classList.add('js-ready');
 
-const revealElements = document.querySelectorAll('.reveal');
+const revealItems = document.querySelectorAll('.reveal');
 
 if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries, obs) => {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -35px 0px'
+    threshold: 0.08,
+    rootMargin: '0px 0px -25px 0px'
   });
 
-  revealElements.forEach(el => observer.observe(el));
+  revealItems.forEach(item => revealObserver.observe(item));
 
-  /* Не оставляем элементы скрытыми, если браузер долго не вызывает observer */
-  setTimeout(() => {
-    revealElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 100) {
-        el.classList.add('visible');
-      }
-    });
-  }, 1800);
+  /* Страховка: ничего не должно остаться невидимым */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      revealItems.forEach(item => {
+        if (item.getBoundingClientRect().top < window.innerHeight + 50) {
+          item.classList.add('visible');
+        }
+      });
+    }, 1200);
+  });
 } else {
-  revealElements.forEach(el => el.classList.add('visible'));
+  revealItems.forEach(item => item.classList.add('visible'));
 }
 
-/* Карусель */
+/* Галерея */
 const track = document.getElementById('galleryTrack');
-const slides = Array.from(track.children);
-const dots = Array.from(document.querySelectorAll('.dot'));
-let currentSlide = 0;
+const slides = [...track.children];
+const dots = [...document.querySelectorAll('.gallery-dot')];
+const count = document.getElementById('galleryCount');
+
+const captions = [
+  '01 — ОБЩИЙ ВИД',
+  '02 — РЕЛЬЕФНАЯ ДЕТАЛЬ',
+  '03 — ВЕРХНЯЯ ЧАСТЬ'
+];
+
+let current = 0;
 
 function showSlide(index) {
-  currentSlide = (index + slides.length) % slides.length;
-  track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+  current = (index + slides.length) % slides.length;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  count.textContent = captions[current];
 }
 
-document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
-document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
+document.getElementById('prev').addEventListener('click', () => showSlide(current - 1));
+document.getElementById('next').addEventListener('click', () => showSlide(current + 1));
 dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
 
-/* Свайп на телефоне */
-let touchStartX = 0;
-let touchEndX = 0;
+/* Свайп галереи */
+let touchStart = 0;
 
-track.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
+document.getElementById('galleryWindow').addEventListener('touchstart', event => {
+  touchStart = event.changedTouches[0].screenX;
 }, {passive:true});
 
-track.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  const difference = touchStartX - touchEndX;
+document.getElementById('galleryWindow').addEventListener('touchend', event => {
+  const difference = touchStart - event.changedTouches[0].screenX;
   if (Math.abs(difference) > 45) {
-    showSlide(currentSlide + (difference > 0 ? 1 : -1));
+    showSlide(current + (difference > 0 ? 1 : -1));
   }
 }, {passive:true});
 
-/* Cookies: храним только согласие с уведомлением */
-const cookieBanner = document.getElementById('cookieBanner');
-const cookieExtra = document.getElementById('cookieExtra');
-const cookieChoice = localStorage.getItem('svoyi-handle-cookie-choice');
+/* Cookies: только запоминание закрытия уведомления */
+const cookie = document.getElementById('cookie');
+const cookieChoice = localStorage.getItem('svoyi-cookie-choice');
 
 if (!cookieChoice) {
-  setTimeout(() => cookieBanner.classList.add('show'), 900);
+  setTimeout(() => cookie.classList.add('show'), 1000);
 }
 
-document.getElementById('acceptCookies').addEventListener('click', () => {
-  localStorage.setItem('svoyi-handle-cookie-choice', 'accepted');
-  cookieBanner.classList.remove('show');
+document.getElementById('cookieAccept').addEventListener('click', () => {
+  localStorage.setItem('svoyi-cookie-choice', 'accepted');
+  cookie.classList.remove('show');
 });
 
-document.getElementById('cookieDetails').addEventListener('click', () => {
-  cookieExtra.classList.toggle('open');
+document.getElementById('cookieMore').addEventListener('click', () => {
+  document.getElementById('cookieDetails').classList.toggle('open');
 });
 
-/* Заявка в MAX */
+/* Настройки MAX */
 const MAX_PHONE = '79991234567'; // ЗАМЕНИ НА СВОЙ НОМЕР
-const MAX_PROFILE_URL = ''; // При наличии ссылки на профиль MAX вставь её сюда
+const MAX_PROFILE_URL = ''; // ССЫЛКА НА ПРОФИЛЬ, ЕСЛИ ЕСТЬ
 
+/* Форма заявки */
 document.getElementById('orderForm').addEventListener('submit', async event => {
   event.preventDefault();
 
-  const name = document.getElementById('customerName').value.trim();
-  const quantity = document.getElementById('quantity').value;
+  const name = document.getElementById('name').value.trim();
+  const quantity = Number(document.getElementById('quantity').value);
   const idea = document.getElementById('idea').value.trim();
 
-  if (!name || !idea || Number(quantity) < 1) {
-    alert('Пожалуйста, заполни все поля.');
+  if (!name || !idea || !Number.isInteger(quantity) || quantity < 1 || quantity > 50) {
+    alert('Проверь, пожалуйста, заполнение формы.');
     return;
   }
 
   const message =
-`Здравствуйте! Хочу заказать кастомную ручку.
+`Привет! Хочу заказать кастомную ручку.
 
 Имя: ${name}
 Количество: ${quantity}
 Идея: ${idea}`;
 
+  /* Открываем MAX сразу, чтобы браузер не заблокировал окно */
+  const target = MAX_PROFILE_URL.trim() || 'https://max.ru/';
+  window.open(target, '_blank', 'noopener,noreferrer');
+
   try {
     await navigator.clipboard.writeText(message);
-    alert('Заявка скопирована! Сейчас откроется MAX. Найди нас и вставь сообщение.');
+    alert(
+      'Текст заявки скопирован!\n\n' +
+      'Открой MAX, найди нас и вставь сообщение.\n' +
+      'Номер: +' + MAX_PHONE
+    );
   } catch (error) {
-    alert('Не удалось автоматически скопировать текст. Скопируй заявку вручную или попробуй открыть сайт в обычном браузере.');
-  }
-
-  if (MAX_PROFILE_URL.trim()) {
-    window.open(MAX_PROFILE_URL, '_blank', 'noopener,noreferrer');
-  } else {
-    window.open('https://max.ru/', '_blank', 'noopener,noreferrer');
-    alert('Найди нас в MAX по номеру: +' + MAX_PHONE);
+    alert(
+      'Не удалось автоматически скопировать заявку.\n\n' +
+      message + '\n\n' +
+      'Найди нас в MAX по номеру: +' + MAX_PHONE
+    );
   }
 });
 </script>
