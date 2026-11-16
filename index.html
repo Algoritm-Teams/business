@@ -3,1738 +3,1065 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f4f0e8">
-<title>Свои ручки — кастомные ручки</title>
-<meta name="description" content="Создаём кастомные ручки с собственным дизайном. Твоя идея — наша работа. От 100 рублей.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6f1e9">
+<title>Свои ручки — ручки с твоим характером</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #f4f0e8;
-  --paper: #fbf9f4;
-  --white: #fffefa;
-  --ink: #282722;
-  --muted: #898378;
-  --red: #c9473b;
-  --red-dark: #a9342c;
-  --line: #e4ded3;
-  --serif: "Playfair Display", Georgia, serif;
-  --sans: "Manrope", Arial, sans-serif;
-  --script: "Caveat", cursive;
+:root{
+  --paper:#f6f1e9;
+  --white:#fffdf9;
+  --ink:#29251f;
+  --muted:#827b70;
+  --red:#b94436;
+  --red-dark:#96372d;
+  --line:rgba(41,37,31,.13);
+  --serif:'Playfair Display',serif;
+  --sans:'Manrope',sans-serif;
+  --hand:'Caveat',cursive;
 }
 
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  overflow-x:hidden;
 }
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--sans);
-  overflow-x: hidden;
-}
-
-body, button, input, textarea {
-  font-family: var(--sans);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button, input, textarea {
-  font-size: inherit;
-}
-
-::selection {
-  background: var(--red);
-  color: white;
-}
-
-.wrap {
-  width: min(1240px, calc(100% - 64px));
-  margin-inline: auto;
-}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+::selection{background:#e7b9ae;color:var(--ink)}
+.container{width:min(1160px,calc(100% - 48px));margin:auto}
 
 /* HEADER */
-
-.header {
-  height: 88px;
-  border-bottom: 1px solid #28272213;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 10;
+header{
+  height:82px;
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  z-index:10;
 }
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
 }
-
-.logo {
-  display: inline-flex;
-  flex-direction: column;
-  position: relative;
-  font: 700 35px/.8 var(--script);
-  transform: rotate(-3deg);
-  padding-bottom: 8px;
+.logo{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-1px;
 }
-
-.logo::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 75%;
-  bottom: 0;
-  left: 4px;
-  background: var(--red);
-  border-radius: 50%;
-  transform: rotate(-3deg);
+.logo span{color:var(--red)}
+.nav-links{
+  display:flex;
+  gap:32px;
+  font-size:12px;
+  color:#716b61;
 }
-
-.logo span {
-  color: var(--red);
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-contact{
+  border:1px solid var(--line);
+  padding:11px 17px;
+  border-radius:30px;
+  font-size:12px;
+  transition:.25s;
 }
-
-.navigation {
-  display: flex;
-  gap: 36px;
-  align-items: center;
-}
-
-.navigation a {
-  font-size: 11px;
-  font-weight: 700;
-  color: #777166;
-  transition: color .2s;
-}
-
-.navigation a:hover {
-  color: var(--red);
-}
-
-.header-contact {
-  display: inline-flex;
-  align-items: center;
-  gap: 13px;
-  padding: 13px 19px;
-  background: var(--ink);
-  color: white;
-  border-radius: 50px;
-  font-size: 10px;
-  font-weight: 800;
-  transition: .25s;
-}
-
-.header-contact:hover {
-  background: var(--red);
-  transform: translateY(-2px);
-}
-
-.arrow {
-  font-size: 15px;
-}
+.nav-contact:hover{background:var(--ink);color:white}
 
 /* HERO */
-
-.hero {
-  display: grid;
-  grid-template-columns: 1.02fr .98fr;
-  align-items: center;
-  gap: 65px;
-  padding-top: 76px;
-  padding-bottom: 100px;
-  min-height: 740px;
+.hero{
+  min-height:690px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:55px;
+  padding-top:65px;
+  padding-bottom:75px;
+}
+.eyebrow{
+  color:var(--red);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow:before{
+  content:"";
+  width:25px;height:1px;background:var(--red);
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(48px,6vw,76px);
+  line-height:1.06;
+  font-weight:500;
+  letter-spacing:-2.5px;
+  margin:26px 0;
+}
+.hero h1 em{color:var(--red);font-weight:500}
+.handwritten{
+  font-family:var(--hand);
+  color:var(--red);
+  font-size:32px;
+  transform:rotate(-4deg);
+  display:inline-block;
+}
+.hero-description{
+  max-width:440px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.95;
+}
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-top:32px;
+}
+.primary-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--red);
+  color:white;
+  border:0;
+  padding:15px 23px;
+  border-radius:40px;
+  font-size:12px;
+  font-weight:700;
+  transition:background .25s,transform .25s;
+}
+.primary-btn:hover{background:var(--red-dark);transform:translateY(-3px)}
+.text-link{
+  font-size:12px;
+  border-bottom:1px solid #a9a094;
+  padding-bottom:4px;
 }
 
-.kicker {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--red);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+/* GALLERY */
+.hero-visual{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-width:0;
 }
-
-.kicker::before {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: var(--red);
+.gallery-wrap{
+  position:relative;
+  width:100%;
+  max-width:470px;
 }
-
-.hero h1 {
-  font-size: clamp(58px, 7vw, 94px);
-  line-height: .98;
-  letter-spacing: -7px;
-  font-weight: 700;
-  margin: 30px 0 25px;
+.photo-frame{
+  position:relative;
+  width:100%;
+  height:610px;
+  background:#e9e1d5;
+  border-radius:230px 230px 12px 12px;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:1px solid rgba(41,37,31,.08);
+  touch-action:pan-y;
 }
-
-.hero h1 .serif {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-style: italic;
-  letter-spacing: -5px;
+.gallery-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:12px;
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
 }
-
-.hero h1 .red {
-  color: var(--red);
-  font-family: var(--script);
-  font-size: 1.14em;
-  font-weight: 600;
-  letter-spacing: -2px;
+.gallery-image.active{opacity:1}
+.gallery-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:3;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(41,37,31,.12);
+  border-radius:50%;
+  background:rgba(255,253,249,.92);
+  color:var(--ink);
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  transition:.2s;
 }
-
-.hero-description {
-  color: var(--muted);
-  max-width: 410px;
-  font-size: 13px;
-  line-height: 2;
+.gallery-arrow:hover{background:var(--red);color:white}
+.gallery-arrow:focus-visible,.dot:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:3px;
 }
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 32px;
+.gallery-arrow.prev{left:14px}
+.gallery-arrow.next{right:14px}
+.gallery-bottom{
+  position:absolute;
+  bottom:17px;
+  left:0;
+  right:0;
+  z-index:4;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
 }
-
-.button-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  border: none;
-  background: var(--red);
-  color: white;
-  border-radius: 50px;
-  padding: 17px 23px;
-  font-size: 11px;
-  font-weight: 800;
-  transition: .25s;
+.dot{
+  width:7px;height:7px;
+  border:0;
+  border-radius:20px;
+  padding:0;
+  background:rgba(41,37,31,.3);
+  transition:.25s;
 }
-
-.button-primary:hover {
-  background: var(--red-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px #c9473b25;
+.dot.active{width:23px;background:var(--red)}
+.gallery-label{
+  position:absolute;
+  top:22px;
+  right:-17px;
+  background:var(--white);
+  padding:12px 16px;
+  border-radius:30px;
+  font-family:var(--hand);
+  color:var(--red);
+  font-size:20px;
+  transform:rotate(5deg);
+  box-shadow:0 8px 25px rgba(41,37,31,.06);
 }
-
-.button-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: 50px;
-  font-size: 11px;
-  font-weight: 800;
-  transition: .2s;
-}
-
-.button-secondary:hover {
-  background: var(--white);
-  border-color: #c9bfb0;
-}
-
-.hero-caption {
-  margin-top: 30px;
-  color: #a39b8f;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-}
-
-.hero-caption b {
-  color: var(--red);
-}
-
-/* HERO PHOTO */
-
-.hero-visual {
-  position: relative;
-  min-width: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 25px 10px 10px;
-}
-
-.photo-frame {
-  width: 100%;
-  max-width: 470px;
-  height: 610px;
-  position: relative;
-  background: #e4d6c1;
-  overflow: hidden;
-  border-radius: 230px 230px 12px 12px;
-  box-shadow: 0 30px 80px #4d38201c;
-}
-
-.photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  transition: transform 1s cubic-bezier(.2,.8,.2,1);
-}
-
-.photo-frame:hover img {
-  transform: scale(1.025);
-}
-
-.photo-caption {
-  position: absolute;
-  bottom: 24px;
-  left: 25px;
-  color: white;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  z-index: 2;
-  text-shadow: 0 2px 8px #0008;
-}
-
-.photo-sticker {
-  position: absolute;
-  z-index: 3;
-  right: -8px;
-  bottom: 90px;
-  background: var(--white);
-  padding: 16px 21px;
-  border-radius: 5px;
-  box-shadow: 0 12px 35px #34231320;
-  transform: rotate(4deg);
-  font: 600 24px var(--script);
-  color: var(--red);
-}
-
-.photo-index {
-  position: absolute;
-  top: 40px;
-  right: -2px;
-  width: 76px;
-  height: 76px;
-  border: 1px solid #c9473b80;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--red);
-  font: 600 14px var(--script);
-  text-align: center;
-  background: var(--bg);
-  transform: rotate(10deg);
-}
-
-.photo-side {
-  position: absolute;
-  left: -9px;
-  top: 45%;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #a69e92;
+.gallery-index{
+  position:absolute;
+  left:-22px;
+  bottom:65px;
+  font-family:var(--serif);
+  font-size:14px;
+  color:var(--muted);
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
 }
 
 /* MARQUEE */
-
-.marquee {
-  background: var(--red);
-  color: white;
-  padding: 17px 0;
-  overflow: hidden;
-  transform: rotate(-1deg) scale(1.02);
+.marquee{
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:18px 0;
+  background:#efe8dd;
 }
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 32s linear infinite;
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marquee 28s linear infinite;
 }
-
-.marquee-track span {
-  padding: 0 28px;
-  font-size: 10px;
-  letter-spacing: 2.4px;
-  font-weight: 800;
-  white-space: nowrap;
+.marquee-item{
+  white-space:nowrap;
+  padding:0 28px;
+  font-family:var(--serif);
+  font-size:20px;
+  color:#70685d;
 }
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
+.marquee-item span{color:var(--red);padding-left:22px}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
 /* INTRO */
-
-.intro {
-  padding: 145px 0 130px;
+.intro{
+  padding:125px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+  align-items:start;
+}
+.section-kicker{
+  color:var(--red);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(36px,4.5vw,55px);
+  font-weight:500;
+  line-height:1.15;
+  letter-spacing:-1.5px;
+  margin:20px 0;
+}
+.section-title em{color:var(--red);font-weight:500}
+.intro-copy{
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+  padding-top:35px;
+}
+.intro-copy p{margin:0 0 18px}
+.intro-note{
+  font-family:var(--hand);
+  color:var(--red);
+  font-size:26px;
+  margin-top:25px;
+  transform:rotate(-2deg);
+  display:inline-block;
 }
 
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr .8fr;
-  gap: 100px;
-  align-items: center;
+/* VALUES */
+.values{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
-
-.section-label {
-  color: var(--red);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+.value{
+  padding:30px 28px 34px 0;
 }
-
-.intro h2 {
-  font-size: clamp(43px, 5.5vw, 69px);
-  line-height: 1.06;
-  letter-spacing: -4px;
-  margin: 23px 0;
-  font-weight: 700;
+.value+.value{border-left:1px solid var(--line);padding-left:28px}
+.value-number{
+  font-family:var(--serif);
+  color:var(--red);
+  font-size:24px;
 }
+.value h3{font-size:14px;margin:16px 0 8px}
+.value p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
 
-.intro h2 em {
-  font-family: var(--serif);
-  font-weight: 500;
-  color: var(--red);
+/* FEATURE */
+.feature{
+  padding:120px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:85px;
+  align-items:center;
 }
-
-.intro-text {
-  max-width: 470px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 2.05;
+.feature-image{
+  background:#e9e1d5;
+  border-radius:12px 160px 12px 12px;
+  height:470px;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
-
-.intro-signature {
-  font: 600 30px var(--script);
-  color: var(--red);
-  margin-top: 25px;
-  transform: rotate(-4deg);
-  display: inline-block;
+.feature-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:16px;
 }
-
-.values {
-  border-top: 1px solid var(--line);
+.feature-copy p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
 }
-
-.value {
-  display: grid;
-  grid-template-columns: 45px 1fr;
-  gap: 13px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
+.feature-price{
+  font-family:var(--serif);
+  font-size:42px;
+  margin:26px 0;
 }
-
-.value-number {
-  font: 600 24px var(--serif);
-  color: var(--red);
-}
-
-.value h3 {
-  margin: 2px 0 7px;
-  font-size: 13px;
-}
-
-.value p {
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-/* FEATURED WORK */
-
-.featured {
-  background: #eae3d8;
-  padding: 110px 0 115px;
-}
-
-.featured-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 43px;
-}
-
-.featured-heading h2 {
-  font-size: clamp(42px, 5vw, 66px);
-  line-height: 1;
-  letter-spacing: -4px;
-  margin: 18px 0 0;
-}
-
-.featured-heading h2 em {
-  font-family: var(--serif);
-  font-weight: 500;
-}
-
-.featured-heading p {
-  max-width: 310px;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.9;
-  margin-bottom: 4px;
-}
-
-.featured-card {
-  display: grid;
-  grid-template-columns: 1.03fr .97fr;
-  background: var(--paper);
-  border-radius: 3px;
-  overflow: hidden;
-  box-shadow: 0 25px 70px #40301c0c;
-}
-
-.featured-image {
-  min-height: 520px;
-  background: #e0d2bd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.featured-image img {
-  width: 100%;
-  height: 100%;
-  min-height: 520px;
-  display: block;
-  object-fit: contain;
-  transition: transform .8s;
-}
-
-.featured-card:hover .featured-image img {
-  transform: scale(1.025);
-}
-
-.featured-info {
-  padding: clamp(30px, 5vw, 65px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.project-label {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--red);
-}
-
-.featured-info h3 {
-  font-size: 38px;
-  letter-spacing: -2px;
-  margin: 20px 0 14px;
-}
-
-.featured-info p {
-  font-size: 12px;
-  line-height: 2;
-  color: var(--muted);
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 19px;
-}
-
-.tags span {
-  padding: 9px 12px;
-  border: 1px solid var(--line);
-  border-radius: 50px;
-  color: #746d62;
-  font-size: 9px;
-}
-
-.price-line {
-  border-top: 1px solid var(--line);
-  margin-top: 30px;
-  padding-top: 23px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.price-line strong {
-  font-size: 24px;
-  letter-spacing: -1px;
-}
-
-.price-line small {
-  font-size: 9px;
-  color: var(--muted);
+.feature-price small{
+  font-family:var(--sans);
+  color:var(--muted);
+  font-size:11px;
 }
 
 /* PROCESS */
-
-.process {
-  padding: 130px 0;
+.process{
+  padding:100px 0;
+  background:#eee7dc;
 }
-
-.process-head {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 65px;
+.process-heading{text-align:center;margin-bottom:55px}
+.process-heading .section-title{margin-bottom:12px}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
-
-.process-head h2 {
-  font-size: clamp(42px, 5vw, 63px);
-  letter-spacing: -4px;
-  line-height: 1;
-  margin: 20px 0;
+.process-card{
+  padding:27px;
+  background:rgba(255,253,249,.7);
+  border:1px solid rgba(41,37,31,.07);
+  border-radius:12px;
+  min-height:190px;
 }
-
-.process-head h2 em {
-  font-family: var(--serif);
-  font-weight: 500;
-  color: var(--red);
+.process-number{
+  color:var(--red);
+  font-family:var(--serif);
+  font-size:27px;
 }
-
-.process-head p {
-  font-size: 12px;
-  line-height: 1.9;
-  color: var(--muted);
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.step {
-  padding: 32px 28px 35px 0;
-}
-
-.step + .step {
-  border-left: 1px solid var(--line);
-  padding-left: 28px;
-}
-
-.step-number {
-  font: 500 38px var(--serif);
-  color: var(--red);
-}
-
-.step h3 {
-  font-size: 14px;
-  margin: 20px 0 9px;
-}
-
-.step p {
-  max-width: 280px;
-  font-size: 11px;
-  line-height: 1.9;
-  color: var(--muted);
-}
+.process-card h3{font-size:14px;margin:20px 0 9px}
+.process-card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
 
 /* ORDER */
-
-.order {
-  background: #eae3d8;
-  padding: 115px 0;
+.order{
+  padding:125px 0;
 }
-
-.order-grid {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: 90px;
-  align-items: start;
+.order-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+  align-items:start;
 }
-
-.order-copy h2 {
-  font-size: clamp(46px, 5.7vw, 72px);
-  line-height: .98;
-  letter-spacing: -5px;
-  margin: 22px 0;
+.order-description{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  max-width:390px;
 }
-
-.order-copy h2 em {
-  font-family: var(--serif);
-  color: var(--red);
-  font-weight: 500;
+.order-hand{
+  font-family:var(--hand);
+  color:var(--red);
+  font-size:27px;
+  margin-top:30px;
+  transform:rotate(-3deg);
+  display:inline-block;
 }
-
-.order-copy p {
-  max-width: 380px;
-  font-size: 12px;
-  line-height: 2;
-  color: var(--muted);
+.order-form{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:32px;
 }
-
-.order-note {
-  margin-top: 35px;
-  font: 600 27px var(--script);
-  color: var(--red);
-  transform: rotate(-4deg);
-  display: inline-block;
+.field{margin-bottom:20px}
+.field label{
+  display:block;
+  font-size:11px;
+  color:#716b61;
+  margin-bottom:9px;
 }
-
-.order-form {
-  background: var(--paper);
-  padding: 37px;
-  border: 1px solid #ded6ca;
-  box-shadow: 0 20px 55px #4c35170b;
+.field input,.field textarea{
+  width:100%;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--line);
+  padding:11px 0;
+  outline:none;
+  color:var(--ink);
+  font-size:13px;
+  resize:vertical;
+  border-radius:0;
 }
-
-.form-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 29px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-.form-top strong {
-  font-size: 13px;
-}
-
-.form-top span {
-  font-size: 9px;
-  color: var(--red);
-  letter-spacing: 1px;
-}
-
-.field {
-  margin-bottom: 19px;
-}
-
-.field label {
-  display: block;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 9px;
-}
-
-.field input,
-.field textarea {
-  display: block;
-  width: 100%;
-  background: #f7f4ee;
-  border: 1px solid #e6dfd4;
-  border-radius: 2px;
-  padding: 15px;
-  color: var(--ink);
-  font-size: 12px;
-  outline: none;
-  transition: border-color .2s, background .2s;
-}
-
-.field input:focus,
-.field textarea:focus {
-  border-color: var(--red);
-  background: white;
-}
-
-.field textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.submit {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  border: 0;
-  background: var(--red);
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  transition: .25s;
-}
-
-.submit:hover {
-  background: var(--red-dark);
-}
-
-.submit span {
-  font-size: 18px;
-}
-
-.form-disclaimer {
-  font-size: 9px;
-  line-height: 1.8;
-  color: #a29a8e;
-  margin-top: 14px;
+.field input:focus,.field textarea:focus{border-color:var(--red)}
+.field textarea{min-height:75px}
+.form-submit{width:100%;margin-top:5px}
+.form-hint{
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.7;
+  margin:14px 0 0;
 }
 
 /* FOOTER */
-
-.footer {
-  background: #282722;
-  color: #fffdf8;
-  padding: 54px 0 24px;
+footer{
+  background:#29251f;
+  color:#f6f1e9;
+  padding:55px 0 25px;
+}
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:30px;
+  padding-bottom:45px;
+}
+.footer-brand{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+.footer-brand span{color:#d77c6e}
+.footer-subtitle{
+  color:#aaa195;
+  font-size:11px;
+  margin-top:10px;
+}
+.footer-links{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+  font-size:12px;
+  color:#c4bbb0;
+}
+.footer-links a:hover{color:white}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.14);
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#938b80;
+  font-size:10px;
+}
+.footer-joke{
+  margin-top:28px;
+  color:#c6bdb1;
+  font-family:var(--hand);
+  font-size:20px;
+  text-align:center;
 }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 30px;
+/* COOKIE */
+.cookie{
+  position:fixed;
+  z-index:30;
+  bottom:20px;
+  left:20px;
+  width:min(390px,calc(100% - 40px));
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:19px;
+  box-shadow:0 12px 45px rgba(41,37,31,.13);
+  display:none;
+  animation:cookieIn .4s ease both;
+}
+.cookie.show{display:block}
+.cookie h3{font-size:13px;margin:0 0 7px}
+.cookie p{font-size:11px;color:var(--muted);line-height:1.7;margin:0 0 14px}
+.cookie-actions{display:flex;align-items:center;gap:15px}
+.cookie-accept{
+  border:0;
+  background:var(--red);
+  color:white;
+  padding:10px 17px;
+  border-radius:30px;
+  font-size:11px;
+}
+.cookie-more{font-size:11px;color:var(--muted);text-decoration:underline}
+
+/* ANIMATIONS */
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .75s ease,transform .75s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes cookieIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-.footer-logo {
-  font: 700 42px var(--script);
-  transform: rotate(-3deg);
-  display: inline-block;
-}
-
-.footer-logo span {
-  color: #e36c5e;
-}
-
-.footer-slogan {
-  font: 600 26px var(--script);
-  color: #e36c5e;
-  margin-top: 12px;
-}
-
-.footer-contact {
-  text-align: right;
-}
-
-.footer-contact p {
-  color: #a8a398;
-  font-size: 10px;
-  line-height: 1.9;
-}
-
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 17px;
-  border: 1px solid #ffffff30;
-  font-size: 10px;
-  transition: .2s;
-}
-
-.footer-link:hover {
-  background: var(--red);
-  border-color: var(--red);
-}
-
-.footer-bottom {
-  border-top: 1px solid #ffffff20;
-  margin-top: 50px;
-  padding-top: 20px;
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 25px;
-  color: #999489;
-  font-size: 9px;
-  line-height: 1.9;
-}
-
-.footer-joke {
-  text-align: right;
-  max-width: 470px;
-  color: #c2bcb1;
-}
-
-.footer-joke b {
-  color: #e36c5e;
-  font-weight: 600;
-}
-
-/* COOKIES */
-
-.cookie {
-  position: fixed;
-  z-index: 100;
-  left: 22px;
-  bottom: 22px;
-  width: min(410px, calc(100% - 44px));
-  padding: 23px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  box-shadow: 0 20px 70px #21190e25;
-  display: none;
-}
-
-.cookie.show {
-  display: block;
-  animation: cookieIn .45s ease both;
-}
-
-@keyframes cookieIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.cookie-heading {
-  font-size: 13px;
-  font-weight: 800;
-  margin-bottom: 9px;
-}
-
-.cookie-description {
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.9;
-}
-
-.cookie-buttons {
-  display: flex;
-  gap: 9px;
-  margin-top: 16px;
-}
-
-.cookie-buttons button {
-  padding: 11px 15px;
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.cookie-accept {
-  background: var(--red);
-  border: 1px solid var(--red);
-  color: white;
-}
-
-.cookie-details-button {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-}
-
-.cookie-details {
-  display: none;
-  margin-top: 14px;
-  padding-top: 13px;
-  border-top: 1px solid var(--line);
-  font-size: 10px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-.cookie-details.open {
-  display: block;
-}
-
-/* REVEAL ANIMATIONS */
-
-.reveal {
-  opacity: 1;
-  transform: none;
-}
-
-.js-ready .reveal {
-  opacity: 0;
-  transform: translateY(25px);
-  transition:
-    opacity .8s ease,
-    transform .8s cubic-bezier(.2,.75,.25,1);
-}
-
-.js-ready .reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.js-ready .delay-1 {
-  transition-delay: .12s;
-}
-
-.js-ready .delay-2 {
-  transition-delay: .22s;
-}
-
-.js-ready .delay-3 {
-  transition-delay: .32s;
+  .reveal{opacity:1;transform:none}
 }
 
 /* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 55px;
-    padding-top: 65px;
+@media(max-width:800px){
+  .container{width:min(100% - 36px,600px)}
+  header{height:70px}
+  .nav-links{display:none}
+  .hero{
+    grid-template-columns:1fr;
+    gap:45px;
+    padding-top:65px;
+    padding-bottom:65px;
   }
-
-  .hero-content {
-    text-align: center;
-  }
-
-  .hero-content .kicker {
-    justify-content: center;
-  }
-
-  .hero-description {
-    margin-inline: auto;
-  }
-
-  .hero-actions {
-    justify-content: center;
-  }
-
-  .hero-caption {
-    text-align: center;
-  }
-
-  .hero-visual {
-    max-width: 550px;
-    width: 100%;
-    margin-inline: auto;
-  }
-
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  .featured-card {
-    grid-template-columns: 1fr;
-  }
-
-  .featured-image,
-  .featured-image img {
-    min-height: 560px;
-    height: 560px;
-  }
-
-  .order-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  .hero h1{font-size:58px}
+  .hero-visual{max-width:470px;margin:auto;width:100%}
+  .photo-frame{height:570px}
+  .intro,.feature,.order-layout{grid-template-columns:1fr;gap:35px}
+  .intro{padding:85px 0}
+  .intro-copy{padding-top:0}
+  .feature{padding:85px 0}
+  .feature-image{height:430px}
+  .process{padding:80px 0}
+  .order{padding:85px 0}
+  .values{grid-template-columns:1fr}
+  .value{padding:22px 0}
+  .value+.value{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .process-grid{grid-template-columns:1fr}
+  .process-card{min-height:0}
+  .footer-top{flex-direction:column}
 }
-
-@media (max-width: 600px) {
-  .wrap {
-    width: calc(100% - 36px);
-  }
-
-  .header {
-    height: 72px;
-  }
-
-  .logo {
-    font-size: 30px;
-  }
-
-  .navigation {
-    display: none;
-  }
-
-  .header-contact {
-    padding: 12px 15px;
-    font-size: 9px;
-  }
-
-  .hero {
-    padding-top: 55px;
-    padding-bottom: 70px;
-    min-height: auto;
-  }
-
-  .hero h1 {
-    font-size: 59px;
-    letter-spacing: -4px;
-  }
-
-  .hero h1 .serif {
-    letter-spacing: -3px;
-  }
-
-  .hero-description {
-    font-size: 12px;
-  }
-
-  .photo-frame {
-    height: 490px;
-    border-radius: 190px 190px 8px 8px;
-  }
-
-  .photo-sticker {
-    right: -3px;
-    bottom: 48px;
-  }
-
-  .photo-index {
-    right: -3px;
-    width: 65px;
-    height: 65px;
-  }
-
-  .photo-side {
-    left: -6px;
-  }
-
-  .intro {
-    padding: 90px 0;
-  }
-
-  .intro h2 {
-    font-size: 46px;
-    letter-spacing: -3px;
-  }
-
-  .featured {
-    padding: 80px 0;
-  }
-
-  .featured-heading {
-    display: block;
-  }
-
-  .featured-heading h2 {
-    font-size: 48px;
-  }
-
-  .featured-heading p {
-    margin-top: 17px;
-  }
-
-  .featured-image,
-  .featured-image img {
-    min-height: 440px;
-    height: 440px;
-  }
-
-  .featured-info {
-    padding: 27px;
-  }
-
-  .featured-info h3 {
-    font-size: 32px;
-  }
-
-  .process {
-    padding: 90px 0;
-  }
-
-  .process-head h2 {
-    font-size: 47px;
-    letter-spacing: -3px;
-  }
-
-  .steps {
-    grid-template-columns: 1fr;
-  }
-
-  .step {
-    padding: 25px 0;
-  }
-
-  .step + .step {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-    padding-left: 0;
-  }
-
-  .step p {
-    max-width: 100%;
-  }
-
-  .order {
-    padding: 85px 0;
-  }
-
-  .order-copy h2 {
-    font-size: 51px;
-    letter-spacing: -3px;
-  }
-
-  .order-form {
-    padding: 23px;
-  }
-
-  .footer-top {
-    flex-direction: column;
-  }
-
-  .footer-contact {
-    text-align: left;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    margin-top: 35px;
-  }
-
-  .footer-joke {
-    text-align: left;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
+@media(max-width:480px){
+  .container{width:calc(100% - 32px)}
+  .hero{padding-top:52px}
+  .hero h1{font-size:48px;letter-spacing:-1.8px}
+  .hero-description{font-size:13px}
+  .hero-actions{gap:15px;flex-wrap:wrap}
+  .photo-frame{height:490px;border-radius:190px 190px 10px 10px}
+  .gallery-label{right:-4px;top:17px}
+  .gallery-index{left:-12px}
+  .section-title{font-size:39px}
+  .feature-image{height:350px}
+  .order-form{padding:23px}
+  .footer-bottom{flex-direction:column}
+  .footer-links{gap:16px}
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="wrap header-inner">
-    <a href="#top" class="logo">Свои ручки<span>.</span></a>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">свои<span>.</span>ручки</a>
 
-    <nav class="navigation">
+    <nav class="nav-links">
       <a href="#about">О нас</a>
       <a href="#work">Наши работы</a>
-      <a href="#process">Как создаём</a>
+      <a href="#process">Как это работает</a>
       <a href="#order">Заказать</a>
     </nav>
 
-    <a class="header-contact max-link" href="https://web.max.ru/" target="_blank" rel="noopener">
-      Написать нам <span class="arrow">↗</span>
+    <a class="nav-contact" href="https://web.max.ru/" target="_blank" rel="noopener">
+      Написать нам ↗
     </a>
   </div>
 </header>
 
-<main id="top">
+<main>
 
-  <!-- HERO -->
+<section class="container hero">
+  <div class="hero-content reveal">
+    <div class="eyebrow">Немного творчества каждый день</div>
 
-  <section class="wrap hero">
-    <div class="hero-content">
-      <div class="kicker reveal">Маленькая мастерская больших идей</div>
+    <h1>
+      Не просто ручка.<br>
+      <em>Твоя вещь.</em>
+    </h1>
 
-      <h1 class="reveal delay-1">
-        Не просто<br>
-        <span class="serif">ручка.</span><br>
-        <span class="red">Твоя вещь.</span>
-      </h1>
+    <p class="hero-description">
+      Хочешь ручку, которой больше ни у кого нет?
+      Мы делаем кастомные ручки с твоим дизайном.
+      С нас — качество и креатив, с тебя — идея.
+    </p>
 
-      <p class="hero-description reveal delay-2">
-        Создаём кастомные ручки с собственным дизайном.
-        Придумываем детали, экспериментируем с оформлением
-        и превращаем обычную вещь в нечто особенное.
-      </p>
-
-      <div class="hero-actions reveal delay-3">
-        <a href="#order" class="button-primary">
-          Создать свою <span class="arrow">↗</span>
-        </a>
-        <a href="#work" class="button-secondary">
-          Смотреть работы
-        </a>
-      </div>
-
-      <div class="hero-caption reveal delay-3">
-        <b>ОТ 100 ₽</b>　·　СОБСТВЕННЫЙ ДИЗАЙН　·　СДЕЛАНО САМИМИ
-      </div>
+    <div class="hero-actions">
+      <a href="#order" class="primary-btn">Хочу свою ручку ↗</a>
+      <a href="#work" class="text-link">Посмотреть работы</a>
     </div>
 
-    <div class="hero-visual reveal">
-      <div class="photo-frame">
-        <img
-          src="image-photo.jpg"
-          alt="Кастомная ручка с красными деталями и серой рельефной накладкой"
-          fetchpriority="high"
-        >
-        <div class="photo-caption">НАША РАБОТА · № 001</div>
-      </div>
-
-      <div class="photo-side">НЕБОЛЬШАЯ ВЕЩЬ — БОЛЬШОЙ ХАРАКТЕР</div>
-      <div class="photo-sticker">сделано с идеей ✳</div>
-      <div class="photo-index">DESIGN<br>001</div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-      <span>ТВОЯ ИДЕЯ ✳ НАШ ДИЗАЙН ✳ СВОЯ РУЧКА ✳</span>
-    </div>
+    <div class="handwritten">Да, такую можно сделать!</div>
   </div>
 
-  <!-- ABOUT -->
+  <div class="hero-visual reveal">
+    <div class="gallery-wrap">
+      <div class="photo-frame" id="gallery">
+        <img class="gallery-image active"
+             src="image-photo.jpg"
+             alt="Кастомная ручка — фотография 1"
+             draggable="false">
 
-  <section class="wrap intro" id="about">
-    <div class="intro-grid">
-      <div class="reveal">
-        <div class="section-label">Немного о нас</div>
+        <img class="gallery-image"
+             src="image2.jpg"
+             alt="Кастомная ручка — фотография 2"
+             draggable="false">
 
-        <h2>
-          У каждой вещи<br>
-          может быть<br>
-          <em>свой характер.</em>
-        </h2>
+        <button class="gallery-arrow prev" type="button"
+                aria-label="Предыдущая фотография">‹</button>
+        <button class="gallery-arrow next" type="button"
+                aria-label="Следующая фотография">›</button>
 
-        <p class="intro-text">
-          Мы делаем кастомные ручки самостоятельно.
-          Не хотим выпускать сотни одинаковых вещей —
-          нам интереснее придумывать что-то новое.
-          Цвета, формы, детали и необычные сочетания:
-          всё начинается с твоей идеи.
-        </p>
-
-        <div class="intro-signature">будь собой!</div>
+        <div class="gallery-bottom" aria-label="Выбор фотографии">
+          <button class="dot active" type="button" aria-label="Фотография 1"></button>
+          <button class="dot" type="button" aria-label="Фотография 2"></button>
+        </div>
       </div>
 
-      <div class="values">
-        <article class="value reveal">
-          <div class="value-number">01</div>
-          <div>
-            <h3>Необычные идеи</h3>
-            <p>Обсуждаем оформление и вместе придумываем, как будет выглядеть ручка.</p>
-          </div>
-        </article>
-
-        <article class="value reveal delay-1">
-          <div class="value-number">02</div>
-          <div>
-            <h3>Собственный дизайн</h3>
-            <p>Мы сами продумываем внешний вид и работаем над деталями.</p>
-          </div>
-        </article>
-
-        <article class="value reveal delay-2">
-          <div class="value-number">03</div>
-          <div>
-            <h3>Доступная цена</h3>
-            <p>Стоимость начинается от 100 рублей и зависит от сложности дизайна.</p>
-          </div>
-        </article>
-      </div>
+      <div class="gallery-label">Сделано с идеей ✳</div>
+      <div class="gallery-index" id="galleryIndex">01 / 02</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- WORK -->
+<div class="marquee">
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-item">ТВОЯ ИДЕЯ <span>✳</span></div>
+    <div class="marquee-item">НАШЕ ИСПОЛНЕНИЕ <span>✳</span></div>
+    <div class="marquee-item">ТВОЙ СТИЛЬ <span>✳</span></div>
+    <div class="marquee-item">НЕ КАК У ВСЕХ <span>✳</span></div>
+    <div class="marquee-item">ТВОЯ ИДЕЯ <span>✳</span></div>
+    <div class="marquee-item">НАШЕ ИСПОЛНЕНИЕ <span>✳</span></div>
+    <div class="marquee-item">ТВОЙ СТИЛЬ <span>✳</span></div>
+    <div class="marquee-item">НЕ КАК У ВСЕХ <span>✳</span></div>
+  </div>
+</div>
 
-  <section class="featured" id="work">
-    <div class="wrap">
-      <div class="featured-heading reveal">
-        <div>
-          <div class="section-label">Из нашей мастерской</div>
-          <h2>Маленький <em>экземпляр.</em></h2>
-        </div>
+<section class="container intro" id="about">
+  <div class="reveal">
+    <div class="section-kicker">01 / О проекте</div>
+    <h2 class="section-title">
+      Обычные вещи.<br>
+      <em>Необычный подход.</em>
+    </h2>
+  </div>
 
-        <p>
-          Это не картинка из интернета и не компьютерный макет.
-          Перед тобой настоящая ручка, которую мы сделали сами.
-        </p>
-      </div>
+  <div class="intro-copy reveal">
+    <p>
+      Ручка — вроде бы мелочь. Но почему она обязательно должна
+      быть такой же, как у всех?
+    </p>
+    <p>
+      Мы создаём кастомные ручки, в которых есть характер.
+      Можно придумать собственный дизайн, выбрать детали
+      и получить вещь, сделанную по твоей идее.
+    </p>
+    <div class="intro-note">Тут всё начинается с фантазии.</div>
+  </div>
+</section>
 
-      <article class="featured-card reveal">
-        <div class="featured-image">
-          <img
-            src="image-photo.jpg"
-            alt="Настоящая красно-серая кастомная ручка"
-            loading="lazy"
-          >
-        </div>
+<section class="container values reveal">
+  <div class="value">
+    <div class="value-number">01</div>
+    <h3>Твой дизайн</h3>
+    <p>Не нужно выбирать из сотни одинаковых вариантов. Придумай свой.</p>
+  </div>
+  <div class="value">
+    <div class="value-number">02</div>
+    <h3>Внимание к деталям</h3>
+    <p>Продумываем внешний вид и стараемся сделать результат аккуратным.</p>
+  </div>
+  <div class="value">
+    <div class="value-number">03</div>
+    <h3>Доступная цена</h3>
+    <p>Стоимость начинается всего от 100 рублей.</p>
+  </div>
+</section>
 
-        <div class="featured-info">
-          <div class="project-label">ПРОЕКТ № 001 / ORIGINAL</div>
+<section class="container feature" id="work">
+  <div class="feature-image reveal">
+    <img id="featurePhoto" src="image-photo.jpg" alt="Пример кастомной ручки">
+  </div>
 
-          <h3>Красный акцент</h3>
+  <div class="feature-copy reveal">
+    <div class="section-kicker">02 / Наш подход</div>
+    <h2 class="section-title">
+      Маленькая деталь.<br>
+      <em>Большая разница.</em>
+    </h2>
+    <p>
+      Мы не хотим делать просто очередную ручку.
+      Нам нравится превращать обычную вещь в нечто особенное.
+      А самое интересное — когда дизайн придумываешь именно ты.
+    </p>
+    <div class="feature-price">от 100 ₽ <small>за кастомную ручку</small></div>
+    <a href="#order" class="primary-btn">Обсудить свою идею ↗</a>
+  </div>
+</section>
 
-          <p>
-            Красные элементы корпуса, серая рельефная накладка
-            и металлическое кольцо сверху. Контрастные детали
-            делают эту ручку заметной и необычной.
-          </p>
-
-          <div class="tags">
-            <span>Красный корпус</span>
-            <span>Рельефная накладка</span>
-            <span>Металлическая деталь</span>
-          </div>
-
-          <div class="price-line">
-            <strong>от 100 ₽</strong>
-            <small>Стоимость зависит от задумки</small>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-
-  <section class="wrap process" id="process">
-    <div class="process-head reveal">
-      <div class="section-label">Всё просто</div>
-      <h2>От идеи до <em>результата.</em></h2>
-      <p>
-        Не нужно разбираться в дизайне или знать, как всё устроено.
-        Просто расскажи, что тебе хочется.
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-heading reveal">
+      <div class="section-kicker">03 / Всё просто</div>
+      <h2 class="section-title">От идеи до <em>ручки.</em></h2>
+      <p style="color:var(--muted);font-size:13px">
+        Никакой сложной инструкции. Всего три шага.
       </p>
     </div>
 
-    <div class="steps">
-      <article class="step reveal">
-        <div class="step-number">01</div>
-        <h3>Рассказываешь</h3>
-        <p>Пишешь нам и объясняешь, какую ручку хочешь получить.</p>
+    <div class="process-grid">
+      <article class="process-card reveal">
+        <div class="process-number">01</div>
+        <h3>Рассказываешь идею</h3>
+        <p>Опиши, какую ручку хочешь. Можно приложить картинку или пример.</p>
       </article>
 
-      <article class="step reveal delay-1">
-        <div class="step-number">02</div>
-        <h3>Придумываем</h3>
-        <p>Обсуждаем детали, внешний вид и стоимость будущей работы.</p>
+      <article class="process-card reveal">
+        <div class="process-number">02</div>
+        <h3>Обсуждаем детали</h3>
+        <p>Уточняем дизайн, возможности и стоимость изготовления.</p>
       </article>
 
-      <article class="step reveal delay-2">
-        <div class="step-number">03</div>
-        <h3>Создаём</h3>
-        <p>Делаем твою кастомную ручку и сообщаем, когда она готова.</p>
+      <article class="process-card reveal">
+        <div class="process-number">03</div>
+        <h3>Создаём твою ручку</h3>
+        <p>После согласования приступаем к изготовлению твоего варианта.</p>
       </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ORDER -->
+<section class="container order" id="order">
+  <div class="order-layout">
+    <div class="reveal">
+      <div class="section-kicker">04 / Твой ход</div>
+      <h2 class="section-title">
+        Есть идея?<br>
+        <em>Записывай.</em>
+      </h2>
+      <p class="order-description">
+        Расскажи, какую ручку хочешь получить.
+        Мы свяжемся с тобой и обсудим детали.
+      </p>
+      <div class="order-hand">Даже если идея немного сумасшедшая.</div>
+    </div>
 
-  <section class="order" id="order">
-    <div class="wrap order-grid">
-      <div class="order-copy reveal">
-        <div class="section-label">Начнём?</div>
-
-        <h2>
-          Твоя идея.<br>
-          <em>Наша работа.</em>
-        </h2>
-
-        <p>
-          Расскажи, что хочешь изменить, какие цвета нравятся
-          и сколько ручек тебе нужно. Мы прочитаем заявку
-          и обсудим детали.
-        </p>
-
-        <div class="order-note">ну что, придумываем? ✳</div>
+    <form class="order-form reveal" id="orderForm">
+      <div class="field">
+        <label for="name">Как тебя зовут?</label>
+        <input id="name" name="name" type="text"
+               placeholder="Твоё имя" required maxlength="60">
       </div>
 
-      <form class="order-form reveal delay-1" id="orderForm">
-        <div class="form-top">
-          <strong>Заявка на заказ</strong>
-          <span>01 / 01</span>
-        </div>
+      <div class="field">
+        <label for="idea">Расскажи о своей идее</label>
+        <textarea id="idea" name="idea"
+                  placeholder="Какую ручку хочешь?" required maxlength="1000"></textarea>
+      </div>
 
-        <div class="field">
-          <label for="name">ТВОЁ ИМЯ</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Как к тебе обращаться?"
-            maxlength="50"
-            required
-          >
-        </div>
+      <div class="field">
+        <label for="extra">Дополнительно (необязательно)</label>
+        <input id="extra" name="extra" type="text"
+               placeholder="Цвет, детали, пожелания..." maxlength="300">
+      </div>
 
-        <div class="field">
-          <label for="quantity">КОЛИЧЕСТВО РУЧЕК</label>
-          <input
-            id="quantity"
-            name="quantity"
-            type="number"
-            min="1"
-            max="50"
-            value="1"
-            required
-          >
-        </div>
+      <button class="primary-btn form-submit" type="submit">
+        Отправить заявку ↗
+      </button>
 
-        <div class="field">
-          <label for="idea">ТВОЯ ИДЕЯ</label>
-          <textarea
-            id="idea"
-            name="idea"
-            placeholder="Опиши цвета, детали и пожелания..."
-            maxlength="1000"
-            required
-          ></textarea>
-        </div>
-
-        <button class="submit" type="submit">
-          <span>Подготовить заявку</span>
-          <span>↗</span>
-        </button>
-
-        <div class="form-disclaimer">
-          После нажатия откроется MAX. Текст заявки будет скопирован,
-          чтобы ты мог вставить его в переписку.
-        </div>
-      </form>
-    </div>
-  </section>
+      <p class="form-hint">
+        Текст заявки будет скопирован. Затем откроется MAX,
+        где ты сможешь отправить его нам.
+      </p>
+    </form>
+  </div>
+</section>
 
 </main>
 
-<!-- FOOTER -->
-
-<footer class="footer">
-  <div class="wrap">
+<footer>
+  <div class="container">
     <div class="footer-top">
       <div>
-        <a href="#top" class="footer-logo">Свои ручки<span>.</span></a>
-        <div class="footer-slogan">будь собой!</div>
+        <div class="footer-brand">свои<span>.</span>ручки</div>
+        <div class="footer-subtitle">Ручки, которые не спутаешь с чужими.</div>
       </div>
 
-      <div class="footer-contact">
-        <p>Есть идея? Мы на связи.</p>
-        <a class="footer-link max-link" href="https://web.max.ru/" target="_blank" rel="noopener">
-          Написать в MAX ↗
-        </a>
+      <div class="footer-links">
+        <a href="#about">О нас</a>
+        <a href="#work">Работы</a>
+        <a href="#order">Заказать</a>
+        <a href="https://web.max.ru/" target="_blank" rel="noopener">MAX ↗</a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div>© 2026 · Свои ручки</div>
+      <span>© 2026 Свои ручки</span>
+      <a href="tel:+79171937393">+7 917 193-73-93</a>
+    </div>
 
-      <div class="footer-joke">
-        <b>Небольшое предупреждение:</b><br>
-        Ручки могут вызывать внезапное желание подписывать всё подряд.
-        Даже контрольную. Особенно контрольную.
-      </div>
+    <div class="footer-joke">
+      Ручки могут вызывать внезапное желание подписывать всё подряд.
+      Даже контрольную. Особенно контрольную.
     </div>
   </div>
 </footer>
 
-<!-- COOKIE NOTICE -->
-
-<div class="cookie" id="cookie" role="dialog" aria-label="Уведомление о cookies">
-  <div class="cookie-heading">🍪 Маленькое дело о cookies</div>
-
-  <div class="cookie-description">
-    Ваши данные в безопасности. По крайней мере, мы не собираемся
-    устраивать на них охоту. Сайт сохраняет только отметку о том,
-    что ты закрыл это уведомление.
-  </div>
-
-  <div class="cookie-buttons">
-    <button class="cookie-accept" id="cookieAccept">Понятно, принимаю</button>
-    <button class="cookie-details-button" id="cookieDetailsButton">Подробнее</button>
-  </div>
-
-  <div class="cookie-details" id="cookieDetails">
-    На сайте нет рекламных трекеров и аналитики.
-    В localStorage сохраняется только отметка о закрытии этого окна,
-    чтобы не показывать его при каждом посещении.
-    Данные из формы заказа сайт не сохраняет и не отправляет на сервер.
+<div class="cookie" id="cookieNotice">
+  <h3>Небольшое уведомление 🍪</h3>
+  <p>
+    Сайт использует только локальное сохранение того,
+    что ты закрыл это уведомление. Мы не подключаем
+    рекламные трекеры или аналитику.
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-accept" id="cookieAccept" type="button">
+      Понятно
+    </button>
+    <a href="#about" class="cookie-more">О проекте</a>
   </div>
 </div>
 
 <script>
-/* =====================================
-   АНИМАЦИИ ПОЯВЛЕНИЯ
-===================================== */
+/* GALLERY */
+(() => {
+  const gallery = document.getElementById('gallery');
+  const images = Array.from(gallery.querySelectorAll('.gallery-image'));
+  const dots = Array.from(gallery.querySelectorAll('.dot'));
+  const prev = gallery.querySelector('.prev');
+  const next = gallery.querySelector('.next');
+  const indexLabel = document.getElementById('galleryIndex');
+  const featurePhoto = document.getElementById('featurePhoto');
 
-document.documentElement.classList.add("js-ready");
+  const photos = [
+    {
+      src: 'image-photo.jpg',
+      alt: 'Кастомная ручка, фотография 1'
+    },
+    {
+      src: 'image2.jpg',
+      alt: 'Кастомная ручка, фотография 2'
+    }
+  ];
 
-const revealElements = document.querySelectorAll(".reveal");
+  let current = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        obs.unobserve(entry.target);
-      }
+  function showPhoto(index) {
+    current = (index + photos.length) % photos.length;
+
+    images.forEach((image, i) => {
+      image.classList.toggle('active', i === current);
+      image.setAttribute('aria-hidden', i === current ? 'false' : 'true');
     });
-  }, {
-    threshold: 0.06,
-    rootMargin: "0px 0px -30px 0px"
-  });
 
-  revealElements.forEach(element => observer.observe(element));
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+      dot.setAttribute('aria-current', i === current ? 'true' : 'false');
+    });
 
-  // Если браузер долго загружает страницу, не оставляем блоки невидимыми.
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      revealElements.forEach(element => {
-        const rect = element.getBoundingClientRect();
+    indexLabel.textContent =
+      String(current + 1).padStart(2, '0') + ' / ' +
+      String(photos.length).padStart(2, '0');
 
-        if (rect.top < window.innerHeight + 100) {
-          element.classList.add("visible");
-        }
-      });
-    }, 500);
-  });
-
-} else {
-  revealElements.forEach(element => element.classList.add("visible"));
-}
-
-/* =====================================
-   COOKIE NOTICE
-===================================== */
-
-const cookieBox = document.getElementById("cookie");
-const cookieAccept = document.getElementById("cookieAccept");
-const cookieDetailsButton = document.getElementById("cookieDetailsButton");
-const cookieDetails = document.getElementById("cookieDetails");
-
-try {
-  if (localStorage.getItem("svoyi-cookie-notice") !== "closed") {
-    setTimeout(() => {
-      cookieBox.classList.add("show");
-    }, 1000);
-  }
-} catch (error) {
-  setTimeout(() => {
-    cookieBox.classList.add("show");
-  }, 1000);
-}
-
-cookieAccept.addEventListener("click", () => {
-  try {
-    localStorage.setItem("svoyi-cookie-notice", "closed");
-  } catch (error) {
-    // Если localStorage недоступен, просто закрываем окно.
+    featurePhoto.src = photos[current].src;
+    featurePhoto.alt = photos[current].alt;
   }
 
-  cookieBox.classList.remove("show");
-});
+  prev.addEventListener('click', () => showPhoto(current - 1));
+  next.addEventListener('click', () => showPhoto(current + 1));
 
-cookieDetailsButton.addEventListener("click", () => {
-  cookieDetails.classList.toggle("open");
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showPhoto(index));
+  });
 
-  cookieDetailsButton.textContent =
-    cookieDetails.classList.contains("open")
-      ? "Скрыть"
-      : "Подробнее";
-});
+  gallery.addEventListener('touchstart', event => {
+    if (!event.touches.length) return;
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+  }, { passive: true });
 
-/* =====================================
-   MAX
-===================================== */
+  gallery.addEventListener('touchend', event => {
+    if (!event.changedTouches.length) return;
 
-const MAX_PHONE = "+79171937393";
-const MAX_URL = "https://web.max.ru/";
+    const dx = event.changedTouches[0].clientX - touchStartX;
+    const dy = event.changedTouches[0].clientY - touchStartY;
 
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch (error) {
-    try {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-
-      document.body.appendChild(textarea);
-      textarea.select();
-
-      const success = document.execCommand("copy");
-      textarea.remove();
-
-      return success;
-    } catch (fallbackError) {
-      return false;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      showPhoto(dx < 0 ? current + 1 : current - 1);
     }
-  }
-}
+  }, { passive: true });
 
-/* Кнопки связи */
-document.querySelectorAll(".max-link").forEach(link => {
-  link.addEventListener("click", async () => {
-    const copied = await copyText(MAX_PHONE);
-
-    if (copied) {
-      link.dataset.originalText ||= link.textContent.trim();
-      link.textContent = "Номер скопирован ✓";
-
-      setTimeout(() => {
-        link.textContent = link.dataset.originalText;
-      }, 2200);
-    }
+  gallery.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') showPhoto(current - 1);
+    if (event.key === 'ArrowRight') showPhoto(current + 1);
   });
-});
 
-/* =====================================
-   ФОРМА ЗАКАЗА
-===================================== */
+  // Проверяем, что фотографии существуют.
+  images.forEach((image, i) => {
+    image.addEventListener('error', () => {
+      image.alt = 'Не удалось загрузить ' + photos[i].src;
+      image.style.background = '#e9e1d5';
+    });
+  });
 
-const orderForm = document.getElementById("orderForm");
+  showPhoto(0);
+})();
 
-orderForm.addEventListener("submit", async event => {
-  event.preventDefault();
+/* REVEAL ANIMATIONS */
+(() => {
+  const elements = document.querySelectorAll('.reveal');
 
-  const name = document.getElementById("name").value.trim();
-  const quantity = Number(document.getElementById("quantity").value);
-  const idea = document.getElementById("idea").value.trim();
-
-  if (!name || !idea || !Number.isInteger(quantity) || quantity < 1 || quantity > 50) {
-    alert("Проверь заполнение формы.");
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(element => element.classList.add('visible'));
     return;
   }
 
-  const message =
-`Здравствуйте! Хочу заказать кастомные ручки.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -35px 0px'
+  });
 
-Имя: ${name}
-Количество: ${quantity}
+  elements.forEach(element => observer.observe(element));
+})();
 
-Моя идея:
-${idea}
+/* COOKIE NOTICE */
+(() => {
+  const notice = document.getElementById('cookieNotice');
+  const accept = document.getElementById('cookieAccept');
+  const storageKey = 'svoyiRuchkiCookieAccepted';
 
-Отправлено с сайта «Свои ручки».`;
-
-  const copied = await copyText(message);
-
-  // Открываем веб-версию MAX.
-  window.open(MAX_URL, "_blank", "noopener,noreferrer");
-
-  if (copied) {
-    alert(
-      "Заявка скопирована!\n\n" +
-      "Открой MAX, найди нас по номеру " +
-      MAX_PHONE +
-      " и вставь текст сообщения."
-    );
-  } else {
-    alert(
-      "Не получилось автоматически скопировать заявку.\n\n" +
-      "Открой MAX и найди нас по номеру " +
-      MAX_PHONE +
-      "."
-    );
+  try {
+    if (localStorage.getItem(storageKey) !== 'yes') {
+      setTimeout(() => notice.classList.add('show'), 900);
+    }
+  } catch (error) {
+    notice.classList.add('show');
   }
+
+  accept.addEventListener('click', () => {
+    notice.classList.remove('show');
+
+    try {
+      localStorage.setItem(storageKey, 'yes');
+    } catch (error) {
+      // Если хранилище недоступно, уведомление просто закроется.
+    }
+  });
+})();
+
+/* CONTACT */
+const MAX_URL = 'https://web.max.ru/';
+const CONTACT_PHONE = '+79171937393';
+
+/* Кнопка связи: копируем номер и открываем MAX. */
+document.querySelectorAll('a[href="https://web.max.ru/"]').forEach(link => {
+  if (link.classList.contains('nav-contact')) {
+    link.addEventListener('click', async event => {
+      event.preventDefault();
+
+      try {
+        await navigator.clipboard.writeText(CONTACT_PHONE);
+      } catch (error) {
+        // Переход в MAX всё равно выполняется.
+      }
+
+      window.open(MAX_URL, '_blank', 'noopener');
+    });
+  }
+});
+
+/* ORDER FORM */
+document.getElementById('orderForm').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const idea = document.getElementById('idea').value.trim();
+  const extra = document.getElementById('extra').value.trim();
+
+  if (!name || !idea) return;
+
+  const message =
+    'Здравствуйте! Хочу заказать кастомную ручку.\n\n' +
+    'Имя: ' + name + '\n' +
+    'Моя идея: ' + idea +
+    (extra ? '\nДополнительно: ' + extra : '');
+
+  try {
+    await navigator.clipboard.writeText(message);
+    alert('Заявка скопирована! Сейчас откроется MAX. Вставь сообщение в чат и отправь его.');
+  } catch (error) {
+    alert('Не удалось автоматически скопировать заявку. Попробуй ещё раз или напиши нам напрямую.');
+  }
+
+  window.open(MAX_URL, '_blank', 'noopener');
 });
 </script>
 
