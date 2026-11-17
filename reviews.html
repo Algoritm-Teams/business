@@ -133,7 +133,7 @@ async function loadReviews() {
     allReviews = await response.json();
     renderStats();
     renderReviews();
-    status.textContent = allReviews.length ? "Показаны отзывы, прошедшие проверку." : "Пока нет опубликованных отзывов — можно оставить первый.";
+    status.textContent = allReviews.length ? "Здесь все опубликованные отзывы." : "Пока нет опубликованных отзывов — можно оставить первый.";
   } catch (error) {
     document.getElementById("reviewList").innerHTML = '<div class="empty"><strong>Не получилось загрузить отзывы.</strong>' + escapeHTML(error.message) + '<br>Попробуй обновить страницу позже.</div>';
     status.textContent = "Ошибка загрузки";
