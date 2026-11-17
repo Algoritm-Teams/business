@@ -35,7 +35,7 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 <section class="container hero">
 <div class="eyebrow">Слова тех, кто уже попробовал</div>
 <h1>Не мы о себе.<br><em>Вы о нас.</em></h1>
-<p>Здесь собраны отзывы покупателей. Каждый опубликованный отзыв загружается напрямую из GitHub — никаких придуманных оценок.</p>
+<p>Здесь собраны отзывы покупателей. Каждый отзыв проходит проверку перед публикацией — только реальные впечатления.</p>
 <div class="hand">Честно, как есть ✳</div>
 </section>
 <section class="container summary" aria-label="Статистика отзывов">
@@ -55,13 +55,13 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 <div class="review-grid" id="reviewList"><div class="loading">Подгружаем настоящие отзывы…</div></div>
 </section>
 <section class="container write" id="write">
-<div class="write-copy"><div class="eyebrow">Твой опыт важен</div><h2>Уже есть своя ручка?<br><em>Расскажи!</em></h2><p>Оставить отзыв можно за минуту. После нажатия откроется GitHub с уже заполненной формой — останется войти в аккаунт и опубликовать отзыв.</p></div>
+<div class="write-copy"><div class="eyebrow">Твой опыт важен</div><h2>Уже есть своя ручка?<br><em>Расскажи!</em></h2><p>Оставить отзыв можно прямо здесь. Мы проверим его и опубликуем — никаких аккаунтов и переходов на сторонние сайты.</p></div>
 <form class="write-form" id="reviewForm">
 <div class="field"><label for="reviewName">Имя</label><input id="reviewName" maxlength="50" required placeholder="Как к тебе обращаться?"></div>
 <div class="field"><label for="reviewRating">Оценка</label><select id="reviewRating" required><option value="5">★★★★★ — 5 из 5</option><option value="4">★★★★☆ — 4 из 5</option><option value="3">★★★☆☆ — 3 из 5</option><option value="2">★★☆☆☆ — 2 из 5</option><option value="1">★☆☆☆☆ — 1 из 5</option></select></div>
 <div class="field"><label for="reviewMessage">Твой отзыв</label><textarea id="reviewMessage" maxlength="1500" required placeholder="Что понравилось? Что можно улучшить?"></textarea></div>
-<button class="primary" type="submit">Продолжить на GitHub ↗</button>
-<p class="hint">Отзывы публикуются через GitHub Issues. Для отправки потребуется аккаунт GitHub. Перед публикацией можно проверить текст.</p>
+<button class="primary" id="submitReview" type="submit">Отправить отзыв</button>
+<p class="hint" id="formHint" aria-live="polite">Отзыв появится на сайте после проверки. Не указывай личные данные.</p>
 </form>
 </section>
 </main>
@@ -71,32 +71,21 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 <div class="footer-bottom"><span>© 2026 Свои ручки</span><a href="tel:+79171937393">+7 917 193-73-93</a></div>
 </div></footer>
 <script>
-const GITHUB_OWNER = "RomashkaGamesYT";
-const GITHUB_REPO = "business";
-const API_URL = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/issues?state=open&per_page=100&sort=created&direction=desc";
-const NEW_ISSUE_URL = "https://github.com/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/issues/new";
+/*
+  После создания проекта Supabase вставь сюда Project URL и anon/public key.
+  Публичный anon key можно использовать в браузере только вместе с RLS-политиками.
+*/
+const SUPABASE_URL = "ВСТАВЬТЕ_PROJECT_URL";
+const SUPABASE_ANON_KEY = "ВСТАВЬТЕ_ANON_PUBLIC_KEY";
+const TABLE_URL = () => SUPABASE_URL.replace(/\\/$/, "") + "/rest/v1/reviews";
+
 let allReviews = [];
 let activeFilter = "all";
 
 const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-function parseReview(issue) {
-  const body = issue.body || "";
-  const nameMatch = body.match(/^Имя:\s*(.+)$/mi);
-  const ratingMatch = body.match(/^Оценка:\s*([1-5])\s*\/\s*5\s*$/mi);
-  if (!ratingMatch) return null;
-  const message = body
-    .replace(/^Имя:.*(?:\r?\n|$)/mi, "")
-    .replace(/^Оценка:\s*[1-5]\s*\/\s*5\s*(?:\r?\n|$)/mi, "")
-    .trim();
-  return {
-    id: issue.number,
-    name: (nameMatch ? nameMatch[1].trim() : issue.user?.login || "Покупатель").slice(0, 50),
-    rating: Number(ratingMatch[1]),
-    message: message || "Покупатель оставил оценку без текстового комментария.",
-    date: issue.created_at,
-    url: issue.html_url
-  };
-}
+const configured = () => SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("ВСТАВЬТЕ") && SUPABASE_ANON_KEY.length > 20 && !SUPABASE_ANON_KEY.includes("ВСТАВЬТЕ");
+const headers = extra => ({apikey:SUPABASE_ANON_KEY,Authorization:"Bearer "+SUPABASE_ANON_KEY,...extra});
+
 function formatDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
@@ -124,25 +113,29 @@ function renderReviews() {
     return;
   }
   list.innerHTML = items.map(item => '<article class="review-card">' +
-    '<div class="review-top"><div class="review-author">' + escapeHTML(item.name) + '</div><time class="review-date" datetime="' + escapeHTML(item.date) + '">' + escapeHTML(formatDate(item.date)) + '</time></div>' +
+    '<div class="review-top"><div class="review-author">' + escapeHTML(item.name) + '</div><time class="review-date" datetime="' + escapeHTML(item.created_at) + '">' + escapeHTML(formatDate(item.created_at)) + '</time></div>' +
     '<div class="review-stars" aria-label="Оценка ' + item.rating + ' из 5">' + "★".repeat(item.rating) + "☆".repeat(5-item.rating) + '</div>' +
     '<div class="review-text">' + escapeHTML(item.message) + '</div>' +
-    '<div class="review-number">ОТЗЫВ №' + item.id + ' · <a href="' + escapeHTML(item.url) + '" target="_blank" rel="noopener">Оригинал на GitHub ↗</a></div>' +
+    '<div class="review-number">ПРОВЕРЕННЫЙ ОТЗЫВ</div>' +
     '</article>').join("");
 }
 async function loadReviews() {
   const status = document.getElementById("status");
+  if (!configured()) {
+    status.textContent = "Осталось подключить бесплатную базу Supabase.";
+    document.getElementById("reviewList").innerHTML = '<div class="empty"><strong>Почти готово!</strong>Отзывы появятся здесь после подключения базы данных.</div>';
+    renderStats();
+    return;
+  }
   try {
-    const response = await fetch(API_URL, {headers:{"Accept":"application/vnd.github+json"}});
-    if (!response.ok) throw new Error(response.status === 403 ? "GitHub временно ограничил частоту запросов." : "Не удалось получить отзывы (HTTP " + response.status + ").");
-    const issues = await response.json();
-    allReviews = issues.filter(issue => !issue.pull_request && /^Отзыв:/i.test(issue.title || ""))
-      .map(parseReview).filter(Boolean);
+    const response = await fetch(TABLE_URL() + "?select=id,name,rating,message,created_at&status=eq.approved&order=created_at.desc&limit=100", {headers:headers({"Accept":"application/json"})});
+    if (!response.ok) throw new Error("Ошибка загрузки: HTTP " + response.status);
+    allReviews = await response.json();
     renderStats();
     renderReviews();
-    status.textContent = allReviews.length ? "Показаны опубликованные отзывы из GitHub." : "Пока нет опубликованных отзывов — можно оставить первый.";
+    status.textContent = allReviews.length ? "Показаны отзывы, прошедшие проверку." : "Пока нет опубликованных отзывов — можно оставить первый.";
   } catch (error) {
-    document.getElementById("reviewList").innerHTML = '<div class="empty"><strong>Не получилось загрузить отзывы.</strong>' + escapeHTML(error.message) + '<br>Попробуй обновить страницу чуть позже.</div>';
+    document.getElementById("reviewList").innerHTML = '<div class="empty"><strong>Не получилось загрузить отзывы.</strong>' + escapeHTML(error.message) + '<br>Попробуй обновить страницу позже.</div>';
     status.textContent = "Ошибка загрузки";
     renderStats();
   }
@@ -152,16 +145,39 @@ document.querySelectorAll(".filter").forEach(button => button.addEventListener("
   document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item === button));
   renderReviews();
 }));
-document.getElementById("reviewForm").addEventListener("submit", event => {
+document.getElementById("reviewForm").addEventListener("submit", async event => {
   event.preventDefault();
+  const hint = document.getElementById("formHint");
+  const submit = document.getElementById("submitReview");
   const name = document.getElementById("reviewName").value.trim();
-  const rating = document.getElementById("reviewRating").value;
+  const rating = Number(document.getElementById("reviewRating").value);
   const message = document.getElementById("reviewMessage").value.trim();
-  if (!name || !message) return;
-  const title = "Отзыв: " + name;
-  const body = "Имя: " + name + "\nОценка: " + rating + " / 5\n\n" + message;
-  const url = NEW_ISSUE_URL + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
-  window.open(url, "_blank", "noopener");
+  if (!name || !message || name.length > 50 || message.length > 1500 || rating < 1 || rating > 5) return;
+  if (!configured()) {
+    hint.textContent = "База ещё не подключена. Нужны Project URL и anon/public key из Supabase.";
+    return;
+  }
+  submit.disabled = true;
+  submit.textContent = "Отправляем…";
+  hint.textContent = "Сохраняем отзыв…";
+  try {
+    const response = await fetch(TABLE_URL(), {
+      method:"POST",
+      headers:headers({"Content-Type":"application/json","Prefer":"return=minimal"}),
+      body:JSON.stringify({name,rating,message,status:"pending"})
+    });
+    if (!response.ok) {
+      const detail = await response.text();
+      throw new Error("Не удалось отправить отзыв (HTTP " + response.status + "). " + detail.slice(0,180));
+    }
+    event.target.reset();
+    hint.textContent = "Спасибо! Отзыв отправлен на проверку. После одобрения он появится на сайте.";
+  } catch (error) {
+    hint.textContent = error.message;
+  } finally {
+    submit.disabled = false;
+    submit.textContent = "Отправить отзыв";
+  }
 });
 loadReviews();
 </script>
