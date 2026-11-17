@@ -77,7 +77,7 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 */
 const SUPABASE_URL = "https://qevwufuurayndnulmpvd.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_3DqBGv-sI6tcsf_xSgxksg_Cjv9G6Db";
-const TABLE_URL = () => SUPABASE_URL.replace(/\\/$/, "") + "/rest/v1/reviews";
+const TABLE_URL = () => SUPABASE_URL.replace(/\/$/, "") + "/rest/v1/reviews";
 
 let allReviews = [];
 let activeFilter = "all";
