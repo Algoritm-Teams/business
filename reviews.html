@@ -35,7 +35,7 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 <section class="container hero">
 <div class="eyebrow">Слова тех, кто уже попробовал</div>
 <h1>Не мы о себе.<br><em>Вы о нас.</em></h1>
-<p>Здесь собраны отзывы покупателей. Каждый отзыв проходит проверку перед публикацией — только реальные впечатления.</p>
+<p>Здесь собраны отзывы покупателей — делитесь впечатлениями и читайте мнения других.</p>
 <div class="hand">Честно, как есть ✳</div>
 </section>
 <section class="container summary" aria-label="Статистика отзывов">
@@ -55,13 +55,13 @@ footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-
 <div class="review-grid" id="reviewList"><div class="loading">Подгружаем настоящие отзывы…</div></div>
 </section>
 <section class="container write" id="write">
-<div class="write-copy"><div class="eyebrow">Твой опыт важен</div><h2>Уже есть своя ручка?<br><em>Расскажи!</em></h2><p>Оставить отзыв можно прямо здесь. Мы проверим его и опубликуем — никаких аккаунтов и переходов на сторонние сайты.</p></div>
+<div class="write-copy"><div class="eyebrow">Твой опыт важен</div><h2>Уже есть своя ручка?<br><em>Расскажи!</em></h2><p>Оставить отзыв можно прямо здесь — он появится на сайте сразу после отправки. Никаких аккаунтов и переходов на сторонние сайты.</p></div>
 <form class="write-form" id="reviewForm">
 <div class="field"><label for="reviewName">Имя</label><input id="reviewName" maxlength="50" required placeholder="Как к тебе обращаться?"></div>
 <div class="field"><label for="reviewRating">Оценка</label><select id="reviewRating" required><option value="5">★★★★★ — 5 из 5</option><option value="4">★★★★☆ — 4 из 5</option><option value="3">★★★☆☆ — 3 из 5</option><option value="2">★★☆☆☆ — 2 из 5</option><option value="1">★☆☆☆☆ — 1 из 5</option></select></div>
 <div class="field"><label for="reviewMessage">Твой отзыв</label><textarea id="reviewMessage" maxlength="1500" required placeholder="Что понравилось? Что можно улучшить?"></textarea></div>
 <button class="primary" id="submitReview" type="submit">Отправить отзыв</button>
-<p class="hint" id="formHint" aria-live="polite">Отзыв появится на сайте после проверки. Не указывай личные данные.</p>
+<p class="hint" id="formHint" aria-live="polite">Отзыв появится на сайте сразу. Не указывай личные данные.</p>
 </form>
 </section>
 </main>
@@ -164,14 +164,14 @@ document.getElementById("reviewForm").addEventListener("submit", async event => 
     const response = await fetch(TABLE_URL(), {
       method:"POST",
       headers:headers({"Content-Type":"application/json","Prefer":"return=minimal"}),
-      body:JSON.stringify({name,rating,message,status:"pending"})
+      body:JSON.stringify({name,rating,message,status:"approved"})
     });
     if (!response.ok) {
       const detail = await response.text();
       throw new Error("Не удалось отправить отзыв (HTTP " + response.status + "). " + detail.slice(0,180));
     }
     event.target.reset();
-    hint.textContent = "Спасибо! Отзыв отправлен на проверку. После одобрения он появится на сайте.";
+    hint.textContent = "Спасибо! Отзыв опубликован! Спасибо, что поделился впечатлением.";
   } catch (error) {
     hint.textContent = error.message;
   } finally {
