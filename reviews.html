@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f1e9">
+<meta name="description" content="Отзывы о кастомных ручках «Свои ручки».">
+<title>Отзывы — Свои ручки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1e9;--white:#fffdf9;--ink:#29251f;--muted:#827b70;--red:#b94436;--line:rgba(41,37,31,.13);--serif:'Playfair Display',serif;--sans:'Manrope',sans-serif;--hand:'Caveat',cursive}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}.container{width:min(1050px,calc(100% - 48px));margin:auto}
+header{height:82px;border-bottom:1px solid var(--line);display:flex;align-items:center}.nav{display:flex;align-items:center;justify-content:space-between;width:100%}.logo{font-size:20px;font-weight:800;letter-spacing:-1px}.logo span{color:var(--red)}.nav-links{display:flex;gap:27px;font-size:12px;color:#716b61}.nav-links a:hover{color:var(--red)}.nav-contact{border:1px solid var(--line);padding:11px 17px;border-radius:30px;font-size:12px}
+.hero{padding:90px 0 58px;text-align:center}.eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red)}h1{font:500 clamp(48px,7vw,76px)/1.08 var(--serif);letter-spacing:-2px;margin:20px 0 14px}h1 em{color:var(--red);font-weight:500}.hero p{max-width:510px;margin:0 auto;color:var(--muted);font-size:13px;line-height:1.9}.hand{font:26px var(--hand);color:var(--red);display:inline-block;transform:rotate(-3deg);margin-top:19px}
+.summary{display:grid;grid-template-columns:1.2fr repeat(2,1fr);gap:12px;margin:0 auto 48px}.summary-card{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:22px}.summary-card.main{background:#eee7dc}.summary-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}.summary-value{font:38px var(--serif);margin-top:8px}.summary-value small{font:12px var(--sans);color:var(--muted)}.stars{color:var(--red);letter-spacing:3px;font-size:17px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section-head h2{font:500 34px var(--serif);margin:0}.section-head p{font-size:11px;color:var(--muted);margin:7px 0 0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:9px 14px;border-radius:30px;font-size:11px;cursor:pointer;transition:.2s}.filter.active,.filter:hover{background:var(--ink);border-color:var(--ink);color:white}
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.review-card{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:23px;min-width:0;animation:appear .35s ease both}.review-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.review-author{font-size:13px;font-weight:700;overflow-wrap:anywhere}.review-date{font-size:10px;color:var(--muted);white-space:nowrap}.review-stars{color:var(--red);font-size:13px;letter-spacing:2px;margin:15px 0 10px}.review-text{font-size:12px;line-height:1.9;color:#625c53;white-space:pre-wrap;overflow-wrap:anywhere}.review-number{font-size:10px;color:#aaa195;margin-top:17px}.empty{grid-column:1/-1;text-align:center;padding:48px 20px;border:1px dashed rgba(41,37,31,.2);border-radius:13px;color:var(--muted);font-size:12px;line-height:1.9}.empty strong{display:block;color:var(--ink);font:24px var(--serif);margin-bottom:7px}.loading{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted);font-size:12px}
+.write{margin:78px 0 100px;background:#eee7dc;border:1px solid rgba(41,37,31,.07);border-radius:16px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}.write h2{font:500 36px/1.15 var(--serif);margin:13px 0}.write h2 em{color:var(--red)}.write-copy p{font-size:12px;line-height:1.9;color:var(--muted);max-width:370px}.write-form{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:24px}.field{margin-bottom:16px}.field label{display:block;font-size:10px;color:var(--muted);margin-bottom:7px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;background:#fffefa;padding:11px 12px;font-size:12px;color:var(--ink);outline:none}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--red)}.primary{width:100%;display:inline-flex;justify-content:center;align-items:center;background:var(--red);color:white;border:0;padding:14px 18px;border-radius:30px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s}.primary:hover{background:#96372d;transform:translateY(-2px)}.hint{font-size:10px;line-height:1.7;color:var(--muted);text-align:center;margin:12px 0 0}
+footer{background:#29251f;color:#f6f1e9;padding:34px 0 22px}.footer-top,.footer-bottom{display:flex;justify-content:space-between;gap:20px}.footer-brand{font-weight:800;font-size:20px}.footer-brand span{color:#d77c6e}.footer-links{display:flex;gap:22px;flex-wrap:wrap;font-size:11px;color:#c4bbb0}.footer-links a:hover{color:white}.footer-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:28px;padding-top:17px;color:#938b80;font-size:10px}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:720px){.container{width:calc(100% - 34px)}header{height:70px}.nav-links{display:none}.hero{padding:70px 0 42px}.summary{grid-template-columns:1fr 1fr}.summary-card.main{grid-column:1/-1}.review-grid{grid-template-columns:1fr}.write{grid-template-columns:1fr;padding:24px;margin:55px 0 70px}.section-head{align-items:start;flex-direction:column}.footer-top{flex-direction:column}.footer-bottom{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="logo" href="index.html">свои<span>.</span>ручки</a>
+<nav class="nav-links"><a href="index.html#about">О нас</a><a href="index.html#work">Работы</a><a href="reviews.html">Отзывы</a><a href="index.html#order">Заказать</a></nav>
+<a class="nav-contact" href="https://web.max.ru/" target="_blank" rel="noopener">Написать нам ↗</a>
+</div></header>
+<main>
+<section class="container hero">
+<div class="eyebrow">Слова тех, кто уже попробовал</div>
+<h1>Не мы о себе.<br><em>Вы о нас.</em></h1>
+<p>Здесь собраны отзывы покупателей. Каждый опубликованный отзыв загружается напрямую из GitHub — никаких придуманных оценок.</p>
+<div class="hand">Честно, как есть ✳</div>
+</section>
+<section class="container summary" aria-label="Статистика отзывов">
+<div class="summary-card main"><div class="summary-label">Средняя оценка</div><div class="summary-value" id="average">— <small>/ 5</small></div><div class="stars" id="averageStars">☆☆☆☆☆</div></div>
+<div class="summary-card"><div class="summary-label">Отзывов</div><div class="summary-value" id="total">—</div></div>
+<div class="summary-card"><div class="summary-label">Оценка 5/5</div><div class="summary-value" id="fiveStars">—</div></div>
+</section>
+<section class="container" id="reviews">
+<div class="section-head"><div><h2>Отзывы покупателей</h2><p id="status" aria-live="polite">Загружаем отзывы…</p></div></div>
+<div class="filters" aria-label="Фильтр отзывов">
+<button class="filter active" type="button" data-filter="all">Все</button>
+<button class="filter" type="button" data-filter="5">5 звёзд</button>
+<button class="filter" type="button" data-filter="4">4 звезды</button>
+<button class="filter" type="button" data-filter="3">3 звезды</button>
+<button class="filter" type="button" data-filter="low">1–2 звезды</button>
+</div>
+<div class="review-grid" id="reviewList"><div class="loading">Подгружаем настоящие отзывы…</div></div>
+</section>
+<section class="container write" id="write">
+<div class="write-copy"><div class="eyebrow">Твой опыт важен</div><h2>Уже есть своя ручка?<br><em>Расскажи!</em></h2><p>Оставить отзыв можно за минуту. После нажатия откроется GitHub с уже заполненной формой — останется войти в аккаунт и опубликовать отзыв.</p></div>
+<form class="write-form" id="reviewForm">
+<div class="field"><label for="reviewName">Имя</label><input id="reviewName" maxlength="50" required placeholder="Как к тебе обращаться?"></div>
+<div class="field"><label for="reviewRating">Оценка</label><select id="reviewRating" required><option value="5">★★★★★ — 5 из 5</option><option value="4">★★★★☆ — 4 из 5</option><option value="3">★★★☆☆ — 3 из 5</option><option value="2">★★☆☆☆ — 2 из 5</option><option value="1">★☆☆☆☆ — 1 из 5</option></select></div>
+<div class="field"><label for="reviewMessage">Твой отзыв</label><textarea id="reviewMessage" maxlength="1500" required placeholder="Что понравилось? Что можно улучшить?"></textarea></div>
+<button class="primary" type="submit">Продолжить на GitHub ↗</button>
+<p class="hint">Отзывы публикуются через GitHub Issues. Для отправки потребуется аккаунт GitHub. Перед публикацией можно проверить текст.</p>
+</form>
+</section>
+</main>
+<footer><div class="container">
+<div class="footer-top"><div><div class="footer-brand">свои<span>.</span>ручки</div><div style="color:#aaa195;font-size:10px;margin-top:7px">Ручки, которые не спутаешь с чужими.</div></div>
+<div class="footer-links"><a href="index.html">Главная</a><a href="index.html#work">Работы</a><a href="index.html#order">Заказать</a><a href="https://web.max.ru/" target="_blank" rel="noopener">MAX ↗</a></div></div>
+<div class="footer-bottom"><span>© 2026 Свои ручки</span><a href="tel:+79171937393">+7 917 193-73-93</a></div>
+</div></footer>
+<script>
+const GITHUB_OWNER = "RomashkaGamesYT";
+const GITHUB_REPO = "business";
+const API_URL = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/issues?state=open&per_page=100&sort=created&direction=desc";
+const NEW_ISSUE_URL = "https://github.com/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/issues/new";
+let allReviews = [];
+let activeFilter = "all";
+
+const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+function parseReview(issue) {
+  const body = issue.body || "";
+  const nameMatch = body.match(/^Имя:\s*(.+)$/mi);
+  const ratingMatch = body.match(/^Оценка:\s*([1-5])\s*\/\s*5\s*$/mi);
+  if (!ratingMatch) return null;
+  const message = body
+    .replace(/^Имя:.*(?:\r?\n|$)/mi, "")
+    .replace(/^Оценка:\s*[1-5]\s*\/\s*5\s*(?:\r?\n|$)/mi, "")
+    .trim();
+  return {
+    id: issue.number,
+    name: (nameMatch ? nameMatch[1].trim() : issue.user?.login || "Покупатель").slice(0, 50),
+    rating: Number(ratingMatch[1]),
+    message: message || "Покупатель оставил оценку без текстового комментария.",
+    date: issue.created_at,
+    url: issue.html_url
+  };
+}
+function formatDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("ru-RU", {day:"numeric",month:"long",year:"numeric"}).format(date);
+}
+function renderStats() {
+  const count = allReviews.length;
+  const average = count ? allReviews.reduce((sum, item) => sum + item.rating, 0) / count : 0;
+  document.getElementById("average").innerHTML = count ? average.toFixed(1) + ' <small>/ 5</small>' : '— <small>/ 5</small>';
+  document.getElementById("averageStars").textContent = count ? "★".repeat(Math.round(average)) + "☆".repeat(5 - Math.round(average)) : "☆☆☆☆☆";
+  document.getElementById("total").textContent = count;
+  document.getElementById("fiveStars").textContent = count ? Math.round(allReviews.filter(item => item.rating === 5).length / count * 100) + "%" : "—";
+}
+function filteredReviews() {
+  if (activeFilter === "all") return allReviews;
+  if (activeFilter === "low") return allReviews.filter(item => item.rating <= 2);
+  return allReviews.filter(item => item.rating === Number(activeFilter));
+}
+function renderReviews() {
+  const list = document.getElementById("reviewList");
+  const items = filteredReviews();
+  if (!items.length) {
+    const message = allReviews.length ? "По этому фильтру отзывов пока нет." : "Пока здесь тихо.";
+    list.innerHTML = '<div class="empty"><strong>' + message + '</strong>Будешь первым, кто поделится впечатлением?</div>';
+    return;
+  }
+  list.innerHTML = items.map(item => '<article class="review-card">' +
+    '<div class="review-top"><div class="review-author">' + escapeHTML(item.name) + '</div><time class="review-date" datetime="' + escapeHTML(item.date) + '">' + escapeHTML(formatDate(item.date)) + '</time></div>' +
+    '<div class="review-stars" aria-label="Оценка ' + item.rating + ' из 5">' + "★".repeat(item.rating) + "☆".repeat(5-item.rating) + '</div>' +
+    '<div class="review-text">' + escapeHTML(item.message) + '</div>' +
+    '<div class="review-number">ОТЗЫВ №' + item.id + ' · <a href="' + escapeHTML(item.url) + '" target="_blank" rel="noopener">Оригинал на GitHub ↗</a></div>' +
+    '</article>').join("");
+}
+async function loadReviews() {
+  const status = document.getElementById("status");
+  try {
+    const response = await fetch(API_URL, {headers:{"Accept":"application/vnd.github+json"}});
+    if (!response.ok) throw new Error(response.status === 403 ? "GitHub временно ограничил частоту запросов." : "Не удалось получить отзывы (HTTP " + response.status + ").");
+    const issues = await response.json();
+    allReviews = issues.filter(issue => !issue.pull_request && /^Отзыв:/i.test(issue.title || ""))
+      .map(parseReview).filter(Boolean);
+    renderStats();
+    renderReviews();
+    status.textContent = allReviews.length ? "Показаны опубликованные отзывы из GitHub." : "Пока нет опубликованных отзывов — можно оставить первый.";
+  } catch (error) {
+    document.getElementById("reviewList").innerHTML = '<div class="empty"><strong>Не получилось загрузить отзывы.</strong>' + escapeHTML(error.message) + '<br>Попробуй обновить страницу чуть позже.</div>';
+    status.textContent = "Ошибка загрузки";
+    renderStats();
+  }
+}
+document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
+  activeFilter = button.dataset.filter;
+  document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item === button));
+  renderReviews();
+}));
+document.getElementById("reviewForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const name = document.getElementById("reviewName").value.trim();
+  const rating = document.getElementById("reviewRating").value;
+  const message = document.getElementById("reviewMessage").value.trim();
+  if (!name || !message) return;
+  const title = "Отзыв: " + name;
+  const body = "Имя: " + name + "\nОценка: " + rating + " / 5\n\n" + message;
+  const url = NEW_ISSUE_URL + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+  window.open(url, "_blank", "noopener");
+});
+loadReviews();
+</script>
+</body>
+</html>
