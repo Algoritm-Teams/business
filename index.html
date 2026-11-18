@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ручки на заказ — от Мехди и Нурсика</title>
-<meta name="description" content="Кастомные ручки с любым дизайном: эмблема класса, имя, цитата, питомец. От 1 штуки, от 100 ₽. С нас — качество и креатив, с тебя — идея." />
+<title>Ручки на заказ — от великих Нурсиков и Мехди</title>
+<meta name="description" content="Кастомные ручки с любым дизайном." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
     --accent:#facc15; /* Желтый */
     --pad: clamp(1.25rem, 5vw, 5rem);
     --ease: cubic-bezier(.16,1,.3,1);
-    --bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6); /* Эффект пружины для бургера */
+    --bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
     --nav-h: 80px;
   }
 
@@ -92,7 +92,7 @@
   }
   .nav-links a:hover{color:var(--fg)}
 
-  /* Бургер-кнопка (скрыта на ПК) */
+  /* Бургер-кнопка */
   .nav-toggle {
     display: none;
     background: none; border: none; cursor: pointer;
@@ -101,20 +101,16 @@
   }
   .nav-toggle span {
     display: block; width: 24px; height: 2px; background: var(--fg);
-    /* Пружинистая анимация */
     transition: transform 0.5s var(--bounce), opacity 0.3s, background 0.3s;
   }
   .nav-toggle.active span:nth-child(1) { 
-    transform: translateY(8px) rotate(45deg); 
-    background: var(--accent); 
+    transform: translateY(8px) rotate(45deg); background: var(--accent); 
   }
   .nav-toggle.active span:nth-child(2) { 
-    opacity: 0; 
-    transform: scaleX(0); /* Полоска сжимается в точку */
+    opacity: 0; transform: scaleX(0); 
   }
   .nav-toggle.active span:nth-child(3) { 
-    transform: translateY(-8px) rotate(-45deg); 
-    background: var(--accent); 
+    transform: translateY(-8px) rotate(-45deg); background: var(--accent); 
   }
 
   /* Мобильное меню */
@@ -123,33 +119,23 @@
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     z-index: 900;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-    /* Анимация выезда сверху */
     transform: translateY(-100%);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .mobile-menu.open { 
-    transform: translateY(0); 
-  }
+  .mobile-menu.open { transform: translateY(0); }
   .mobile-menu a {
     font-size: 1.5rem; font-weight: 500; color: var(--fg);
     letter-spacing: 0.1em; text-transform: uppercase;
-    transition: color 0.3s;
-    /* Легкая анимация появления элементов */
     opacity: 0; transform: translateY(20px);
     transition: color 0.3s, opacity 0.4s var(--ease), transform 0.4s var(--ease);
   }
-  .mobile-menu.open a {
-    opacity: 1; transform: translateY(0);
-  }
-  /* Задержка для плавного появления ссылок */
+  .mobile-menu.open a { opacity: 1; transform: translateY(0); }
   .mobile-menu.open a:nth-child(1) { transition-delay: 0.1s; }
   .mobile-menu.open a:nth-child(2) { transition-delay: 0.15s; }
   .mobile-menu.open a:nth-child(3) { transition-delay: 0.2s; }
   .mobile-menu.open a:nth-child(4) { transition-delay: 0.25s; }
   .mobile-menu.open a:nth-child(5) { transition-delay: 0.3s; }
-  .mobile-menu.open a:nth-child(6) { transition-delay: 0.35s; }
-  .mobile-menu.open a:nth-child(7) { transition-delay: 0.4s; }
-
+  
   .mobile-menu a:hover { color: var(--accent); }
   .mobile-menu .mobile-cta {
     margin-top: 1rem; background: var(--accent); color: var(--bg);
@@ -175,7 +161,6 @@
   }
 
   .hero-title{ display:flex; flex-direction:column; margin: 4vh 0; }
-  
   .title-sans{
     font-size:clamp(3rem, 13vw, 12rem); font-weight:500; line-height:.85; letter-spacing:-.04em;
     color:var(--fg); z-index:2; position:relative;
@@ -254,24 +239,6 @@
     background:rgba(10,10,11,.6); backdrop-filter:blur(4px); padding:.4rem .8rem; border-radius:8px;
   }
   @media(max-width:768px){ .gallery-grid{grid-template-columns:1fr;} }
-
-  /* ---------- IDEAS ---------- */
-  .ideas{padding:clamp(4.5rem,10vw,9rem) 0; border-top:1px solid var(--line);}
-  .ideas-grid{
-    display:grid; grid-template-columns:repeat(3,1fr);
-    gap:clamp(.9rem,2vw,1.4rem);
-  }
-  .idea{
-    background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:18px;
-    padding:clamp(1.3rem,2.4vw,1.9rem);
-    transition:transform .5s var(--ease), border-color .4s, background .4s;
-  }
-  .idea:hover{
-    transform:translateY(-5px); border-color:rgba(250,204,21,.4); background:rgba(250,204,21,.03);
-  }
-  .idea .n{ font-size:.72rem; letter-spacing:.18em; color:var(--accent); display:block; margin-bottom:1.6rem; }
-  .idea h3{ font-size:1.15rem; font-weight:500; letter-spacing:-.02em; margin-bottom:.6rem; }
-  .idea p{ color:var(--muted); font-size:.92rem; line-height:1.55 }
 
   /* ---------- PRICE ---------- */
   .price{padding:clamp(4rem,9vw,8rem) 0; border-top:1px solid var(--line)}
@@ -385,12 +352,10 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:960px){
-    .ideas-grid{grid-template-columns:1fr 1fr}
     .price-grid{grid-template-columns:1fr}
     .steps-grid{grid-template-columns:1fr}
   }
   @media(max-width:620px){
-    .ideas-grid{grid-template-columns:1fr}
     .hero-bottom-bar{flex-direction:column; align-items:flex-start; gap:1.5rem}
     .contact-actions{flex-direction:column; width:100%}
     .btn{width:100%;}
@@ -416,10 +381,8 @@
 <!-- МОБИЛЬНОЕ МЕНЮ -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#gallery">Примеры</a>
-  <a href="#ideas">Идеи</a>
   <a href="#price">Цена</a>
   <a href="#how">Как заказать</a>
-  <!-- Ссылка на отдельную страницу с отзывами -->
   <a href="reviews.html">Отзывы</a>
   <a href="#contact" class="mobile-cta">Написать</a>
 </div>
@@ -430,15 +393,13 @@
   
   <nav class="nav-links">
     <a href="#gallery">Примеры</a>
-    <a href="#ideas">Идеи</a>
     <a href="#price">Цена</a>
     <a href="#how">Как заказать</a>
-    <!-- Ссылка на отдельную страницу с отзывами -->
     <a href="reviews.html">Отзывы</a>
     <a href="#contact">Написать</a>
   </nav>
 
-  <!-- Бургер-кнопка для мобильных -->
+  <!-- Бургер-кнопка -->
   <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
     <span></span>
     <span></span>
@@ -516,53 +477,11 @@
     </div>
   </section>
 
-  <!-- IDEAS -->
-  <section class="ideas" id="ideas">
-    <div class="container">
-      <div class="sec-head reveal">
-        <span class="num">02</span><span>Что можно нанести</span><span class="rule"></span>
-      </div>
-
-      <div class="ideas-grid">
-        <article class="idea reveal">
-          <span class="n">01</span>
-          <h3>Эмблема класса</h3>
-          <p>Ручки для одноклассников, учителей и школьных мероприятий — круто, когда всё своё.</p>
-        </article>
-        <article class="idea reveal">
-          <span class="n">02</span>
-          <h3>Имя или подпись</h3>
-          <p>Личный подарок, который не потеряется и не спутается с чужим на уроке.</p>
-        </article>
-        <article class="idea reveal">
-          <span class="n">03</span>
-          <h3>Дата и повод</h3>
-          <p>День рождения, выпускной, 1 сентября — маленький сувенир с большим смыслом.</p>
-        </article>
-        <article class="idea reveal">
-          <span class="n">04</span>
-          <h3>Цитата или фраза</h3>
-          <p>То, что хочется держать в руке каждый день: строчка из песни, девиз, шутка.</p>
-        </article>
-        <article class="idea reveal">
-          <span class="n">05</span>
-          <h3>Питомец или портрет</h3>
-          <p>По фото — в графике или тонкой линии. Самый личный вариант.</p>
-        </article>
-        <article class="idea reveal">
-          <span class="n">06</span>
-          <h3>Свой макет</h3>
-          <p>Уже есть готовый дизайн? Присылай — проверим и напечатаем красиво.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICE -->
+  <!-- PRICE (Теперь 02) -->
   <section class="price" id="price">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="num">03</span><span>Цена</span><span class="rule"></span>
+        <span class="num">02</span><span>Цена</span><span class="rule"></span>
       </div>
 
       <div class="price-grid">
@@ -588,11 +507,11 @@
     </div>
   </section>
 
-  <!-- STEPS -->
+  <!-- STEPS (Теперь 03) -->
   <section class="steps" id="how">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="num">04</span><span>Как заказать</span><span class="rule"></span>
+        <span class="num">03</span><span>Как заказать</span><span class="rule"></span>
       </div>
 
       <div class="steps-grid">
@@ -644,13 +563,13 @@
 
 <!-- ПАСХАЛКА -->
 <div class="easter-egg-wrap">
-  <span class="easter-egg">все деньги ушли на шторы, сори, но ручки имба!</span>
+  <span class="easter-egg">все деньги ушли на шторы, сори, но ручки имба! а еще сайт делал рома: скажите спасиба)</span>
 </div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* ---------- МОБИЛЬНОЕ МЕНЮ С АНИМАЦИЕЙ ---------- */
+  /* ---------- МОБИЛЬНОЕ МЕНЮ ---------- */
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -659,7 +578,6 @@
     mobileMenu.classList.toggle('open');
   });
 
-  // Закрывать меню при клике на любую ссылку внутри него
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navToggle.classList.remove('active');
@@ -689,7 +607,7 @@
       requestAnimationFrame(loop);
     })();
 
-    const hoverables = 'a, button, .idea, .gallery-item, .easter-egg';
+    const hoverables = 'a, button, .gallery-item, .easter-egg';
     document.querySelectorAll(hoverables).forEach(el => {
       el.addEventListener('mouseenter', () => ring.classList.add('hover'));
       el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
@@ -716,7 +634,7 @@
   (function(){
     const els = document.querySelectorAll('.reveal');
 
-    document.querySelectorAll('.ideas-grid, .steps-grid, .gallery-grid, .contact-actions, .price-grid').forEach(group => {
+    document.querySelectorAll('.steps-grid, .gallery-grid, .contact-actions, .price-grid').forEach(group => {
       [...group.querySelectorAll('.reveal')].forEach((el, i) => {
         el.style.transitionDelay = (i * 0.08) + 's';
       });
