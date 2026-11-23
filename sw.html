@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0a0b">
-<title>Пульт управления — ручки.</title>
+<title>Система управления — ручки.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -15,125 +15,219 @@
     --danger:#ff4a1c; --success:#22c55e; --sans:'Inter',sans-serif; --serif:'Instrument Serif',serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body { background:var(--bg); color:var(--fg); font-family:var(--sans); line-height:1.6; min-height: 100vh; overflow-x: hidden; }
+  body{background:var(--bg); color:var(--fg); font-family:var(--sans); line-height:1.6; min-height:100vh; display:flex;}
   a{color:inherit;text-decoration:none}
   button,input,textarea{font:inherit}
   
-  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
   /* ЭКРАН ВХОДА */
-  #loginScreen{position:fixed; inset:0; background:var(--bg); z-index:100; display:flex; align-items:center; justify-content:center;}
-  .login-box { background: var(--card-bg); border: 1px solid var(--line); padding: 3rem 2rem; border-radius: 24px; text-align: center; width: min(100%, 400px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-  .logo-mark { font-family: var(--serif); font-style: italic; font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem; line-height: 1; }
+  #loginScreen{
+    position:fixed; inset:0; background:var(--bg); z-index:1000;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .login-box {
+    background: var(--card-bg); border: 1px solid var(--line);
+    padding: 3rem 2rem; border-radius: 24px; text-align: center;
+    width: min(100%, 400px); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .logo-mark { font-family: var(--serif); font-style: italic; font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem; }
   #loginScreen h1 { font-size: 1.2rem; font-weight: 500; margin-bottom: 2rem; }
-  #loginScreen input { width:100%; height:52px; background:var(--input-bg); border:1px solid var(--line); border-radius:12px; color:var(--fg); padding:0 1rem; font-size:1rem; outline:none; text-align:center; margin-bottom: 1rem; transition: border-color 0.3s; }
+  #loginScreen input { width:100%; height:52px; background:var(--input-bg); border:1px solid var(--line); border-radius:12px; color:var(--fg); padding:0 1rem; text-align:center; margin-bottom:1rem; outline:none; transition:0.3s; }
   #loginScreen input:focus { border-color: var(--accent); }
-  #loginScreen button { width:100%; height:52px; background:var(--accent); color:var(--bg); border:none; border-radius:12px; font-weight:600; font-size:1rem; cursor:pointer; transition: 0.2s; }
-  #loginScreen button:hover { background: #eab308; transform: translateY(-1px); }
-  #loginScreen button:disabled { opacity: 0.7; cursor: wait; }
+  #loginScreen button { width:100%; height:52px; background:var(--accent); color:var(--bg); border:none; border-radius:12px; font-weight:600; cursor:pointer; transition:0.2s; }
+  #loginScreen button:hover { background: #eab308; }
   #loginError { color:var(--danger); font-size:.85rem; display:none; margin-top: 0.5rem; }
 
-  /* ПАНЕЛЬ */
-  #adminPanel { display: none; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-  .header { display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 1rem; border-bottom:1px solid var(--line); padding-bottom:1.5rem; margin-bottom:2rem; }
-  .header h1 { font-size:1.5rem; font-weight: 500; }
-  .header .right-side { display: flex; gap: 1rem; align-items: center; }
-  .header a, .header button { font-size:.8rem; color:var(--muted); background: transparent; border: 1px solid var(--line); padding: 0.5rem 1rem; border-radius: 100px; cursor: pointer; transition: 0.2s; }
-  .header a:hover, .header button:hover { border-color: var(--fg); color: var(--fg); }
+  /* ПАНЕЛЬ (ДАШБОРД) */
+  #adminPanel { display: none; width: 100%; height: 100vh; overflow: hidden; }
+  
+  /* САЙДБАР */
+  .sidebar {
+    width: 260px; background: var(--card-bg); border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; height: 100%; padding: 1.5rem;
+  }
+  .sidebar-logo { font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+  .sidebar-logo span { color: var(--accent); }
+  
+  .nav-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.8rem 1rem; border-radius: 10px; color: var(--muted);
+    cursor: pointer; transition: 0.2s; font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.03); color: var(--fg); }
+  .nav-item.active { background: var(--accent); color: var(--bg); }
+  .nav-item svg { width: 20px; height: 20px; }
+  
+  .sidebar-bottom { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); }
+  .sidebar-bottom a, .sidebar-bottom button {
+    display: block; width: 100%; text-align: left; background: transparent; border: none;
+    color: var(--muted); padding: 0.8rem 1rem; border-radius: 10px; cursor: pointer; transition: 0.2s; font-size: 0.9rem;
+  }
+  .sidebar-bottom a:hover, .sidebar-bottom button:hover { color: var(--fg); background: rgba(255,255,255,0.03); }
+
+  /* КОНТЕНТ */
+  .main-content { flex: 1; height: 100%; overflow-y: auto; padding: 2rem 3rem; background: var(--bg); }
+  .page-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 2rem; letter-spacing: -0.03em; }
   
   /* ВКЛАДКИ */
-  .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: var(--card-bg); padding: 0.5rem; border-radius: 12px; width: fit-content; border: 1px solid var(--line); }
-  .tab { padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; color: var(--muted); transition: 0.2s; font-weight: 500; }
-  .tab.active { background: var(--fg); color: var(--bg); }
-  .content-section { display: none; animation: slideUp 0.4s ease; }
+  .content-section { display: none; animation: slideUp 0.3s ease; }
   .content-section.active { display: block; }
+  @keyframes slideUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
 
   /* АНАЛИТИКА */
-  .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-  .stat-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; }
-  .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem; }
-  .stat-value { font-size: 2.5rem; font-weight: 600; line-height: 1; }
-  .stat-value span { font-size: 1rem; color: var(--muted); font-weight: 400; }
-  .rating-bars { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
-  .bar-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
-  .bar-track { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
-  .bar-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.5s; }
-
-  /* СПИСОК */
-  .search-bar { width: 100%; height: 48px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 12px; padding: 0 1rem; color: var(--fg); margin-bottom: 1.5rem; outline: none; }
+  .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+  .stat-card {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 20px; padding: 1.8rem;
+    display: flex; flex-direction: column; justify-content: center; transition: transform 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-3px); border-color: rgba(250,204,21,0.2); }
+  .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.8rem; }
+  .stat-value { font-size: 3rem; font-weight: 600; line-height: 1; letter-spacing: -0.04em; }
+  .stat-value span { font-size: 1.2rem; color: var(--muted); font-weight: 400; }
+  
+  .rating-bars { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .bar-row { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
+  .bar-track { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  
+  /* СПИСОК ОТЗЫВОВ */
+  .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; }
+  .search-bar {
+    flex: 1; max-width: 400px; height: 44px; background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 12px; padding: 0 1rem; color: var(--fg); outline: none; transition: 0.3s;
+  }
   .search-bar:focus { border-color: var(--accent); }
-  .review-item { background: var(--card-bg); border: 1px solid var(--line); border-radius: 20px; padding: 1.8rem; margin-bottom: 1rem; transition: border-color 0.3s; }
+  
+  .review-item {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 20px;
+    padding: 1.8rem; margin-bottom: 1rem; transition: border-color 0.3s;
+  }
   .review-item:hover { border-color: rgba(250,204,21,0.2); }
   .review-top { display:flex; justify-content:space-between; margin-bottom:.5rem; gap: 1rem; }
   .review-author { font-weight:600; font-size:1.1rem; }
   .review-date { font-size:.8rem; color:var(--muted); }
-  .review-stars { color:var(--accent); margin-bottom:.8rem; }
-  .review-text { font-size:.95rem; color:#d1d0c9; margin-bottom:1.2rem; white-space:pre-wrap; }
-  .admin-reply { background: linear-gradient(90deg, rgba(250,204,21,0.08) 0%, rgba(250,204,21,0.02) 100%); border-left:3px solid var(--accent); padding:1rem; border-radius:0 12px 12px 0; margin-bottom:1.5rem; font-size:.9rem; }
+  .review-stars { color:var(--accent); margin-bottom:.8rem; font-size: 1rem; letter-spacing: 2px; }
+  .review-text { font-size:.95rem; color:#d1d0c9; margin-bottom:1.2rem; white-space:pre-wrap; line-height: 1.6; }
+  
+  .admin-reply {
+    background: linear-gradient(90deg, rgba(250,204,21,0.08) 0%, rgba(250,204,21,0.01) 100%);
+    border-left:3px solid var(--accent); padding:1rem 1.2rem; border-radius:0 12px 12px 0; margin-bottom:1.5rem; font-size:.9rem; color: #e0dfd7;
+  }
   .admin-reply strong { color:var(--accent); display:block; margin-bottom:.3rem; font-size: 0.75rem; text-transform: uppercase; }
+  
   .actions { display:flex; gap:.6rem; flex-wrap:wrap; }
-  .btn { padding:.5rem 1rem; border-radius:8px; font-size:.8rem; font-weight:500; cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--fg); transition:.2s; }
+  .btn {
+    padding:.6rem 1.2rem; border-radius:10px; font-size:.85rem; font-weight:500;
+    cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--fg); transition:.2s;
+  }
+  .btn:hover { border-color:var(--fg); background: rgba(255,255,255,0.03); }
   .btn-reply { color:var(--accent); border-color:rgba(250,204,21,0.3); }
-  .btn-reply:hover { background:rgba(250,204,21,0.08); }
+  .btn-reply:hover { background:rgba(250,204,21,0.08); border-color:var(--accent); }
   .btn-delete { color:var(--danger); border-color:rgba(255,74,28,0.3); }
-  .btn-delete:hover { background:rgba(255,74,28,0.08); }
+  .btn-delete:hover { background:rgba(255,74,28,0.08); border-color:var(--danger); }
+  
   .reply-form { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
-  .reply-form textarea { width:100%; height:80px; background:var(--input-bg); border:1px solid var(--line); border-radius:12px; padding:1rem; color:var(--fg); margin-bottom:.8rem; outline: none; resize: vertical; }
+  .reply-form textarea {
+    width:100%; height:80px; background:var(--input-bg); border:1px solid var(--line);
+    border-radius:12px; padding:1rem; color:var(--fg); margin-bottom:.8rem; outline: none; resize: vertical;
+  }
   .reply-form textarea:focus { border-color: var(--accent); }
-  .reply-form .save-btn { background:var(--accent); color:var(--bg); border:none; padding:.5rem 1rem; border-radius:8px; font-weight:600; cursor:pointer; }
+  .reply-form .save-btn { background:var(--accent); color:var(--bg); border:none; padding:.5rem 1.2rem; border-radius:8px; font-weight:600; cursor:pointer; }
+  
   .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); border: 1px dashed var(--line); border-radius: 20px; }
 
-  @keyframes slideUp { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
-  @media(max-width: 820px) {
+  @media(max-width: 900px) {
+    body { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 1rem; flex-direction: row; align-items: center; justify-content: space-between; }
+    .sidebar-logo { margin-bottom: 0; }
+    .nav-item { margin-bottom: 0; }
+    .sidebar-bottom { margin-top: 0; border-top: none; display: flex; gap: 1rem; padding-top: 0; }
+    .main-content { padding: 1.5rem 1rem; }
     .analytics-grid { grid-template-columns: 1fr; }
-    .header { flex-direction: column; align-items: flex-start; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .search-bar { max-width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<!-- ВХОД -->
+<!-- ЭКРАН ВХОДА -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="logo-mark">ручки.</div>
-    <h1>Секретная панель</h1>
+    <h1>Система управления</h1>
     <input type="password" id="passwordInput" placeholder="Введи код доступа" />
-    <button id="loginBtn" onclick="checkPassword()">Войти в систему</button>
+    <button id="loginBtn" onclick="checkPassword()">Войти</button>
     <p id="loginError">Неверный код доступа</p>
   </div>
 </div>
 
-<!-- ПАНЕЛЬ -->
+<!-- ДАШБОРД -->
 <div id="adminPanel">
-  <div class="header">
-    <h1>Пульт управления</h1>
-    <div class="right-side">
-      <a href="index.html">← На главную</a>
+  
+  <!-- САЙДБАР -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">ручки<span>.</span> system</div>
+    
+    <div class="nav-item active" onclick="switchTab('analytics', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      Аналитика
+    </div>
+    <div class="nav-item" onclick="switchTab('reviews', this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Отзывы
+    </div>
+
+    <div class="sidebar-bottom">
+      <a href="index.html">← На сайт</a>
       <button onclick="logout()">Выйти</button>
     </div>
-  </div>
+  </aside>
 
-  <div class="tabs">
-    <div class="tab active" onclick="switchTab('reviews')">Отзывы</div>
-    <div class="tab" onclick="switchTab('analytics')">Аналитика</div>
-  </div>
+  <!-- КОНТЕНТ -->
+  <main class="main-content">
+    
+    <!-- ВКЛАДКА: АНАЛИТИКА -->
+    <div id="tab-analytics" class="content-section active">
+      <h1 class="page-title">Обзор аналитики</h1>
+      
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <div class="stat-label">Всего отзывов</div>
+          <div class="stat-value" id="statTotal">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Средняя оценка</div>
+          <div class="stat-value" id="statAverage">0.0 <span>/ 5</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Хорошие (4-5)</div>
+          <div class="stat-value" id="statGood">0%</div>
+        </div>
+      </div>
 
-  <div id="tab-reviews" class="content-section active">
-    <input type="text" id="searchInput" class="search-bar" placeholder="Поиск..." oninput="filterReviews()">
-    <div id="reviewsList"></div>
-  </div>
-
-  <div id="tab-analytics" class="content-section">
-    <div class="analytics-grid">
-      <div class="stat-card"><div class="stat-label">Всего отзывов</div><div class="stat-value" id="statTotal">0</div></div>
-      <div class="stat-card"><div class="stat-label">Средняя оценка</div><div class="stat-value" id="statAverage">0.0 <span>/ 5</span></div></div>
-      <div class="stat-card"><div class="stat-label">Хорошие (4-5)</div><div class="stat-value" id="statGood">0%</div></div>
+      <div class="stat-card" style="margin-bottom: 2rem;">
+        <div class="stat-label">Распределение оценок</div>
+        <div class="rating-bars" id="ratingBars"></div>
+      </div>
     </div>
-    <div class="stat-card"><div class="stat-label">Распределение оценок</div><div class="rating-bars" id="ratingBars"></div></div>
-  </div>
+
+    <!-- ВКЛАДКА: ОТЗЫВЫ -->
+    <div id="tab-reviews" class="content-section">
+      <h1 class="page-title">Управление отзывами</h1>
+      
+      <div class="toolbar">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Поиск по имени или тексту..." oninput="filterReviews()">
+      </div>
+
+      <div id="reviewsList"></div>
+    </div>
+
+  </main>
 </div>
 
 <script>
@@ -146,46 +240,34 @@
   let searchQuery = "";
   const headers = extra => ({ apikey: SUPABASE_ANON_KEY, ...extra });
 
-  /* ---------- АВТОРИЗАЦИЯ (ЧЕРЕЗ БАЗУ) ---------- */
+  /* ---------- ВХОД ---------- */
   async function checkPassword() {
     const pass = document.getElementById('passwordInput').value;
     const btn = document.getElementById('loginBtn');
     const error = document.getElementById('loginError');
-
     if (!pass) return;
-
-    btn.disabled = true;
-    btn.textContent = "Проверка...";
-    error.style.display = 'none';
+    btn.disabled = true; btn.textContent = "Проверка..."; error.style.display = 'none';
 
     try {
-      // Стучимся в базу с вопросом "Пароль верный?"
       const res = await fetch(RPC_URL(), {
-        method: 'POST',
-        headers: headers({"Content-Type": "application/json"}),
+        method: 'POST', headers: headers({"Content-Type": "application/json"}),
         body: JSON.stringify({ input_pass: pass })
       });
-
       if (!res.ok) throw new Error("Ошибка сервера");
-
-      const isCorrect = await res.json(); // Вернет true или false
+      const isCorrect = await res.json();
 
       if (isCorrect) {
-        // Если true — пускаем
         document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'flex';
         loadAllReviews();
       } else {
-        // Если false — ошибка
         error.style.display = 'block';
         document.getElementById('passwordInput').value = '';
       }
     } catch (e) {
-      error.textContent = "Ошибка сети. Попробуй позже.";
-      error.style.display = 'block';
+      error.textContent = "Ошибка сети."; error.style.display = 'block';
     } finally {
-      btn.disabled = false;
-      btn.textContent = "Войти в систему";
+      btn.disabled = false; btn.textContent = "Войти";
     }
   }
 
@@ -196,21 +278,18 @@
   }
   document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
 
-  /* ---------- ВКЛАДКИ ---------- */
-  function switchTab(tab) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  /* ---------- НАВИГАЦИЯ ---------- */
+  function switchTab(tab, element) {
+    document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-    if (tab === 'reviews') {
-      document.querySelector('.tab:nth-child(1)').classList.add('active');
-      document.getElementById('tab-reviews').classList.add('active');
-    } else {
-      document.querySelector('.tab:nth-child(2)').classList.add('active');
-      document.getElementById('tab-analytics').classList.add('active');
-      renderAnalytics();
-    }
+    
+    element.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    
+    if (tab === 'analytics') renderAnalytics();
   }
 
-  /* ---------- ЗАГРУЗКА ДАННЫХ ---------- */
+  /* ---------- ДАННЫЕ ---------- */
   async function loadAllReviews() {
     const list = document.getElementById('reviewsList');
     list.innerHTML = '<div class="empty-state">Загрузка...</div>';
@@ -233,16 +312,30 @@
     const list = document.getElementById('reviewsList');
     const filtered = currentReviews.filter(item => item.name.toLowerCase().includes(searchQuery) || item.message.toLowerCase().includes(searchQuery));
     if (!filtered.length) { list.innerHTML = '<div class="empty-state">Ничего не найдено.</div>'; return; }
+    
     list.innerHTML = filtered.map(item => `
       <div class="review-item" id="review-${item.id}">
-        <div class="review-top"><div class="review-author">${item.name}</div><div class="review-date">${new Date(item.created_at).toLocaleDateString('ru-RU')}</div></div>
+        <div class="review-top">
+          <div class="review-author">${item.name}</div>
+          <div class="review-date">${new Date(item.created_at).toLocaleDateString('ru-RU')}</div>
+        </div>
         <div class="review-stars">${"★".repeat(item.rating)}${"☆".repeat(5-item.rating)}</div>
         <div class="review-text">${item.message}</div>
-        ${item.admin_reply ? `<div class="admin-reply"><strong>Ответ магазина</strong>${item.admin_reply}</div>` : ''}
+        
+        ${item.admin_reply ? `
+          <div class="admin-reply">
+            <strong>Твой ответ</strong>
+            ${item.admin_reply}
+          </div>
+        ` : ''}
+
         <div class="actions">
-          <button class="btn btn-reply" onclick="toggleReplyForm(${item.id})">${item.admin_reply ? 'Изменить ответ' : 'Ответить'}</button>
+          <button class="btn btn-reply" onclick="toggleReplyForm(${item.id})">
+            ${item.admin_reply ? 'Изменить ответ' : 'Ответить'}
+          </button>
           <button class="btn btn-delete" onclick="deleteReview(${item.id})">Удалить</button>
         </div>
+
         <div class="reply-form" id="reply-form-${item.id}">
           <textarea id="reply-text-${item.id}" placeholder="Твой ответ...">${item.admin_reply || ''}</textarea>
           <button class="save-btn" onclick="saveReply(${item.id})">Сохранить</button>
@@ -251,7 +344,6 @@
     `).join('');
   }
 
-  /* ---------- АНАЛИТИКА ---------- */
   function renderAnalytics() {
     const total = currentReviews.length;
     if (!total) return;
@@ -265,7 +357,7 @@
     let html = '';
     for (let i = 4; i >= 0; i--) {
       const percent = Math.round((counts[i] / total) * 100);
-      html += `<div class="bar-row"><span>${i + 1} ★</span><div class="bar-track"><div class="bar-fill" style="width: ${percent}%"></div></div><span style="width: 30px; text-align: right;">${counts[i]}</span></div>`;
+      html += `<div class="bar-row"><span>${i + 1} ★</span><div class="bar-track"><div class="bar-fill" style="width: ${percent}%"></div></div><span style="width: 40px; text-align: right;">${counts[i]}</span></div>`;
     }
     document.getElementById('ratingBars').innerHTML = html;
   }
@@ -279,7 +371,7 @@
   async function saveReply(id) {
     const text = document.getElementById(`reply-text-${id}`).value.trim();
     const btn = document.querySelector(`#reply-form-${id} .save-btn`);
-    btn.textContent = 'Сохранение...'; btn.disabled = true;
+    btn.textContent = '...'; btn.disabled = true;
     try {
       const res = await fetch(TABLE_URL() + `?id=eq.${id}`, {
         method: 'PATCH', headers: headers({"Content-Type": "application/json"}), body: JSON.stringify({ admin_reply: text })
@@ -288,8 +380,8 @@
         const idx = currentReviews.findIndex(r => r.id === id);
         if (idx !== -1) currentReviews[idx].admin_reply = text;
         renderReviewsList(); 
-      }
-    } catch (e) { alert("Ошибка"); } finally { btn.textContent = 'Сохранить'; btn.disabled = false; }
+      } else { alert("Ошибка при сохранении"); }
+    } catch (e) { alert("Ошибка сети"); } finally { btn.textContent = 'Сохранить'; btn.disabled = false; }
   }
 
   async function deleteReview(id) {
@@ -298,8 +390,8 @@
       const res = await fetch(TABLE_URL() + `?id=eq.${id}`, { method: 'DELETE', headers: headers() });
       if (res.ok) {
         const el = document.getElementById(`review-${id}`);
-        el.style.opacity = '0';
-        setTimeout(() => { currentReviews = currentReviews.filter(r => r.id !== id); renderReviewsList(); renderAnalytics(); }, 200);
+        el.style.opacity = '0'; el.style.transform = 'translateX(20px)';
+        setTimeout(() => { currentReviews = currentReviews.filter(r => r.id !== id); renderReviewsList(); renderAnalytics(); }, 250);
       }
     } catch (e) { alert("Ошибка"); }
   }
